@@ -1,4 +1,4 @@
-package ejercicioColecciones03_04;
+package ejercicioColeciones3_03;
 
 
 public class Libro {
