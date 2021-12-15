@@ -1,13 +1,15 @@
 package treesetPersonaPrueba;
 
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.TreeSet;
 
 public class Lista {
-	private HashSet<Persona> lista;
+	private TreeSet<Persona> lista;
 
 	public Lista() {
-		lista = new HashSet<Persona>();
+		//lista = new TreeSet<Persona>(new ApellidosComparator());
+		//lista = new TreeSet<Persona>(new EdadComparator());
+		lista = new TreeSet<Persona>();
 	}
 	
 	public int tamanyo() {

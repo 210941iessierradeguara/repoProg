@@ -4,7 +4,7 @@ import java.util.Objects;
 
 // Persona.java: una clase para representar personas
 
-public class Persona {
+public class Persona implements Comparable<Persona>{
   private Nif nif;
   private int edad;
   private String nombre, apellidos;
@@ -78,6 +78,11 @@ public int hashCode() {
 public boolean equals(Object obj) {
 	Persona other = (Persona) obj;
 	return Objects.equals(nif.dameDni(),other.nif.dameDni());
+}
+
+@Override
+public int compareTo(Persona arg0) {
+	return ((int) (nif.dameDni() - arg0.nif.dameDni()));
 }
 
 
