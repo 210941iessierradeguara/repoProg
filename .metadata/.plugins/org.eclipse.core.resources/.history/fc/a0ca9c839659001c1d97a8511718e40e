@@ -1,0 +1,11 @@
+package ejercicioColecciones2Pilas;
+
+import java.util.ArrayList;
+
+public class PilaPalabras {
+	ArrayList<String> pila;
+
+	public PilaPalabras(ArrayList<String> pila) {
+		this.pila = pila;
+	}
+}

@@ -1,0 +1,10 @@
+package ejercicioColecciones3_1;
+
+public class TituloComparator {
+	public int compare (Libro l1, Libro l2) {
+		
+		Libro li1 = (Libro) l1;
+		Libro li2 = (Libro) l2;
+		return li1.dameTitulo().compareTo(li2.dameTitulo());
+	}
+}

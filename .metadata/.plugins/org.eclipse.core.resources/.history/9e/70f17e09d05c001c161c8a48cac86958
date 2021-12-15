@@ -1,0 +1,15 @@
+package defecto;
+
+public class PruebaLista {
+
+	public static void main(String[] args) {
+		Lista l = new Lista();
+		l.insertar(new Persona(1234567, 31, "A", "AA"));
+		l.insertar(new Persona(2345678, 39, "B", "BB"));
+		l.insertar(new Persona(3456789, 61, "C", "CC"));
+		l.insertar(new Persona(4567890, 42, "D", "DD"));
+		l.insertar(new Persona(5678901, 38, "E", "EE"));
+
+	}
+
+}

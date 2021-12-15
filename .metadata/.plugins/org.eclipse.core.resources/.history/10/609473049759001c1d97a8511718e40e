@@ -1,0 +1,11 @@
+package ejercicioColecciones2Pilas;
+
+public class MainPilaPalabras {
+
+	public static void main(String[] args) {
+		PilaPalabras p = new PilaPalabras();
+	}
+	
+	
+	
+}

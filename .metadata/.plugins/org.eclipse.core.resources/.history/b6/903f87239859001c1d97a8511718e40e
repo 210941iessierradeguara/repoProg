@@ -1,0 +1,12 @@
+package ejercicioColecciones2Pilas;
+
+public class MainPilaPalabras {
+
+	public static void main(String[] args) {
+		PilaPalabras p = new PilaPalabras();
+		p.apilarPalabra("Buenos días");
+		p.apilarPalabra("Buenas Tardes");
+		p.apilarPalabra("Bunas noches");
+		System.out.println(p.imprimir());
+	}
+}

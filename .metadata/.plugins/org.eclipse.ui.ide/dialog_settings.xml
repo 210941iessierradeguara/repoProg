@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="C:\Users\DAM1Alu14\Downloads\Ud3_ParteII_Ejemplos.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\Ejercicio3_4_ColeccionesIv2.zip"/>
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\blaDia17-11.zip"/>
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia19-11.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\TodoDia15-11.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\CoB-dia11-10.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\CoBDia10-11.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\Ud3-2Dia11-11.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\OrdenacionyBusqueda.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia25-10v2(1).zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia24-10v2.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia20-10v2.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia18-10v2.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\Todo15-10.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia17-10.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia14-10v2.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia13-10.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\Ud3Alumnos_Ejemplos.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\Ud1-2Dia12-10.zip"/>
+			<item value="C:\Users\DAM1Alu14\Downloads\Ud2_Ejemplos.zip"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode/&gt;&#x0D;&#x0A;&lt;/History&gt;"/>
+		<item key="ShowDerived" value="false"/>
+		<item key="FilterByLocation" value="false"/>
+		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="67"/>
+			<item key="DIALOG_Y_ORIGIN" value="100"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		</section>
+	</section>
+	<section name="ResourceNavigator">
+		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="Aggregate for window 1632215098905"/>
+	</section>
+</section>
