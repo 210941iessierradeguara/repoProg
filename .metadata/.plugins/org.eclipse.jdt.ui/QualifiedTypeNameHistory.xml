@@ -19,4 +19,6 @@
     <fullyQualifiedTypeName name="_02colecciones1.Lista"/>
     <fullyQualifiedTypeName name="_02colecciones1.PruebaLista"/>
     <fullyQualifiedTypeName name="ejercicoColecciones2_03.Producto"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.util.TreeSet"/>
 </qualifiedTypeNameHistroy>
