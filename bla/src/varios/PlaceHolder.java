@@ -1322,8 +1322,19 @@ public class PlaceHolder {
 
 			switch (choice) {
 				case 1:
+					fightBeast(1);
+					Uencounter = true;
 					break;
 				case 2:
+					int huida = roll20();
+					if (huida >= 17) {
+						System.out.println("Huyes, te escondes en el primer aula que encuentras y atrancas la puerta con ayuda de algunos estudiantes.");
+						System.out.println("Esperais... Y al final se hace el silencio, has evitado la conforntación, pero la bestia ahora ronda suelta.");
+						Uencounter = true;
+					} else {
+						fightBeast(1);
+						Uencounter = true;
+					}
 					break;
 				default:
 					System.out.println("Eso no es una opción");
