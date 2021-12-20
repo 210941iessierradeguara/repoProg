@@ -1254,7 +1254,7 @@ public class PlaceHolder {
 			switch (choice) {
 			case 1:
 				if (Uencounter == true) {
-
+					
 				} else {
 					interiorUniversidadE();
 				}
@@ -1262,12 +1262,12 @@ public class PlaceHolder {
 			case 2:
 				viaPrincipalO();
 				break;
-			case 4:
-				inventory();
-				entradaUniversidad2();
-				break;
 			case 3:
 				longRest();
+				entradaUniversidad2();
+				break;
+			case 4:
+				inventory();
 				entradaUniversidad2();
 				break;
 			default:
@@ -1275,11 +1275,11 @@ public class PlaceHolder {
 				entradaUniversidad2();
 				break;
 			}// End switch choice ViaPricipalO
-			if (choice == 5) {
-				System.exit(0);
-			}
-			entradaUniversidad2();
 		}
+		if (choice == 5) {
+			System.exit(0);
+		}
+		entradaUniversidad2();
 	}
 
 	public static boolean Uencounter = false;
