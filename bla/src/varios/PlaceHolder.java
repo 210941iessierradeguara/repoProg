@@ -41,7 +41,6 @@ public class PlaceHolder {
 	static List<String> inv = new ArrayList<String>(); // https://stackoverflow.com/questions/22364768/inventory-system-for-a-text-based-adventure-game-in-java
 
 	public static void clase() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("Elige tu clase: ");
 		System.out.println("1- para Guerrero.");
 		System.out.println("2- para Mago.");
@@ -465,7 +464,6 @@ public class PlaceHolder {
 	}
 
 	public static void fight(int f) {
-		Scanner s = new Scanner(System.in);
 		fighting = true;
 		System.out.println("Adoptas una posición de combate frente a tu enemigo.");
 		enemies(f);
@@ -530,7 +528,6 @@ public class PlaceHolder {
 	}
 
 	public static void fight2(int f) {
-		Scanner s = new Scanner(System.in);
 		fighting = true;
 		System.out.println("Adoptas una posición de combate frente a tu enemigo.");
 		enemies2(f);
@@ -595,7 +592,6 @@ public class PlaceHolder {
 	}
 
 	public static void fightBeast(int f) {
-		Scanner s = new Scanner(System.in);
 		fighting = true;
 		System.out.println("Adoptas una posición de combate frente a tu enemigo.");
 		beasts(f);
@@ -660,7 +656,6 @@ public class PlaceHolder {
 	}
 
 	public static void fightSolarBeasts(int f) {
-		Scanner s = new Scanner(System.in);
 		fighting = true;
 		System.out.println("Adoptas una posición de combate frente a tu enemigo.");
 		SolarBeasts(f);
@@ -728,37 +723,52 @@ public class PlaceHolder {
 		if (xp >= 300) {
 			level = 2;
 			if (playerClass == "Guerrero") {
-				playerHP = playerHP + (roll10() + 3);
+				maxPlayerHP = maxPlayerHP + (roll10() + 3);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup warrior
 			if (playerClass == "Mago") {
-				playerHP = playerHP + (roll6() + 2);
+				maxPlayerHP = maxPlayerHP + (roll6() + 2);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup wizard
 			if (playerClass == "Bardo") {
-				playerHP = playerHP + (roll8() + 3);
+				maxPlayerHP = maxPlayerHP + (roll8() + 3);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup bard
 			if (playerClass == "Vagabundo") {
-				playerHP = playerHP + (roll6() + 1);
+				maxPlayerHP = maxPlayerHP + (roll6() + 1);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup hobo
-		} // Ens lvl2 check
+			if (playerClass == "Landsknecht Crigiolano") {
+				maxPlayerHP = maxPlayerHP + (roll10() + 5);
+				System.out.println("has subido al nivel: " + level);
+			}
+		} // Ends lvl2 check
 		if (xp >= 900) {
 			level = 3;
 			if (playerClass == "Guerrero") {
-				playerHP = playerHP + (roll10() + 3);
+				maxPlayerHP = maxPlayerHP + (roll10() + 3);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup warrior
 			if (playerClass == "Mago") {
-				playerHP = playerHP + (roll6() + 2);
+				maxPlayerHP = maxPlayerHP + (roll6() + 2);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup wizard
 			if (playerClass == "Bardo") {
-				playerHP = playerHP + (roll8() + 3);
+				maxPlayerHP = maxPlayerHP + (roll8() + 3);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup bard
 			if (playerClass == "Vagabundo") {
 				playerHP = playerHP + (roll6() + 1);
+				System.out.println("has subido al nivel: " + level);
 			} // End lvlup hobo
-		} // Ens lvl3 check
+			if (playerClass == "Landsknecht Crigiolano") {
+				maxPlayerHP = maxPlayerHP + (roll10() + 5);
+				System.out.println("has subido al nivel: " + level);
+			}
+		} // Ends lvl3 check
 	}
 
 	public static void DoMagic() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("Puedes hacer los siguiente hechizos");
 		System.out.println("1- Misil mágico.");
 		System.out.println("2- Spray venenoso.");
@@ -846,7 +856,6 @@ public class PlaceHolder {
 	}
 
 	public static void hoboStart() {
-		Scanner s = new Scanner(System.in);
 		System.out.println(
 				"Esperas sentado frente a la puerta de la taberna Cabo Tenso, nadie te deja un misero galeón en el bol.");
 		System.out.println(
@@ -882,7 +891,6 @@ public class PlaceHolder {
 	}
 
 	public static void tensoCabo() {
-		Scanner s = new Scanner(System.in);
 		System.out.printf(
 				"El interior de la taberna 'Tenso Cabo' el aire huele a cerveza y a sudoroso hombre de mar, \n tocan en el escenario un grupo de cuatro bardos, con bandurrias y violines tocan 'El aparejo mal atado' aunque cuesta escucharles con todo el gentío.\n");
 		System.out.printf(
@@ -952,8 +960,6 @@ public class PlaceHolder {
 	public static int looted2 = 0; // Victima tenso cabo
 
 	public static void tensoCabo2() {
-		Scanner s = new Scanner(System.in);
-		boolean exit = false;
 
 		System.out.println("Tras acabar con tu rival su acompañante huye despavorido");
 		System.out.println("¿Que quiere hacer?");
@@ -1029,7 +1035,6 @@ public class PlaceHolder {
 			}// end switch choice
 		} // end while
 		if (choice == 6) {
-			exit = true;
 			System.exit(0);
 		}
 	}
@@ -1037,9 +1042,6 @@ public class PlaceHolder {
 	public static int looted2p1 = 0; // Victima tenso cabo
 
 	public static void tensoCabo3() {
-		Scanner s = new Scanner(System.in);
-
-		boolean exit = false;
 
 		System.out
 				.println("Al final ambos asaltantes terminan por abandonar la taberna dejando nada más que silencio.");
@@ -1093,15 +1095,12 @@ public class PlaceHolder {
 		} // end while
 
 		if (choice == 5) {
-			exit = true;
 			System.exit(0);
 		}
 
 	}
 
 	public static void viaPrincipalO() {
-		Scanner s = new Scanner(System.in);
-		boolean exit = false;
 
 		System.out.println(
 				"Una alargada vía, cruzando de lado a lado brizzaresca, al oeste uno atraviesa la entrada y sale de las murallas de la ciudad");
@@ -1150,7 +1149,6 @@ public class PlaceHolder {
 				break;
 			}// End switch choice ViaPricipalO
 			if (choice == 7) {
-				exit = true;
 				System.exit(0);
 			}
 			viaPrincipalO();
@@ -1254,7 +1252,7 @@ public class PlaceHolder {
 			switch (choice) {
 			case 1:
 				if (Uencounter == true) {
-					
+					interiorUniversidad();
 				} else {
 					interiorUniversidadE();
 				}
@@ -1311,7 +1309,7 @@ public class PlaceHolder {
 			System.out.println("las llamas se detiene en seco. Atemorizada, la bestia se lanza al suelo");
 			System.out.println(
 					"las verdes llamas envuelven al ser y para cuando se disipan un hombre común yace en el suelo");
-			xp = xp + 100;
+			xp = xp + 300;
 			Uencounter = true;
 		} else {
 			System.out.println("La odiosa bestia se abalanza sobre tí.");
@@ -1324,6 +1322,7 @@ public class PlaceHolder {
 				case 1:
 					fightBeast(1);
 					Uencounter = true;
+					interiorUniversidad();
 					break;
 				case 2:
 					int huida = roll20();
@@ -1334,6 +1333,7 @@ public class PlaceHolder {
 					} else {
 						fightBeast(1);
 						Uencounter = true;
+						interiorUniversidad();
 					}
 					break;
 				default:
@@ -1345,9 +1345,48 @@ public class PlaceHolder {
 		interiorUniversidadE();
 	}
 
+	public static void interiorUniversidad() {
+		System.out.println("Las aulas se han calmado desde el econtronazo con aquel proyecto de clase");
+		System.out.println("que terminó con un licantropo rondando por los pasillos de la universidad.");
+		System.out.println("Los pasillos vuelven a su normal silencio, solo irrumpido por los tutores");
+		System.out.println("con la voz más potente. Los pasillos está pulidos y las paredes decoradas");
+		System.out.println("de formas variopintas reflejando los estudios disponibles en la universidad");
+		System.out.println("¿Que quieres hacer?");
+		System.out.println("1- Al observatorio");
+		System.out.println("2- A la biblioteca");
+		System.out.println("3- A la entrada de la universidad.");
+		System.out.println("4- Descansar");
+		System.out.println("5- Inventario");
+		System.out.println("6- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 6) {
+			switch(choice) {
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					entradaUniversidad2();
+					break;
+				case 4:
+					longRest();
+					interiorUniversidad();
+					break;
+				case 5:
+					inventory();
+					interiorUniversidad();
+					break;
+			} //End switch interUni
+		}//End while interUni
+		if (choice == 6) {
+			System.exit(0);
+		}
+		
+		interiorUniversidad();
+	}//En interUni
+	
 	public static void porton() {
-		Scanner s = new Scanner(System.in);
-		boolean exit = false;
 
 		System.out.println(
 				"Te acercas a al portó de la ciudad, el rastrillo está levantado y la sombra de las murallas se alarga ante tí.");
@@ -1385,7 +1424,6 @@ public class PlaceHolder {
 				break;
 			}// End switch choice ViaPricipalO
 			if (choice == 5) {
-				exit = true;
 				System.exit(0);
 			}
 			porton();
@@ -1394,10 +1432,6 @@ public class PlaceHolder {
 	}
 
 	public static void plaza() {
-
-		Scanner s = new Scanner(System.in);
-
-		boolean exit = false;
 		// System.out.println("");
 		System.out.printf(
 				"Una tranquila plaza de forma circular, en el centro se alza erigida en marfil, la estatua a Saturnio Brizzaresco \n bañada por la crepitante luz anaranjada de las velas ofrecidas a sus pies \n");
@@ -1443,7 +1477,6 @@ public class PlaceHolder {
 			}// end switch choice
 		} // end while
 		if (choice == 7) {
-			exit = true;
 			System.exit(0);
 		}
 
@@ -1451,9 +1484,6 @@ public class PlaceHolder {
 	}
 
 	public static void plaza2() {
-		Scanner s = new Scanner(System.in);
-
-		boolean exit = false;
 		// System.out.println("");
 		System.out.printf(
 				"Una tranquila plaza de forma circular, en el centro se alza erigida en marfil, la estatua a Saturnio Brizzaresco \n bañada por la crepitante luz anaranjada de las velas ofrecidas a sus pies \n");
@@ -1497,7 +1527,6 @@ public class PlaceHolder {
 			}// end switch choice
 		} // end while
 		if (choice == 7) {
-			exit = true;
 			System.exit(0);
 		}
 
@@ -1505,7 +1534,6 @@ public class PlaceHolder {
 	}
 
 	public static void callejuelas() {
-		Scanner s = new Scanner(System.in);
 		boolean persuadido = false;
 
 		System.out.println("Adentrandote por laberinticas callejuelas ves las partes bajas de la ciudad");
@@ -1564,7 +1592,6 @@ public class PlaceHolder {
 	}
 
 	public static void callejuelas2() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("Tras adentrarte por las callejuelas terminas en una encrucijada");
 		System.out.println("podrías adentrarte más o retroceder");
 		System.out.println("¿Que haces?");
@@ -1601,7 +1628,6 @@ public class PlaceHolder {
 	}
 
 	public static void barquero() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("En el fondo de las callejuelas se abren los canales, putridos con deshechos humanos");
 		System.out.println("y algún humano ocasional, junto a un pequeño muelle que parece pudrirse una silueta");
 		System.out.println("envuelta en una capa de verde oscuro que luce una máscara de rata flota en una gónldola");
@@ -1643,7 +1669,6 @@ public class PlaceHolder {
 	}
 
 	public static void mercadoCanales() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("El hombre de la máscara de rata rema con calma,");
 		System.out.println("pasais bajo puentes arqueados antes de atracar");
 		System.out.println("pones pie en una placeta flotante, un mercado");
@@ -1682,32 +1707,41 @@ public class PlaceHolder {
 	}
 
 	public static void comprarCanales() {
-		Scanner s = new Scanner(System.in);
-		boolean[] dis = new boolean[5];
+		boolean[] dis = new boolean[5]; //Disponibilidad
 		dis[0] = true;
 		dis[1] = true;
 		dis[2] = true;
 		dis[3] = true;
 		dis[4] = true;
 		System.out.println("¿Que deseas comprar?");
-		System.out.println("1- Alabarda [2d6 Costante] {}");
+		System.out.println("1- Alabarda [2d6 Cortante] {20 G}");
 		System.out.println("2- Escudo Heraldico [+2 AC] {13 G}"); // 0 en dis
 		System.out.println("3- Broquel [+1 AC] {9 G}"); // 1 en dis
 		System.out.println("4- Escudo de brazo crigiolano [+1 AC] {10G}"); // 2 en dis
-		System.out.println("5- Látigo [2d4 perforante] {}");
-		System.out.println("6- Alfanje [1d8 cortante] {}");
-		System.out.println("7- Florete [1d8 cortante] {}");
-		System.out.println("8- Espada larga [1d10 cortante] {}");
-		System.out.println("9- Bastón [1d6 contundente] {}");
-		System.out.println("10- Ballesta de mano[1d8 perforante] {}");
-		System.out.println("11- Ballesta pesada y cranequín [1d10 perforante] {}");
+		System.out.println("5- Látigo [2d4 perforante] {9 G}");
+		System.out.println("6- Alfanje [1d8 cortante] {15 G}");
+		System.out.println("7- Florete [1d8 cortante] {30 G}");
+		System.out.println("8- Espada larga [1d10 cortante] {35 G}");
+		System.out.println("9- Bastón [1d6 contundente] {3 G}");
+		System.out.println("10- Ballesta de mano[1d8 perforante] {40 G}");
+		System.out.println("11- Ballesta pesada y cranequín [1d10 perforante] {45 G}");
 		System.out.println("12- Foco arcano [+4 a los hechizos] {24 G}");// 3 en dis
-		System.out.println("13- Pluma y sombrero Crigiolano  {20 G}"); // 4 en dis
-		System.out.println("14- Irse sin comprar nada");
+		System.out.println("13- Pluma y sombrero Crigiolano {20 G}"); // 4 en dis
+		System.out.println("14- Munición a distancia[20 U] {20 G}");
+		System.out.println("15- Irse sin comprar nada");
 		choice = s.nextInt();
 
 		switch (choice) {
-		case 1:
+		case 1: //alabarda
+			if(galeones < 20) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				playerWeapon = "Alabarda [2d6 cortante]";
+				playerDmg = (int) (1 + (Math.random() * 7) + (1 + (Math.random() * 7)));
+				typeDmg = 2;
+				galeones = galeones - 20;
+			}
 			break;
 		case 2:
 			if (dis[0] == false || galeones < 13) {
@@ -1740,20 +1774,80 @@ public class PlaceHolder {
 			}
 			break; // End Escudo de brazo
 		case 5:
+			if(galeones < 9) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				galeones = galeones - 9;
+			}
 			break;
-		case 6:
+		case 6: //alfanje
+			if(galeones < 15) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				playerWeapon = "Alfanje [1d8 cortante]";
+				playerDmg = roll8();
+				typeDmg = 2;
+				galeones = galeones - 15;
+			}
 			break;
-		case 7:
+		case 7: //florete
+			if(galeones < 30) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				playerWeapon = "Florete [1d8 perforante]";
+				playerDmg = (int) (1 + (Math.random() * 9));
+				typeDmg = 1;
+				galeones = galeones - 30;
+			}
 			break;
-		case 8:
+		case 8: //Espada larga
+			if(galeones < 35) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				playerWeapon = "Espada Larga [1d10 cortante]";
+				playerDmg = (int) (1 + (Math.random() * 11));
+				typeDmg = 2;
+				galeones = galeones - 35;
+			}
 			break;
-		case 9:
+		case 9: //bastón
+			if(galeones < 3) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				playerWeapon = "bastón [1d6 contundente]";
+				playerDmg = (int) (1 + (Math.random() * 7));
+				typeDmg = 3;
+				galeones = galeones - 3;
+			}
 			break;
-		case 10:
+		case 10: //ballesta
+			if(galeones < 40) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				playerDisWeapon = "Ballesta de mano [1d8 perforante]";
+				playerDisDmg = (int) (1 + (Math.random() * 9));
+				galeones = galeones - 40;
+				ammunition = ammunition + 20;
+			}
 			break;
-		case 11:
+		case 11: //ballesta Pesada
+			if(galeones < 45) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				playerDisWeapon = "Ballesta pesada con cranequin [1d10 perforante]";
+				playerDisDmg = roll10();
+				galeones = galeones - 45;
+				ammunition = ammunition + 20;
+			}
 			break;
-		case 12:
+		case 12: //foco arcano
 			if (dis[3] == false || galeones < 24) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
@@ -1763,7 +1857,7 @@ public class PlaceHolder {
 				dis[3] = false;
 			}
 			break;
-		case 13:
+		case 13: //Pluma y sombrero Crigiolano
 			if (dis[4] == false || galeones < 20) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
@@ -1773,7 +1867,16 @@ public class PlaceHolder {
 				dis[4] = false;
 			}
 			break;
-		case 14:
+		case 14: //municion
+			if(galeones < 20) {
+				System.out.println("No te es posible comprar el objeto");
+				mercadoCanales();
+			} else {
+				galeones = galeones - 20;
+				ammunition = ammunition + 20;
+			}
+			break;
+		case 15:
 			mercadoCanales();
 			break;
 		}
@@ -1782,8 +1885,6 @@ public class PlaceHolder {
 	}
 
 	public static void puerto() {
-		Scanner s = new Scanner(System.in);
-		boolean exit = false;
 
 		System.out.printf(
 				"El olor a mar salda te llena las fosas nasales y el sonido de las gaviotas es el del unico pajaro en el momento. \n");
@@ -1842,7 +1943,6 @@ public class PlaceHolder {
 			}
 		} // End while choice puerto
 		if (choice == 6) {
-			exit = true;
 			System.exit(0);
 		}
 
@@ -1850,7 +1950,6 @@ public class PlaceHolder {
 	}
 
 	public static void lonja() {
-		boolean exit = false;
 
 		if (Day == "Es de día") {
 			System.out.println(
@@ -1925,7 +2024,6 @@ public class PlaceHolder {
 			} // End If
 		} // End while lonja día
 		if (choice == 6) {
-			exit = true;
 			System.exit(0);
 
 		} else if (Day == "Es de noche") {
@@ -1969,7 +2067,6 @@ public class PlaceHolder {
 				} // End while choice lonja noche
 			} // End while lonja noche
 			if (choice == 6) {
-				exit = true;
 				System.exit(0);
 			} // End If
 		} // End if dia/noche
@@ -1977,7 +2074,6 @@ public class PlaceHolder {
 	}
 
 	public static void lonja2() {
-		boolean exit = false;
 
 		if (Day == "Es de día") {
 			System.out.println(
@@ -2052,7 +2148,6 @@ public class PlaceHolder {
 			} // End If
 		} // End while lonja día
 		if (choice == 6) {
-			exit = true;
 			System.exit(0);
 
 		} else if (Day == "Es de noche") {
@@ -2092,7 +2187,6 @@ public class PlaceHolder {
 				} // End while choice lonja noche
 			} // End while lonja noche
 			if (choice == 5) {
-				exit = true;
 				System.exit(0);
 			} // End If
 		} // End if dia/noche
@@ -2101,9 +2195,11 @@ public class PlaceHolder {
 
 	public static void subasta() {
 		int galeonesOfrecidos = 0;
+		@SuppressWarnings("unused")
 		int GaleonesRival = 50;
 		int galeonesOfrecidosRivales = 0;
 		int turnos = 5;
+		@SuppressWarnings("unused")
 		int limiteDeApuesta = galeones;
 		if (terminada == false) {
 			System.out.println("Siguiendo a los hombres de negro y dorado te adentras en una gran sala, ");
@@ -2176,7 +2272,6 @@ public class PlaceHolder {
 	}
 
 	public static void carabela() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("Con la cabeza gacha y vestimentas Crigiolanas no llamas la atención,");
 		System.out.println("subes a la carabela Crigiolana de velas triangulares, la madera cruje mecida por las olas");
 		System.out.println("Los marineros crigiolanos mueven cajas de allí para allá, suben y bajan a la cubierta");
@@ -2224,7 +2319,6 @@ public class PlaceHolder {
 	public static int looted3 = 0; // Elegido del sol carabela
 
 	public static void interiorCarabela1() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("Bajas por la trampilla con confianza sin llamar la atención");
 		System.out.println("Tras bajar unos niveles por la carabela, te encuentras en la linea de ");
 		System.out.println("flotación, este piso parece extrañamente silencioso, poc más adelante ves un cañón");
@@ -2261,7 +2355,6 @@ public class PlaceHolder {
 	}
 
 	public static void interiorCarabela2() {
-		Scanner s = new Scanner(System.in);
 		System.out.println("El cadaver de tu rival ha perido su aura dorada, ahora yace en el suelo");
 		System.out.println("su cuerpo de pronto se envuelve en amarillas llamas que vuelven su carne cenizas");
 		System.out.println("Quedan sus ropajes y la botella de puro negro tapada por una cubierta dorada");
@@ -2345,8 +2438,6 @@ public class PlaceHolder {
 	}
 
 	public static void viaPrincipalE() {
-		Scanner s = new Scanner(System.in);
-		boolean exit = false;
 
 		System.out.println("En la zona este de la vía principal la gente se mueve como el torrente de un río, ");
 		System.out.println(
@@ -2387,7 +2478,6 @@ public class PlaceHolder {
 		} // End while ViaPrincipalE
 
 		if (choice == 6) {
-			exit = true;
 			System.exit(0);
 		}
 		viaPrincipalE();
@@ -2462,7 +2552,7 @@ public class PlaceHolder {
 	}
 
 	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
+		@SuppressWarnings("unused")
 		boolean salir = false;
 
 		try {
@@ -2530,7 +2620,7 @@ public class PlaceHolder {
 				System.exit(0);
 			}
 		} catch (java.util.InputMismatchException e) {
-			System.out.println("algo salió mal");
+			System.out.println("Algo salió mal");
 		}
 
 	}
