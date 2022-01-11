@@ -69,8 +69,8 @@ public class MiniDiccionario {
 			String comp = diccionario.get(Lan);
 			System.out.println("Traduce: " + Lan);
 			String choice = s.next();
-			
-			if(comp == choice.toLowerCase()) {
+			//comp == choice.toLowerCase()
+			if(comp.toLowerCase().equals(choice.toLowerCase())) {
 				aciertos++;
 			} else {
 				fallos++;

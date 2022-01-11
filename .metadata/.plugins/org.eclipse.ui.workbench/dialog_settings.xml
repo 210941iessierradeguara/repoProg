@@ -15,6 +15,9 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\TODODia22-12.zip"/>
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\TODO21-12.zip"/>
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia21-12.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia20-12V3.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia20-12V2.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia20-12.zip"/>
@@ -32,9 +35,6 @@
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia19-11.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\Ud3-2Dia19-11.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\Ud3-2Dia17-11.zip"/>
-			<item value="C:\Users\DAM1Alu14\Documents\Prog\blaDia17-11.zip"/>
-			<item value="C:\Users\DAM1Alu14\Documents\Prog\Examen2Eva1.zip"/>
-			<item value="C:\Users\DAM1Alu14\Documents\Prog\TodoDia15-11.zip"/>
 		</list>
 	</section>
 	<section name="EditorSelectionDialog">

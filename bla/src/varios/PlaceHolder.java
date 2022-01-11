@@ -18,6 +18,7 @@ public class PlaceHolder {
 	public static int atkBonus;
 	public static int ammunition;
 	public static String playerArmor;
+	public static boolean bonusL = false;
 	public static int playerAC;
 	public static int bonusAC;
 	public static int totalAC; // Hay que declarar el playerAC +bonusAC en las clases, aquí no se puede.
@@ -40,6 +41,8 @@ public class PlaceHolder {
 
 	static List<String> inv = new ArrayList<String>(); // https://stackoverflow.com/questions/22364768/inventory-system-for-a-text-based-adventure-game-in-java
 
+	//CLASES
+	
 	public static void clase() {
 		System.out.println("Elige tu clase: ");
 		System.out.println("1- para Guerrero.");
@@ -316,6 +319,8 @@ public class PlaceHolder {
 		level = 1;
 	} // End StatsLandsknecht
 
+	// MECANICS
+	
 	public static void longRest() {
 		playerHP = maxPlayerHP;
 		SpellSlots = MaxSpellSlots;
@@ -773,6 +778,10 @@ public class PlaceHolder {
 		System.out.println("1- Misil mágico.");
 		System.out.println("2- Spray venenoso.");
 		System.out.println("3- Saeta de fuego.");
+		if (level >= 2) {
+			System.out.println("4- Músculos decayentes");
+			System.out.println("5- Catapulta");
+		}
 		int h = s.nextInt();
 
 		if (SpellSlots <= 0) {
@@ -812,6 +821,38 @@ public class PlaceHolder {
 							" Una gruesa saeta de fuego brota de la palma de tu mano que sale disparada contra tu rival");
 				}
 				break; // End fire bolt.
+			case 4:
+				if (level >= 2) {
+					if (roll20() + SpellBonus < EnemyAC) {
+						System.out.println("Tu hechizo ha fallado.");
+						SpellSlots--;
+					} else {
+						EnemyHP = EnemyDmg - (roll4() + SpellBonus);
+						SpellSlots--;
+						System.out
+								.println("Tocas  a tu oponente y sus músculos comienzan a proyectar un putrido hedor, "
+										+ "las fuerzas de tu rival merman conforme sus músculos se consumen por la podredumbre");
+					}
+				} else {
+					System.out.println("Eso no es una opción");
+				}
+				break; // End Músculos decayentes
+			case 5:
+				if (level >= 2) {
+					if (roll20() + SpellBonus < EnemyAC) {
+						System.out.println("Tu hechizo ha fallado.");
+						SpellSlots--;
+					} else {
+						EnemyHP = EnemyDmg - (roll8() + roll8() + SpellBonus);
+						SpellSlots--;
+						System.out.println(
+								"Haces levitar un objeto cercano y lo lanzas en un arco contra tu oponente a gran velocidad");
+					}
+				} else {
+					System.out.println("Eso no es una opción");
+				}
+				break; // End catapulta.
+
 			default:
 				System.out.println("Eso no es una opción");
 				break;
@@ -855,6 +896,8 @@ public class PlaceHolder {
 		System.out.println("********************************************************************************");
 	}
 
+	//BRIZARESCA
+	
 	public static void hoboStart() {
 		System.out.println(
 				"Esperas sentado frente a la puerta de la taberna Cabo Tenso, nadie te deja un misero galeón en el bol.");
@@ -1155,8 +1198,8 @@ public class PlaceHolder {
 		}
 	}
 
-	public static boolean soborno = false;
-	public static boolean enganyados = false;
+	public static boolean soborno = false; // guardias Uni
+	public static boolean enganyados = false; // guardias Uni
 
 	public static void entradaUniversidad1() {
 		System.out.println("Siguiendo por una de las más coloridas calles de Brizzaresca");
@@ -1280,7 +1323,7 @@ public class PlaceHolder {
 		entradaUniversidad2();
 	}
 
-	public static boolean Uencounter = false;
+	public static boolean Uencounter = false; // Hombre lobo Uni
 
 	public static void interiorUniversidadE() {
 		System.out.println("Caminas por el silencioso interior de la universidad");
@@ -1319,29 +1362,31 @@ public class PlaceHolder {
 			choice = s.nextInt();
 
 			switch (choice) {
-				case 1:
+			case 1:
+				fightBeast(1);
+				Uencounter = true;
+				interiorUniversidad();
+				break;
+			case 2:
+				int huida = roll20();
+				if (huida >= 17) {
+					System.out.println(
+							"Huyes, te escondes en el primer aula que encuentras y atrancas la puerta con ayuda de algunos estudiantes.");
+					System.out.println(
+							"Esperais... Y al final se hace el silencio, has evitado la conforntación, pero la bestia ahora ronda suelta.");
+					Uencounter = true;
+				} else {
 					fightBeast(1);
 					Uencounter = true;
 					interiorUniversidad();
-					break;
-				case 2:
-					int huida = roll20();
-					if (huida >= 17) {
-						System.out.println("Huyes, te escondes en el primer aula que encuentras y atrancas la puerta con ayuda de algunos estudiantes.");
-						System.out.println("Esperais... Y al final se hace el silencio, has evitado la conforntación, pero la bestia ahora ronda suelta.");
-						Uencounter = true;
-					} else {
-						fightBeast(1);
-						Uencounter = true;
-						interiorUniversidad();
-					}
-					break;
-				default:
-					System.out.println("Eso no es una opción");
-					break;
+				}
+				break;
+			default:
+				System.out.println("Eso no es una opción");
+				break;
 			}
 		}
-		
+
 		interiorUniversidadE();
 	}
 
@@ -1359,33 +1404,404 @@ public class PlaceHolder {
 		System.out.println("5- Inventario");
 		System.out.println("6- Salir de la sesión [NO SE GUARDA]");
 		choice = s.nextInt();
-		
+
 		while (choice != 6) {
-			switch(choice) {
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					entradaUniversidad2();
-					break;
-				case 4:
-					longRest();
-					interiorUniversidad();
-					break;
-				case 5:
-					inventory();
-					interiorUniversidad();
-					break;
-			} //End switch interUni
-		}//End while interUni
+			switch (choice) {
+			case 1:
+				if (Day == "Es de día") {
+					observatorioD();
+				} else {
+					observatorioN();
+				}
+				break;
+			case 2:
+				biblioteca();
+				break;
+			case 3:
+				entradaUniversidad2();
+				break;
+			case 4:
+				longRest();
+				interiorUniversidad();
+				break;
+			case 5:
+				inventory();
+				interiorUniversidad();
+				break;
+			} // End switch interUni
+		} // End while interUni
 		if (choice == 6) {
 			System.exit(0);
 		}
-		
+
 		interiorUniversidad();
-	}//En interUni
-	
+	}// En interUni
+
+	public static void biblioteca() {
+		System.out.println("Pasando por las puertas al lugar má silencioso de la universidad mayor");
+		System.out.println("te encuentras rodeado de estanterias, y estas repletas de libros, una ");
+		System.out.println("pequeña fortuna en papel, cuero y mano de obra al alcance de cualquiera.");
+		System.out.println("Sorprendentemente te cuesta encontrar gente en los pasillos ente estanterías");
+		System.out.println("con total libertad puedes imitar a los demás presentes y curiosear los libros");
+		System.out.println("¿Que quieres hacer?");
+		System.out.println("1- Curiosear entre los libros disponibles");
+		System.out.println("2- Volver a los pasillos de la universidad");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+
+		while (choice != 5) {
+			switch (choice) {
+			case 1:
+				libros();
+				break;
+			case 2:
+				interiorUniversidad();
+				break;
+			case 3:
+				longRest();
+				biblioteca();
+				break;
+			case 4:
+				inventory();
+				biblioteca();
+				break;
+			}
+		}
+		if (choice == 5) {
+			System.exit(0);
+		}
+
+		biblioteca();
+	}
+
+	public static void libros() {
+		System.out.println("¿Que Libro quieres coger?");
+		System.out.println("1- 'El origen del mundo.'");
+		System.out.println("2- 'Las rutas de Brizzaresco.'");
+		System.out.println("3- 'Galeones, Caravelas y otras naves modernas.'");
+		System.out.println("4- 'Los siete humores del hombre y su relación con la magia.'");
+		System.out.println("5- 'De la destreza y el movimiento fluido usado en la esgrima de la defensa solar.'");
+		System.out.println("6- 'Mileno el hombre que acertó una flecha a través de mares y oceanos.'");
+		System.out.println("7- Dejar de mirar libros.");
+		choice = s.nextInt();
+		while (choice != 7) {
+			switch (choice) {
+			case 1:
+				System.out.println(
+						"**********************************************************************************************");
+				System.out.println(
+						"-------------------------------------El origen del mundo.-------------------------------------");
+				System.out.println(
+						"Al principio, en el vacío cósmico vagaba sin rumbo la Medusa Eterna, pulsando electricidad");
+				System.out.println(
+						"de forma intermitente dotanto de vida a otros sere vagantes. Estos primero estuvieron");
+				System.out.println(
+						"agradecidos por el don de la vida, pero consofrme pasaron las eras en la oscuridad se");
+				System.out.println(
+						"volvieron celosos, desagradecidos, envidiosos del don de crear vida. Por ello atacaron,");
+				System.out.println(
+						"la Medusa Eterna terminó descuartizada, su cuerpo la tierra que pisamos, sus tentáculos");
+				System.out.println(
+						"más grandes cordilleras y montañas, y los tentáculos más pequeños se volvieron, animales");
+				System.out.println("plantas y personas que poblaron el cadaver de la Medusa.");
+				System.out.println(
+						"Pero la muerte no es el fin, la Medusa, como ser eterno que es sigue vivo, y poco a poco");
+				System.out.println(
+						"se recompone, terremotos y montañas que en el pasado estaban dos palmos más al sur, nos");
+				System.out.println(
+						"muestran en como lo que para ella es un instante y para nosotros mil millones de milenios");
+				System.out.println(
+						"se recompone, reclamando sus tentáculos para atrapar a los traidores cuyos ojos maldicen ");
+				System.out.println(
+						"las estrellas. Cuando un muere, su cuerpo vuelve a la tierra, la Medusa lo reclama recuperando");
+				System.out.println("algo que había perdido.");
+				System.out.println(
+						"**********************************************************************************************");
+				biblioteca();
+				break;
+			case 2:
+				System.out.println(
+						"**********************************************************************************************");
+				System.out.println(
+						"-----------------------------------Las rutas de Brizzaresco-----------------------------------");
+				System.out.println("Brizzaresco mayor comerciante en este continente es considerado el padre de las rutas modernas");
+				System.out.println("para el comercio con especias; con su idea de hacer un largo canal artificial en un estrecho de");
+				System.out.println("tierra al sur de brizzaresca que en el pasado bloqueaba el océano tormentoso del nuboso, acortó");
+				System.out.println("el tiempo necesario para el comercio de especias en años enteros, la obra de este canal duró más");
+				System.out.println("de una década y se completo cuando Brizzaresco yacía en su lecho de muerte; por desgracia nunca pudo");
+				System.out.println("ver su obra completada. Alguno discuten si la noticia de que el canal fue llenado el día anterior");
+				System.out.println("siquiera llegó a sus oidos ancianos.");
+				System.out.println(
+						"**********************************************************************************************");
+				biblioteca();
+				break;
+			case 3:
+				System.out.println(
+						"**********************************************************************************************");
+				System.out.println(
+						"--------------------------Galeones, Caravelas y otras naves modernas--------------------------");
+				System.out.println("El galeón es de los barco modenos más grandes que funciona a vela y sin remo alguno,");
+				System.out.println("son lentos pero resistentes y las ciudades los usan de forma comercial y militar");
+				System.out.println("a partes iguales. Un galeón de Brizzaresca usa tres palos con velas cuadradas y una");
+				System.out.println("gavia. Estas naves masivas son capaces de alcanza siete nudos y por lo general llevan.");
+				System.out.println("un tripulante por tonelada de carga auqnue esto puede variar.");
+				System.out.println("");
+				System.out.println("La caravela constituye otra embarcación a vela de caracteristica ligera.");
+				System.out.println("Las carabelas más famosas son aquellas de Crigiola quienes las fabrican");
+				System.out.println("de forma exqusita y no tienen comparación en terminos de caravelas. Por");
+				System.out.println("lo general tienen entre veinte y treinta zancadas largas de eslora.");
+				System.out.println("Con su forma casco ligero resultan una veloz nave apta para ganar a barlovento,");
+				System.out.println("cuando a esto le sumamos los novedosos cañones de polvora crigiolanos los vuelven");
+				System.out.println("terribles amenazas, naves rápidas con gran capacidad destructiva.");
+				System.out.println(
+						"**********************************************************************************************");
+				biblioteca();
+				break;
+			case 4:
+				System.out.println(
+						"**********************************************************************************************");
+				System.out.println(
+						"-------------------Los siete humores del hombre y su relación con la magia.-------------------");
+				System.out.println("Los humores que corren por el interior de una persona son siete, ni uno más ni uno menos.");
+				System.out.println("Los humores humanos han sido estudiados desde el inicio de los tiempos, aquí se catalogan");
+				System.out.println("todos ellos tras mi estancia en el convento de Oriannera más allá de las montañas de la luz.");
+				System.out.println("");
+				System.out.println("El primero de los humores es el más básico y necesario para el hombre: La sangre.");
+				System.out.println("la sangre corre por todos y quien carezca de ella está muerto a todos los efectos");
+				System.out.println("el órgano de la sangre es el corazón quién la purifica de forma constante.");
+				System.out.println("Aquel que tiene mucha sangre, será un envalentonado, un amoroso sin remedio y que solo ve");
+				System.out.println("lo positivo en en todo. La estación cuando la sangre está más activa es la primavera");
+				System.out.println("");
+				System.out.println("El segundo de los humores es otro sin el que se puede vivir: El aire");
+				System.out.println("El aire entra y sale de las personas en el llamado 'intercambio de humores'");
+				System.out.println("El aire infla el cuerpo y mantiene la forma del mismo. El organo que trabaja con el aire son");
+				System.out.println("los esponjosos pulmones. Los cuales trajan de más en otoño.");
+				System.out.println("Aquel con exceso de aire será robusto y pálido, aquel con mucho aire tendrá fuerza");
+				System.out.println("envidiable pero mucho aire vacía la testa de alguien y será tozudo y lento para las artes");
+				System.out.println("académicas.");
+				System.out.println("");
+				System.out.println("El tercero de los humores lo constituye la bilis de oro.");
+				System.out.println("Que el nombre no engañe al lector pues la bilis de oro no es de oro ni da las cualidades");
+				System.out.println("que uno esperaría. La bilis de oro la produce el hígado y cuando más produce es en verano.");
+				System.out.println("Aquel con exceso de bilis de oro se puede reconocer por mal temperamento y ser de fácil enfado");
+				System.out.println(" entrando con facilidad en cólera. especial cuidado hay que tener dado que facilmente se produce");
+				System.out.println("esta bilis con el alcohol.");
+				System.out.println("");
+				System.out.println("El cuarto humor también está formado por una bilis, en este caso la bilis de ébano.");
+				System.out.println("El cuarto humor lo produce el bazo, y se ceba en la gente durante el solticio de invierno.");
+				System.out.println("La gente con exceso de este humor se caracteriza por sus caidos hombros y aura depresiva,");
+				System.out.println("y hasta que no se drena esta bilis se verá abatidos y somnolientos cada uno de sus días.");
+				System.out.println("");
+				System.out.println("El quinto humor lo constitulle la flema que produce el cerebro.");
+				System.out.println("la flema que se ceba en el invierno con la gente que menores preocupaciones tiene.");
+				System.out.println("Cuando alguien tiene exceso de flema su cerebro flota en este y se volverá indiferente");
+				System.out.println("a cualquier evento por muy importante que le sea al igual que estará calmado y con ojos caidos.");
+				System.out.println("");
+				System.out.println("El sexto humor lo forma el humo. y lo produce la grasa.");
+				System.out.println("El humo es un humor que se produce a partir del buen comer y la grasa que atrae,");
+				System.out.println("por ello los más robustos tienen más a sufrir de exceso de humo. El humo es invisible y");
+				System.out.println("siempre se ceba alrededor del solticio de verano.");
+				System.out.println("Quien esté con sobrante de humo estará en las nubes, el humo ocupará cualqueir hueco en su");
+				System.out.println("cuerpo y lo enviará a los rincones más profundos de su imaginación, la mayoría de artistas");
+				System.out.println("intentan provocarse exceso de humo para sus obras más ambiciosas. pero no dejeís que nadie");
+				System.out.println("cometa esta locura. El tiempo prolongado bajo un exceso de humo puede terminar en demecia");
+				System.out.println("y campturar a una persona en estos fantasiosos mundos que no distingen de la realidad.");
+				System.out.println("");
+				System.out.println("El séptimo humor es la esencia.");
+				System.out.println("Aunque todo el mundo tenga un mínimo de esencia que la produce todo el cuerpo");
+				System.out.println("y carece de temporada alta distinguible, los más propensos a sufrir exceso de esencia");
+				System.out.println("son aquellos capaces de convertir esta esencia en mágia.");
+				System.out.println("El exceso de esencia vuelve a una persona reservada, antipática y por lo general esta");
+				System.out.println("gente suele buscar la soledad donde enterrase en libros y documentos durante días y semanas");
+				System.out.println("enteras. La forma más facil de drenar esta esencia es simplemente forzar a la persona a convertirla");
+				System.out.println("en magia.");
+				System.out.println(
+						"**********************************************************************************************");
+				if (bonusL == false) {
+					SpellBonus = SpellBonus + 1;
+					bonusL = true;
+				}
+				biblioteca();
+				break;
+			case 5:
+				System.out.println(
+						"**********************************************************************************************");
+				System.out.println(
+						"--------De la destreza y el movimiento fluido usado en la esgrima de la defensa solar.--------");
+				System.out.println("{El libro abre con un diagrama de un hombre partido en cuatro con una cruz en el cuerpo");
+				System.out.println("y otra división igual para la cabeza}");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("Aquestas son las divisiones del oponente tal y como indicó el maestro Wareing años a");
+				System.out.println("tanto la testa como el torso habranse de separar en cuatro cuartos, paraa ambos son:");
+				System.out.println("Superior siniestro y diestro e Inferior sinistro y diestro.");
+				System.out.println("Quien combate siempre tienen en mente estas particiones del oponente.");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("{Ahora un complejo diagrama de formas geometricas con dibujos de plantas de pies en");
+				System.out.println("diferentes lugares se presenta entre las páginas}");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("Aqueste el primero de los ejercicios de pies, quien domine sus pasos sobre cualquier");
+				System.out.println("terreno domina cualquier combate. Ejercita este disgrama cada día y los consecuentes");
+				System.out.println("hasta que los domines todos {Las siguientes páginas suponen otros diagramas similares");
+				System.out.println("y ejercicios de movimiento en un combate}");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("{Una figura solitaria frente a un arco de piedra sobre unos escalones sujeta un florete");
+				System.out.println("en recto angulo de noventa grados, de su brazo a su torso se marcan los distintos águlos}");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("Quien sabe sujetar su arma con destreza es superior a todo el demás, con un ángulo recto");
+				System.out.println("como la justicia del Sol es como sujeta uno su florete [...]");
+				System.out.println("~~~~~~~~~~~~~~~~~~~~");
+				System.out.println("{El libro sigue a mostrar diversos diagramas en su mayoría compuesto de circulos, con ángulos");
+				System.out.println("de entrada para las armas, a cada diagrama le acompaña una explicación de la técnica y como");
+				System.out.println("defenderse de esa misma técnica.}");
+				System.out.println(
+						"**********************************************************************************************");
+				if (bonusL == false) {
+					atkBonus = atkBonus + 1;
+					bonusL = true;
+				}
+				biblioteca();
+				break;
+			case 6:
+				System.out.println(
+						"**********************************************************************************************");
+				System.out.println(
+						"-------------Mileno el hombre que acertó una flecha a través de mares y oceanos.--------------");
+				System.out.println("Mileno era un hombre salido de la antigua nacion de Melian, era conocido en todo feudo");
+				System.out.println("por su increible arquería, se dice que en la coronación de Iline III acertó una flecha");
+				System.out.println("a mil quinientas yardas y acertó a un panal de abejas lanzado desde un trabuquete. Cabe");
+				System.out.println("resaltar que Mileno es más leyenda que historia aunque algunos historiadores contemporaneos");
+				System.out.println("aseguran que sus hazañas fueron reales. Aunque otros dicen que cada hazaña la hizo un hombre");
+				System.out.println("diferente y Mileno no es más que un amalgama popular de todos estos hombres. Las primeras");
+				System.out.println("historias sobre Mileno son las menos fantasiosas con disparos más creibles que otros aunque");
+				System.out.println("siguen siendo disparos sobrenaturales incluso con arcos de más de cien libras. La ultima");
+				System.out.println("hazaña de la que se tiene registro es sin duda una fantasía escrita por un autor anónimo,");
+				System.out.println("la historia que seguramente y conozca el lector por influencia popular pero que describiré");
+				System.out.println("en caso de que este libro llegue a cruzar el océano nuboso. \n"
+						+ "Tras que unas tropas extrangeras");
+				System.out.printf("de ultramar aparecieran de la nada y atacaran los feudos de Iline III y desaparecieran sin dejar \n");
+				System.out.println("restro alguno se cree que Iline llamó a Mileno a quien le prometió un feudo y puesto en la ciudadania");
+				System.out.println("imperial con posibilidad de atender al senado si se aseguraba que esa desconocida tribu de hombres");
+				System.out.println("marinos atacase el imperio de nuevo. Mileno no respondió de forma inmediata al emperador, en su lugar");
+				System.out.println("salió al balcó del palacio imperial y pidió un arco con el que no tenía familiaridad alguna y tres");
+				System.out.println("flechas, disparó las tres flechas al horizonte y devolvio el arco. Al cabo de dos semanas apareció");
+				System.out.println("en las playas imperiales el supuesto rey del mar, lider de aquella perdida tribu, su cadaver fue");
+				System.out.println("arrastrado por las corrientes del océano nuboso, con una flecha en cada ojo y otra en el cabo que");
+				System.out.println("había unido en cierto momento la cuerda a un muelle.");
+				System.out.println("Si bien las tribus de ultramar que atacaron al imperio si que existieron ya que se han encontrado");
+				System.out.println("restos arqueologicos que encajan con la descripción de estas gentes, es imposible que una flecha");
+				System.out.println("cruce el oceano. Incluso la existencia de Iline III se pone en duda, pues toda fuente del imperio");
+				System.out.println("en la que se nombran emperadores es incompleta empezando por el décimo emperador cinco décadas");
+				System.out.println("despues del aproximado reinado de Iline III.");
+				System.out.println(
+						"**********************************************************************************************");
+				biblioteca();
+				break;
+			}
+		}
+		if (choice == 7) {
+			biblioteca();
+		}
+
+		libros();
+	}
+
+	public static void observatorioD() {
+		System.out.println("De día y de noche el observatorio forma el lugar mejor iluminado de la universidad.");
+		System.out.println("La bóbeda de cristal muestra el despejado cielo Brizzarino, el cual surcan las gaviotas");
+		System.out.println(
+				"múltiples telescopios, instrumentos de medidas, y material para tomar apuntes están esparcidos");
+		System.out.println(
+				"por la habitación, sin mucho uso durante los momentos del día en los que el cielo tiene color.");
+		System.out.println("¿Que quieres hacer?");
+		System.out.println("1- Observar por el telescópio");
+		System.out.println("2- Marchar a los pasillos de la universidad");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		while (choice != 5) {
+			switch(choice) {
+			case 1:
+				System.out.println("Te acercas y pones tu ojo en el telescopio, y de forma nada sorprendente");
+				System.out.println("te ciegas tu solo, durante un tiempo no corto te dedicas a frotarte los ojos");
+				System.out.println("y aún así aún ves manchas de colores durante largo rato.");
+				observatorioD();
+				break;
+			case 2:
+				interiorUniversidad();
+				break;
+			case 3:
+				longRest();
+				observatorioN();
+				break;
+			case 4:
+				inventory();
+				observatorioD();
+				break;
+			}
+		}
+		if (choice == 5) {
+			System.exit(0);
+		}
+		observatorioD();
+	}
+
+	public static void observatorioN() {
+		System.out.println("De día y de noche el observatorio forma el lugar mejor iluminado de la universidad");
+		System.out.println("las estrellas y otros astos se aprecian con increible claridad, a tu alrededor múltiples");
+		System.out.println("estudiosos sentados en el suelo sobre alfombras, miran a traves de diversos telescópios");
+		System.out.println("y toman apuntes de diversas maneras.");
+		System.out.println("¿Que quieres hacer?");
+		System.out.println("1- Estudiar el cielo nocturno");
+		System.out.println("2- Marchar a los pasillos de la universidad");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		while (choice != 5) {
+			switch(choice) {
+			case 1:
+				if (inv.contains("Frasco negro")) {
+					System.out.println("Mientras estudias el cielo nocturno a tu manera, te olvidas el frasco negro");
+					System.out.println("debajo de un telescopio, directamente debajo de donde uno mira, en un pestañeo");
+					System.out.println("el frasco ha pasado de negro brea a un negro con moteado blanco brillante, casi");
+					System.out.println("como si hubiera capturado la bóveda celeste en su interior.");
+					inv.remove("Frasco negro");
+					inv.add("Frasco Estrellado");
+					System.out.println("La noche continua su curso sin mayor diferencia, en cuanto rompe el día los");
+					System.out.println("estudiosos se van a descansar.");
+					longRest();
+					observatorioD();
+				} else {
+					System.out.println("Te pasas la noche mirando la boveda celeste, acompañado por multiples eruditos");
+					System.out.println("por una noche tu también eres uno de los aprendices, se te imparten lecciones");
+					System.out.println("sobre las constelaciones, estrellas, cometas y nebulas. Los tentáculos de la medusa");
+					System.out.println("lo abrazan todo y en la noche aquellos que sujetan el cielo se vuelven las estrellas");
+					System.out.println("y los moralos brazos celestes donde se concentran estas como pinceladas sobre un lienzo");
+					System.out.println("negro.");
+				}
+				break;
+			case 2:
+				interiorUniversidad();
+				break;
+			case 3:
+				longRest();
+				observatorioD();
+				break;
+			case 4:
+				inventory();
+				observatorioN();
+				break;
+			}
+		}
+		if (choice == 5) {
+			System.exit(0);
+		}
+		observatorioN();
+	}
+
 	public static void porton() {
 
 		System.out.println(
@@ -1406,6 +1822,7 @@ public class PlaceHolder {
 		while (choice != 5) {
 			switch (choice) {
 			case 1:
+				camposDeTrigo();
 				break;
 			case 2:
 				viaPrincipalO();
@@ -1707,7 +2124,7 @@ public class PlaceHolder {
 	}
 
 	public static void comprarCanales() {
-		boolean[] dis = new boolean[5]; //Disponibilidad
+		boolean[] dis = new boolean[5]; // Disponibilidad
 		dis[0] = true;
 		dis[1] = true;
 		dis[2] = true;
@@ -1732,8 +2149,8 @@ public class PlaceHolder {
 		choice = s.nextInt();
 
 		switch (choice) {
-		case 1: //alabarda
-			if(galeones < 20) {
+		case 1: // alabarda
+			if (galeones < 20) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -1774,15 +2191,15 @@ public class PlaceHolder {
 			}
 			break; // End Escudo de brazo
 		case 5:
-			if(galeones < 9) {
+			if (galeones < 9) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
 				galeones = galeones - 9;
 			}
 			break;
-		case 6: //alfanje
-			if(galeones < 15) {
+		case 6: // alfanje
+			if (galeones < 15) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -1792,8 +2209,8 @@ public class PlaceHolder {
 				galeones = galeones - 15;
 			}
 			break;
-		case 7: //florete
-			if(galeones < 30) {
+		case 7: // florete
+			if (galeones < 30) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -1803,8 +2220,8 @@ public class PlaceHolder {
 				galeones = galeones - 30;
 			}
 			break;
-		case 8: //Espada larga
-			if(galeones < 35) {
+		case 8: // Espada larga
+			if (galeones < 35) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -1814,8 +2231,8 @@ public class PlaceHolder {
 				galeones = galeones - 35;
 			}
 			break;
-		case 9: //bastón
-			if(galeones < 3) {
+		case 9: // bastón
+			if (galeones < 3) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -1825,8 +2242,8 @@ public class PlaceHolder {
 				galeones = galeones - 3;
 			}
 			break;
-		case 10: //ballesta
-			if(galeones < 40) {
+		case 10: // ballesta
+			if (galeones < 40) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -1836,8 +2253,8 @@ public class PlaceHolder {
 				ammunition = ammunition + 20;
 			}
 			break;
-		case 11: //ballesta Pesada
-			if(galeones < 45) {
+		case 11: // ballesta Pesada
+			if (galeones < 45) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -1847,7 +2264,7 @@ public class PlaceHolder {
 				ammunition = ammunition + 20;
 			}
 			break;
-		case 12: //foco arcano
+		case 12: // foco arcano
 			if (dis[3] == false || galeones < 24) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
@@ -1857,7 +2274,7 @@ public class PlaceHolder {
 				dis[3] = false;
 			}
 			break;
-		case 13: //Pluma y sombrero Crigiolano
+		case 13: // Pluma y sombrero Crigiolano
 			if (dis[4] == false || galeones < 20) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
@@ -1867,8 +2284,8 @@ public class PlaceHolder {
 				dis[4] = false;
 			}
 			break;
-		case 14: //municion
-			if(galeones < 20) {
+		case 14: // municion
+			if (galeones < 20) {
 				System.out.println("No te es posible comprar el objeto");
 				mercadoCanales();
 			} else {
@@ -2441,7 +2858,7 @@ public class PlaceHolder {
 
 		System.out.println("En la zona este de la vía principal la gente se mueve como el torrente de un río, ");
 		System.out.println(
-				"toda clase de personas camina, mercaderes ricos, pescaderos modestos, villanos pobre y peregrinos zarrapastrosos");
+				"toda clase de personas camina, mercaderes ricos, pescaderos modestos, villanos pobres y peregrinos zarrapastrosos");
 		System.out.println(
 				"algunos van a la lonja, otros a la plaza, pero muchos, tanto habitantes de la ciudad como viajeros se dirigen al Duomo de la Medusa eterna");
 		System.out.println("¿Que quieres hacer");
@@ -2551,6 +2968,127 @@ public class PlaceHolder {
 		catedralME();
 	}
 
+	// EXTERIORES
+	
+	public static void camposDeTrigo() {
+		System.out.println("Al salir de la ciudad una suave brisa mece los dorados");
+		System.out.println("campos de trigo cuya altura iguala la de tus ojos con ");
+		System.out.println("facilidad. Entre estas altas cosechas veraniegas casas");
+		System.out.println("de granjeros se ocultan y camiando entre el trigo los");
+		System.out.println("granjeros van con la hoz. Mientras tanto, en el horizonte");
+		System.out.println("las montañas de la Luz, llamadas así por su amarillento color");
+		System.out.println("aguardan, transmitiendo opresiva sensación en tí.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Poner rumbo a las montañas de la Luz");
+		System.out.println("2- Caminar entre los campos de trigo.");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 5) {
+			switch(choice){
+			case 1:
+				int encounter = roll20();
+				if (encounter <16) {
+					System.out.println("Tu trayecto comienza, sin embargo");
+					System.out.println("desde el lateral del sendero aparece");
+					System.out.println("un extraño sabueso, de apariencia famélica");
+					System.out.println("con ojos que brillan con color de Oro, y cuyo");
+					System.out.println("esquélico cuerpo emite fuerte olor a azúfre");
+					fightSolarBeasts(1);
+					faldaMont();
+					
+				} else {
+					System.out.println("Comienzas trayecto a las montañas con rara");
+					System.out.println("sensación, de forma constante, sientes miradas");
+					System.out.println("lo más extraño es que se sienten como si vinieran");
+					System.out.println("del mismo Sol que pica sobre tu nuca.");
+					faldaMont();
+				}
+				
+				break;
+			case 2:
+				int entrada = roll20();
+				if (entrada >= 18) {
+					ruinasSol();
+				}else {
+					System.out.println("Por mucho que buscas, solo terminas en caminos a casetas");
+					System.out.println("o te topas con granjeros limpiando el campo recogiendo");
+					System.out.println("grandes matas de trigo. Al final terminas de nuevo en el");
+					System.out.println("camino sin nada nuevo que se te aporte.");
+					camposDeTrigo();
+				}
+				break;
+			case 3:
+				longRest();
+				camposDeTrigo();
+				break;
+			case 4:
+				inventory();
+				camposDeTrigo();
+				break;
+			}
+		}
+		if (choice == 5) {
+			System.exit(0);
+		}
+		camposDeTrigo();
+	}
+	
+	public static void ruinasSol() {
+		System.out.println("Tanteando a ciegas entre el trigo si que te topas");
+		System.out.println("con algo que llama tu atención, en una parcela lejos");
+		System.out.println("de todas las demás, donde no solo crece trigo salvaje");
+		System.out.println("si no también árboles y toda clase de hierbajos pues");
+		System.out.println("abandonada parece la parcela, oculto entre la maleza");
+		System.out.println("un portón que a nadie le habría pasado desapercibido");
+		System.out.println("más tan cerca de la ciudad, con puertas vueltas dentro");
+		System.out.println("de un arco cuya arquitectura en nada se parece a la local");
+		System.out.println("abusando de triangulos de diversos ángulos para formar otras");
+		System.out.println("formas geométricas, algunas acompañadas por formas más orgánicas");
+		System.out.println("casi como tentáculos pero más similares a como un niño dubujaría");
+		System.out.println("los rayos del sol, alargadas y con muchas curvas.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Adentrarse por los portones");
+		System.out.println("2- Dar media vuelta los campos cuidados");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 5) {
+			switch(choice) {
+			case 1:
+				break;
+			case 2:
+				camposDeTrigo();
+				break;
+			case 3:
+				longRest();
+				ruinasSol();
+				break;
+			case 4:
+				inventory();
+				ruinasSol();
+				break;
+			}
+		}
+		if (choice == 5) {
+			System.exit(1);
+		}
+		
+		ruinasSol();
+	}
+	
+	//MONTAÑAS DE LA LUZ
+	
+	public static void faldaMont() {
+		
+	}
+	
+	//Utilidades
+	
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		boolean salir = false;
@@ -2597,7 +3135,7 @@ public class PlaceHolder {
 							+ "																							 \r\n"
 							+ "BlaGames©																		         \r\n"
 							+ "LaMuerteDelSol®		 																     \r\n"
-							+ "																		                     \r\n"
+							+ "V 0.7																                     \r\n"
 							+ "");
 
 			System.out.println("1- Jugar");
