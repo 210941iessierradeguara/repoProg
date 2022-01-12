@@ -7,6 +7,7 @@ public class Ejercicio06 {
 	static Scanner s = new Scanner(System.in);
 	
 	public static String anagramaCompr (String p1, String p2) {
+		@SuppressWarnings("unused")
 		String comparado;
 		
 		p1 = p1.toLowerCase();
