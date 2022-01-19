@@ -7,6 +7,7 @@ import java.util.List;
 
 public class PlaceHolder {
 	static Scanner s = new Scanner(System.in);
+	//Player
 	public static int playerHP;
 	public static int maxPlayerHP;
 	public static String playerClass;
@@ -25,20 +26,37 @@ public class PlaceHolder {
 	public static int galeones;
 	public static boolean stealthDis = false; // en caso de usar x armaduras tienes desventaja en sigilo
 	public static int SpellSlots;
-	public static int MaxSpellSlots;
+	public static int MaxSpellSlots; //Cantidad de hechizos por Descanso largo
 	public static int SpellBonus;
 	public static int choice;
+	public static int xp;
+	public static int level;
+	public static boolean devotado = false; // Bufo de deidad
+	//Enemy
 	public static int EnemyHP;
 	public static int EnemyAC;
 	public static int EnemyDmg;
-	public static int xp;
-	public static int level;
+	//Mundo
 	public static boolean fighting = false;
 	public static String Day = "Es de noche";
 	public static int isDay = 0;
+	
+	//Situations/loots
+	public static int looted1 = 0; // acolito del Sol Tenso cabo
+	public static int looted2 = 0; // Victima tenso cabo
+	public static int looted2p1 = 0; // Victima tenso cabo
+	public static int looted3 = 0; // Elegido del sol carabela
 	public static boolean terminada = false; // la subasta
-	public static boolean devotado = false; // Bufo de deidad
-
+	public static boolean Uencounter = false; // Hombre lobo Uni
+	public static boolean soborno = false; // guardias Uni
+	public static boolean enganyados = false; // guardias Uni
+	public static boolean encontrado = false; //Ruinas del Sol
+	public static boolean bloqueado = true; //Cocina
+	public static boolean Ormr = true; //Ormrinn vivo o muerto
+	public static boolean escamas = true; //recogidas o no escamas de Ormrinn
+	public static boolean PasilloE = false; //Espectro pasillos
+	
+	//INV
 	static List<String> inv = new ArrayList<String>(); // https://stackoverflow.com/questions/22364768/inventory-system-for-a-text-based-adventure-game-in-java
 
 	//CLASES
@@ -380,6 +398,11 @@ public class PlaceHolder {
 			EnemyAC = 13;
 			EnemyDmg = roll4() + roll4() + roll8() + 5;
 			break;
+		case 2: //Ormrinn
+			EnemyHP = 30 + roll10() + roll6() + roll6();
+			EnemyAC = 15;
+			EnemyDmg = roll8() + roll10() + 10;
+			break;
 		}
 	}
 
@@ -389,6 +412,11 @@ public class PlaceHolder {
 			EnemyHP = roll8() + roll8() + 11;
 			EnemyAC = 14;
 			EnemyDmg = roll6() + roll6() + roll6() + roll6() + roll6() + roll6();
+			break;
+		case 2: //Espectro del sol
+			EnemyHP = roll10() + 15 + roll8();
+			EnemyAC = 13;
+			EnemyDmg = roll4() + roll4() + roll4() + 2;
 			break;
 		}
 	}
@@ -421,7 +449,7 @@ public class PlaceHolder {
 			if (ammunition > 0) {
 				EnemyHP = EnemyHP - playerDisDmg;
 				ammunition = ammunition - 1;
-				System.out.println("Disparas tu ballesta hiriendo a tu enemigo.");
+				System.out.println("Disparas tu arma hiriendo a tu enemigo.");
 				if (playerHP <= 0) {
 					muerte();
 				}
@@ -653,8 +681,11 @@ public class PlaceHolder {
 
 		} // fin while fighting
 
-		if (f == 1 || f == 2) {
+		if (f == 1) {
 			xp = xp + 300;
+		}
+		if (f == 2) {
+			xp = xp + 400;
 		}
 
 		checkLvl();
@@ -999,9 +1030,6 @@ public class PlaceHolder {
 
 	} // End tensoCabo
 
-	public static int looted1 = 0; // acolito del Sol Tenso cabo
-	public static int looted2 = 0; // Victima tenso cabo
-
 	public static void tensoCabo2() {
 
 		System.out.println("Tras acabar con tu rival su acompañante huye despavorido");
@@ -1081,8 +1109,6 @@ public class PlaceHolder {
 			System.exit(0);
 		}
 	}
-
-	public static int looted2p1 = 0; // Victima tenso cabo
 
 	public static void tensoCabo3() {
 
@@ -1197,9 +1223,6 @@ public class PlaceHolder {
 			viaPrincipalO();
 		}
 	}
-
-	public static boolean soborno = false; // guardias Uni
-	public static boolean enganyados = false; // guardias Uni
 
 	public static void entradaUniversidad1() {
 		System.out.println("Siguiendo por una de las más coloridas calles de Brizzaresca");
@@ -1323,8 +1346,6 @@ public class PlaceHolder {
 		entradaUniversidad2();
 	}
 
-	public static boolean Uencounter = false; // Hombre lobo Uni
-
 	public static void interiorUniversidadE() {
 		System.out.println("Caminas por el silencioso interior de la universidad");
 		System.out.println("lo unico que se escucha son las atenuadas voces de catedraticos dando clase.");
@@ -1354,6 +1375,7 @@ public class PlaceHolder {
 					"las verdes llamas envuelven al ser y para cuando se disipan un hombre común yace en el suelo");
 			xp = xp + 300;
 			Uencounter = true;
+			interiorUniversidad();
 		} else {
 			System.out.println("La odiosa bestia se abalanza sobre tí.");
 			System.out.println("¿Que haces?");
@@ -1983,10 +2005,12 @@ public class PlaceHolder {
 					System.out.println("Tus esfuerzos a la hora de dialogar resultan futiles");
 					System.out.println("el hombre cumple su promesa y se dispone a pincharte.");
 					fight2(1);
+					galeones = galeones + roll4();
 				}
 				break;
 			case 3:
 				fight2(1);
+				galeones = galeones + roll4();
 				break;
 			case 4:
 				if (roll20() >= 17) {
@@ -1997,6 +2021,7 @@ public class PlaceHolder {
 					System.out.println("Tus esfuerzos a la hora de evadirle resultan futiles");
 					System.out.println("el hombre cumple su promesa y se dispone a pincharte.");
 					fight2(1);
+					galeones = galeones + roll4();
 				}
 				break;
 			}
@@ -2405,6 +2430,7 @@ public class PlaceHolder {
 						if (galeones >= 40) {
 							System.out.println("'Maravillas, tened tened, la fortuna en sus manos'");
 							inv.add("Amuleto de paja");
+							galeones = galeones -40;
 							lonja();
 						} else {
 							System.out.println("'Oh, pobre de ti mi alma. más no tienes lo suficientes galeones'");
@@ -2733,8 +2759,6 @@ public class PlaceHolder {
 		carabela();
 	}
 
-	public static int looted3 = 0; // Elegido del sol carabela
-
 	public static void interiorCarabela1() {
 		System.out.println("Bajas por la trampilla con confianza sin llamar la atención");
 		System.out.println("Tras bajar unos niveles por la carabela, te encuentras en la linea de ");
@@ -2969,7 +2993,6 @@ public class PlaceHolder {
 	}
 
 	// EXTERIORES
-	
 	public static void camposDeTrigo() {
 		System.out.println("Al salir de la ciudad una suave brisa mece los dorados");
 		System.out.println("campos de trigo cuya altura iguala la de tus ojos con ");
@@ -3010,7 +3033,8 @@ public class PlaceHolder {
 				break;
 			case 2:
 				int entrada = roll20();
-				if (entrada >= 18) {
+				if (entrada >= 18 || encontrado == true) {
+					encontrado = true;
 					ruinasSol();
 				}else {
 					System.out.println("Por mucho que buscas, solo terminas en caminos a casetas");
@@ -3060,6 +3084,7 @@ public class PlaceHolder {
 		while (choice != 5) {
 			switch(choice) {
 			case 1:
+				hall();
 				break;
 			case 2:
 				camposDeTrigo();
@@ -3075,20 +3100,541 @@ public class PlaceHolder {
 			}
 		}
 		if (choice == 5) {
-			System.exit(1);
+			System.exit(0);
 		}
 		
 		ruinasSol();
 	}
 	
-	//MONTAÑAS DE LA LUZ
+	public static void hall () {
+		System.out.println("El pasillo de fría y grisacea piedra, se encuentra a oscuras,");
+		System.out.println("la poca luz que se cuela desde la entrada mustra hollín en las");
+		System.out.println("paredes, antaño ardían velas en esos candelabros de pies, ahora");
+		System.out.println("el lugar está a oscuras y solo sobreviven en su interior hongos");
+		System.out.println("que han hecho del lugar su nuevo hogar, al igual que la entrada");
+		System.out.println("la arquitectura es dominada por triangulos o formas serpentinas.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Avanzar a tientas en la oscuridad");
+		System.out.println("2- Retroceder a la entrada.");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		if (playerClass == "Mago") {
+			System.out.println("6- Usar un hechizo de fuego para iluminar [-1 Spell Slot]");
+		}
+		choice = s.nextInt();
+		while (choice != 5) {
+			switch (choice) {
+				case 1:
+					if(roll20() >= 15) {
+						System.out.println("A tientas terminas llegando a la siguiente sala de las ruinas.");
+						salonCentral();
+					} else {
+						System.out.println("Caminas sin rumbo por la oscuridad, lo único al tacto");
+						System.out.println("es la fría piedra de las paredes y de tanto en tanto");
+						System.out.println("un honglo blando al tacto que facilmente se rompería");
+						System.out.println("de no tener un poco de cuidado.");
+						System.out.println("Tras largo rato tanteando ves una luz, pero no hay emoción");
+						System.out.println("es la luz de la entrada, sin rumbo has terminado en el punto");
+						System.out.println("de partida.");
+						hall();
+					}
+					break;
+				case 2:
+					ruinasSol();
+					break;
+				case 3:
+					longRest();
+					hall();
+					break;
+				case 4:
+					inventory();
+					hall();
+					break;
+				case 6:
+					if(playerClass == "Mago" && SpellSlots >= 1) {
+					System.out.println("Canalizando la esencia consigues estabilizar una saeta");
+					System.out.println("de fuego en tu mano para dar luz, con ella consigues guiarte.");
+					SpellSlots = SpellSlots - 1;
+					salonCentral();
+					} else {
+						System.out.println("Opción no válida");
+						hall();
+					}
+					break;
+				default:
+					System.out.println("Opción no válida");
+					hall();
+					break;
+			} //switch
+		}//while
+		if(choice == 5) {
+			System.exit(0);
+		}
+		hall();
+	}
 	
+	public static void salonCentral() {
+		System.out.println("Una serie de mesas con forma de triangulos obtusos se ven bañadas");
+		System.out.println("por la luz que se cuela desde una bóveda rota, alrededor de la misma");
+		System.out.println("los árboles crecen dando a ver que estás bajo un bosque, las hojas en");
+		System.out.println("las copas de los abetos dan sombra parcial. Un pequeño escalón da pie");
+		System.out.println("a una mesa más grande esta vez un triangulo equilátero, cada pie del lugar");
+		System.out.println("está cubierto por una fina capa de polvo, sobre las mesas, los restos de una");
+		System.out.println("cena abandonada se han pudrido, los bichos y animales se han festejado en lo");
+		System.out.println("abandonado, solo los huesos quedan e incluso de esos faltan.");
+		System.out.println("A ambos lados de la sala de planta tridecagonal se abren puertas que continuan");
+		System.out.println("adentrandose en la abandonada estructura.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Rebuscar entre las mesas");
+		System.out.println("2- Ir a la puerta a diestra");
+		System.out.println("3- Ir a la puerta a siniestra");
+		System.out.println("4- Dar media vuelta");
+		System.out.println("5- Descansar");
+		System.out.println("6- Inventario");
+		System.out.println("7- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		while (choice != 7) {
+			switch(choice) {
+			case 1:
+				if(roll20() >= 13) {
+					System.out.println("Abandonadas como si tal cosa encuentras bajo un par de");
+					System.out.println("servilletas un pequeño puñado de monedas doradas, no");
+					System.out.println("están acuñadas como las de Brizzaresca, pero de todas");
+					System.out.println("formas en un mercado pasarian por aceptables, se podrían");
+					System.out.println("tratar como monedas de un lugar lejano o acuñaciones antiguas");
+					System.out.println("de galeones Brizzarrescos.");
+					galeones = (galeones + roll10() + roll8() + roll4()); 
+				}else {
+					System.out.println("Pese a rebuscar entre los varios asientos");
+					System.out.println("mesas, y por todo aquello a la vista");
+					System.out.println("no encuentras nada de valor alguno.");
+					salonCentral();
+				}
+				break;
+			case 2:
+				pasillosIluminados();
+				break;
+			case 3:
+				cocinas();
+				break;
+			case 4:
+				hall();
+				break;
+			case 5:
+				longRest();
+				salonCentral();
+				break;
+			case 6:
+				inventory();
+				salonCentral();
+				break;
+			default:
+				System.out.println("opción no válida");
+				salonCentral();
+				break;
+			}//switch
+		}// while
+		if (choice == 7) {
+			System.exit(0);
+		}
+		salonCentral();
+	}
+	
+	public static void cocinas() {
+		System.out.println("Accediendo desde el salón central llegas a lo que parecen");
+		System.out.println("unas exquisitas cocinas, aunque no haya un ingrediente en");
+		System.out.println("buen estado no cuesta imaginar como podría haber olido el");
+		System.out.println("lugar en el pasado.");
+		System.out.println("Al frente una puerta solitaria está vuelta, y desciende un");
+		System.out.println("par de escalones a una sala con barriles de madera podrida");
+		System.out.println(" y cajones vacios, arramblados durante generaciones por la");
+		System.out.println("fauna local. No muy lejos de esa misma puerta, otra se ve");
+		System.out.println("atrancada por escombros caidos y otros tantos puestos a posta");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Ir al almacén.");
+		System.out.println("2- Volver al salón central");
+		if (bloqueado == true) {
+			System.out.println("3- El camino está bloqeuado por escombros");
+		} else {
+			System.out.println("3- Acceder a la bahía de carga subterranea");
+		}
+		System.out.println("4- Descansar");
+		System.out.println("5- Inventario");
+		System.out.println("6- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 6) {
+			switch (choice) {
+				case 1:
+					almacen();
+					break;
+				case 2:
+					salonCentral();
+					break;
+				case 3:
+					if (bloqueado == true) {
+						System.out.println("No puedes ir por ahí");
+						cocinas();
+					} else {
+						rioCarga2();
+					}
+					break;
+				case 4:
+					longRest();
+					cocinas();
+					break;
+				case 5:
+					inventory();
+					cocinas();
+					break;
+				default:
+					System.out.println("Eso no es una opción");
+					cocinas();
+					break;
+			}//switch
+		}//while
+		if (choice == 6) {
+			System.exit(0);
+		}
+		cocinas();
+	}
+	
+	public static void almacen() {
+		System.out.println("Bajas un par de escalones hasta lo que parece que");
+		System.out.println("fue en su tiempo una despensa o almacen, la madera");
+		System.out.println("se ha ido pudriedo con las goteras que caen desde");
+		System.out.println("el techo o por el propio contenido que guardaban,");
+		System.out.println("el hedor es pútidro, aunque la carne haya pasado");
+		System.out.println("a ser propiedad de los animales el olor de comida");
+		System.out.println("pudriendose no se ha ido y no parece que vaya a irse");
+		System.out.println("con facilidad.");
+		System.out.println("En una de las paredes uno de los barriles está caido");
+		System.out.println("y apartado de su sitio, en la gruesa pared de piedra");
+		System.out.println("se presenta un boquete, al otro lado se escucha un rio");
+		System.out.println("subterraneo correr con calma, la humedad se cuela desde");
+		System.out.println("la cueva con la que conecta.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Ir al rio subterraneo.");
+		System.out.println("2- Volver a las cocinas");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while(choice != 5) {
+			switch(choice) {
+			case 1:
+				if (Ormr == true) {
+					rioCarga1();
+				} else {
+					rioCarga2();
+				}
+				break;
+			case 2:
+				cocinas();
+				break;
+			case 3:
+				longRest();
+				almacen();
+				break;
+			case 4:
+				inventory();
+				almacen();
+				break;
+			default:
+				System.out.println("Eso no es una opción");
+				almacen();
+				break;
+			}//switch
+		}//while
+		if (choice == 5) {
+			System.exit(0);
+		}
+		almacen();
+	}
+	
+	public static void rioCarga1() {
+		System.out.println("Entrando a la cueva subterranea por la que el río");
+		System.out.println("calmadamente traversa notas como es un río ancho y");
+		System.out.println("profundo, al igual que el techo de la caverna es alto");
+		System.out.println("en el río una especie de muelle con un par de barcas");
+		System.out.println("a remos sin vela alguna atracados en el mismo.");
+		System.out.println("Aunque la visibilidad sea reducida entra suficiente");
+		System.out.println("luz por una serie de aperturas naturales en el techo");
+		System.out.println("de la caverna. El agua calmada a primera vista comienza");
+		System.out.println("a agitarse, el calmado tramo pasan a ser rápidos y el");
+		System.out.println("nivel del agua aumenta en un par de palmos, rompiendo");
+		System.out.println("la superficie del río subterraneo aparece lo que a primera");
+		System.out.println("vista parece una gran serpiente de azulados colores,");
+		System.out.println("entre el patrón azulado y gris lineas serpentenates");
+		System.out.println("doradas salen desde los negros ojos hasta hundirse");
+		System.out.println("en el agua y perderse junto el cuerpo de la serpiente.");
+		System.out.println("con hambrientos ojos te mira, abriendo su mandibula");
+		System.out.println("segmentada en tres, mostrando fieros colmillos y oscura");
+		System.out.println("garganta.");
+		System.out.println("La serpiente se lanza sobre ti. ¿Que haces?");
+		System.out.println("1- Afrontarlo de cara");
+		System.out.println("2- Intentar esquivar");
+		choice = s.nextInt();
+		
+		switch(choice) {
+			case 1:
+				playerHP = playerHP - roll10();
+				fightBeast(2);
+				break;
+			case 2:
+				if (roll20() >= 15) {
+					fightBeast(2);
+				} else {
+					playerHP = playerHP - roll8();
+					fightBeast(2);
+				}
+				break;
+			default:
+				System.out.println("Eso no es una opción");
+				rioCarga1();
+				break;
+		}//switch
+		
+		rioCarga2();
+	}
+	
+	public static void rioCarga2() {
+		bloqueado = false;
+		System.out.println("Tras que Ormrinn desaparezca hundiendose en lo que");
+		System.out.println("parece un río sin fondo, quien sabe si vivo o muerto,");
+		System.out.println("el atracadero subterraneo parece despejado, dañado por");
+		System.out.println("Ormirinn, barcos parcialmente hundidos, todo empapado,");
+		System.out.println("escamas de la serpiente esparcidas sobre la piedra, la");
+		System.out.println("puerta bloqueada por escombros ha sido liberada de un");
+		System.out.println("golpe del Ormrinn.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Recoger las escamas de Ormrinn");
+		System.out.println("2- Irse a las cocinas");
+		System.out.println("3- Irse al almacén");
+		System.out.println("4- Tirarse al rio");
+		System.out.println("5- Descansar");
+		System.out.println("6- Inventario");
+		System.out.println("7- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		while (choice != 7) {
+			switch (choice) {
+				case 1:
+					if(escamas == true) {
+						System.out.println("Consigues recuperar unas cuantas escamas del suelo");
+						for (int i = 0; i < roll4(); i++) {
+							inv.add("Escama Ormrinn");
+						}
+						escamas = false;
+						rioCarga2();
+					} else {
+						System.out.println("No quedan escamas que recoger.");
+						rioCarga2();
+					}
+					break;
+				case 2:
+					cocinas();
+					break;
+				case 3:
+					almacen();
+					break;
+				case 4:
+						if(roll20() == 20) {
+							System.out.println("Te tiras a las gélidas aguas con esperanza");
+							System.out.println("de que siga Ormirinn muerto, la corriente");
+							System.out.println("te lleva perezosamente, carente de rápido");
+							System.out.println("alguno en todo el traayecto. Tras un helada");
+							System.out.println("travesía a oscuras te detienes, de nuevo ves");
+							System.out.println("luz desde la parte superior, una cuerda dirige");
+							System.out.println("hacia arriba, pareces haber terminado en un");
+							System.out.println("pozo. Así que subes la cuerda, no es plan de");
+							System.out.println("seguir y obtener hipotermia.");
+							
+						} else {
+							System.out.println("Te tiras al agua, con ropas y todo");
+							System.out.println("está fría muy fría, y las ropas y");
+							System.out.println("armadura, auque sea un simple gambesón");
+							System.out.println("no ayuda, al final tus musculos se");
+							System.out.println("entumecen, no consigues mantenerte a flote.");
+							muerte();
+						}
+					break;
+				case 5:
+					longRest();
+					rioCarga2();
+					break;
+				case 6:
+					inventory();
+					rioCarga2();
+					break;
+			}
+		}
+		if (choice == 7) {
+			System.exit(0);
+		}
+		rioCarga2();
+	}
+	
+	public static void pasillosIluminados() {
+		System.out.println("Caminando entre los pasillos cuyas paredes han sido");
+		System.out.println("pintadas con escenas que ahora se caen y se desconchan");
+		System.out.println("agujeros irregulares en forma, tamaño y sitancia entre");
+		System.out.println("los mismos permiten que la luz del exterior se cuele a");
+		System.out.println("los pasillos abandonados. La disposición de los mismos");
+		System.out.println("es laberíntica y el orientarse si bien no es imposible");
+		System.out.println("tampoco es un paseo por un campo de amapolas.");
+		System.out.println("Conforme avanzas evitando aquellas paredes donde las");
+		System.out.println("escenas pintadas se repiten una luz asoma al fondo en");
+		System.out.println("lo que parecen unas escalerasa en espiral.");
+		if (PasilloE == false) {
+			System.out.println("Pero la luz no solo llega de ahí, saliendo de otro");
+			System.out.println("de los pasillos, lo que parecería un rayo de sol suelto");
+			System.out.println("se desliza por el suelo acompañado por un agudo pitido ");
+			System.out.println("que nunca se detiene.");
+			pasillosEnc();
+		}
+		System.out.println("¿Que haces?");
+		System.out.println("1- Avanzar al torreón de ecaleras en espiral");
+		System.out.println("2- volver por donde has venido");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		while (choice != 5) {
+			switch (choice) {
+				case 1:
+					torreH();
+					break;
+				case 2:
+					salonCentral();
+					break;
+				case 3:
+					longRest();
+					pasillosIluminados();
+					break;
+				case 4:
+					inventory();
+					pasillosIluminados();
+					break;
+				default:
+					System.out.println("Eso no es una opción");
+					pasillosIluminados();
+					break;
+			} //Switch
+		} //While
+		if (choice == 5) {
+			System.exit(0);
+		}
+		pasillosIluminados();
+	}
+	
+	public static void pasillosEnc() {
+		int escp = roll20();
+		System.out.println("¿Que haces?");
+		System.out.println("1- Intentar huir por los pasillos hasta perderlo.");
+		System.out.println("2- plantar cara.");
+		System.out.println("3- intentar esquivar antes de que ataque.");
+		choice = s.nextInt();
+		
+		switch (choice) {
+			case 1:
+				if (stealthDis == true) {
+					int tir1 = roll20(), tir2 = roll20();
+					if (tir1 > tir2) {escp = tir2;} else {escp = tir1;}
+				}
+				if(escp >= 16) {
+					System.out.println("Te deslizas por los pasillos, seguido por");
+					System.out.println("el rayo de luz extraviado, cada esquina la");
+					System.out.println("giras, cualquier cosa que pueda desorientarlo");
+					System.out.println("es de utilidad, al final te lanzas a las");
+					System.out.println("escaleras en espiral, le consigues perder");
+					System.out.println("pero sigue ahí.");
+				} else {
+					fightSolarBeasts(2);
+					PasilloE = true;
+					pasillosIluminados();
+				}
+				break;
+			case 2:
+				playerHP = playerHP - roll6();
+				fightSolarBeasts(2);
+				PasilloE = true;
+				pasillosIluminados();
+				break;
+			case 3:
+				if (roll20() > 14) {
+					fightSolarBeasts(2);
+					PasilloE = true;
+					pasillosIluminados();
+				} else {
+					playerHP = playerHP - roll6();
+					fightSolarBeasts(2);
+					PasilloE = true;
+					pasillosIluminados();
+				}
+				break;
+			default:
+				System.out.println("Eso no es una opción");
+				pasillosEnc();
+				break;
+		}
+		
+		pasillosEnc();
+	}
+	
+	public static void torreH() {
+		System.out.println("A la torre que se encuentra hundida en la seca tierra");
+		System.out.println("le falta el techo, cuyas vigas de madera terminaron");
+		System.out.println("por ceder y acabaron por caer al fondo de la torre");
+		System.out.println("algunas vigas aún se mantienen tumbadas en las escaleras");
+		System.out.println("entorpeciendo el paso.");
+		System.out.println("Dos puertas son las más accesibles, una subiendo por");
+		System.out.println("las escaleras de espiral y otra abajo escondida de la");
+		System.out.println("luz.");
+		System.out.println("¿Que quieres hacer?");
+		System.out.println("1- Ir a la puerta de arriba");
+		System.out.println("2- Ir a la puerta de abajo");
+		System.out.println("3- Volver a los pasillos");
+		System.out.println("4- Descansar");
+		System.out.println("5- Inventario");
+		System.out.println("6- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 6) {
+			switch (choice) {
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					pasillosIluminados();
+					break;
+				case 4:
+					longRest();
+					torreH();
+					break;
+				case 5:
+					inventory();
+					torreH();
+					break;
+				default:
+					System.out.println("Eso no es una opción");
+					torreH();
+					break;
+			} //switch
+		}//while
+		if (choice == 6) {System.exit(0);}
+		
+		torreH();
+	}
+	
+	//MONTAÑAS DE LA LUZ
 	public static void faldaMont() {
 		
 	}
 	
 	//Utilidades
-	
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		boolean salir = false;
@@ -3135,7 +3681,7 @@ public class PlaceHolder {
 							+ "																							 \r\n"
 							+ "BlaGames©																		         \r\n"
 							+ "LaMuerteDelSol®		 																     \r\n"
-							+ "V 0.7																                     \r\n"
+							+ "V 0.7-2																                     \r\n"
 							+ "");
 
 			System.out.println("1- Jugar");

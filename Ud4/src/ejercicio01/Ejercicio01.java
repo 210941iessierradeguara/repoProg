@@ -101,14 +101,17 @@ public class Ejercicio01 {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		
 		Fecha f1 = new Fecha(dia, mes, anyo);
-		//GregorianCalendar c1 = new GregorianCalendar(anyo, mes, dia);
+		GregorianCalendar c1 = new GregorianCalendar();
+		c1.set(Calendar.YEAR, anyo);
+		c1.set(Calendar.MONTH, mes - 1);
+		c1.set(Calendar.DAY_OF_MONTH, dia - 1);
 		Date d1 = formato.parse(fecha);
 		LocalDate fechaLocal = LocalDate.of(anyo, mes, dia);
 		DayOfWeek d2 = DayOfWeek.from(fechaLocal);
 		
 		System.out.println("Ese día corresponde a: ");
 		System.out.println("Clase Fecha: " + f1.diaSemana());
-		//System.out.println("Clase Gregorian Calendar: " + diaTextGre(c1));
+		System.out.println("Clase Gregorian Calendar: " + c1.get(Calendar.DAY_OF_WEEK));
 		System.out.println("Clase Date: " + d1.getDay());
 		System.out.println("Java.time.DayOfWeek: " + d2);
 	}
