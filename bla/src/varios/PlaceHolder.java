@@ -32,6 +32,7 @@ public class PlaceHolder {
 	public static int xp;
 	public static int level;
 	public static boolean devotado = false; // Bufo de deidad
+	public static boolean marcado = false; //marcado por el sol
 	//Enemy
 	public static int EnemyHP;
 	public static int EnemyAC;
@@ -47,15 +48,16 @@ public class PlaceHolder {
 	public static int looted2p1 = 0; // Victima tenso cabo
 	public static int looted3 = 0; // Elegido del sol carabela
 	public static boolean terminada = false; // la subasta
-	public static boolean Uencounter = false; // Hombre lobo Uni
+	public static boolean Uencounter = false; // Hombre lobo Uni False = no ha sucedido
 	public static boolean soborno = false; // guardias Uni
 	public static boolean enganyados = false; // guardias Uni
 	public static boolean encontrado = false; //Ruinas del Sol
 	public static boolean bloqueado = true; //Cocina
-	public static boolean Ormr = true; //Ormrinn vivo o muerto
+	public static boolean Ormr = true; //Ormrinn vivo o muerto true = vivo
 	public static boolean escamas = true; //recogidas o no escamas de Ormrinn
-	public static boolean PasilloE = false; //Espectro pasillos
-	
+	public static boolean PasilloE = false; //Espectro pasillos False = no ha sucedido
+	public static boolean armeryE = false; //Encuentro armería False = no ha sucedido
+	public static boolean Aencounter = false; // Encuentro en los aposentos. False = no ha sucedido
 	//INV
 	static List<String> inv = new ArrayList<String>(); // https://stackoverflow.com/questions/22364768/inventory-system-for-a-text-based-adventure-game-in-java
 
@@ -403,6 +405,12 @@ public class PlaceHolder {
 			EnemyAC = 15;
 			EnemyDmg = roll8() + roll10() + 10;
 			break;
+		case 3: //awaken armor
+			EnemyHP = 20 + roll12();
+			if(typeDmg == 3) {EnemyAC = 14;} else {EnemyAC = 18;}
+			EnemyDmg = roll8() + 4;
+			
+			break;
 		}
 	}
 
@@ -417,6 +425,11 @@ public class PlaceHolder {
 			EnemyHP = roll10() + 15 + roll8();
 			EnemyAC = 13;
 			EnemyDmg = roll4() + roll4() + roll4() + 2;
+			break;
+		case 3: //Fragmento de luz
+			EnemyHP = 40 + roll20() + roll6();
+			EnemyAC = 14;
+			EnemyDmg = 6 + roll10() + roll8() + roll8();
 			break;
 		}
 	}
@@ -683,9 +696,10 @@ public class PlaceHolder {
 
 		if (f == 1) {
 			xp = xp + 300;
-		}
-		if (f == 2) {
+		} else if (f == 2) {
 			xp = xp + 400;
+		} else if (f == 3) {
+			xp = xp + 250;
 		}
 
 		checkLvl();
@@ -748,7 +762,11 @@ public class PlaceHolder {
 
 		} // fin while fighting
 
-		if (f == 1 || f == 2) {
+		if (f == 1) {
+			xp = xp + 325;
+		} else if (f ==2) {
+			xp = xp + 150;
+		} else if (f == 3) {
 			xp = xp + 500;
 		}
 
@@ -3450,7 +3468,11 @@ public class PlaceHolder {
 							System.out.println("hacia arriba, pareces haber terminado en un");
 							System.out.println("pozo. Así que subes la cuerda, no es plan de");
 							System.out.println("seguir y obtener hipotermia.");
-							
+							if (Aencounter == false) {
+								aposentosE();
+							} else {
+								aposentos();
+							}
 						} else {
 							System.out.println("Te tiras al agua, con ropas y todo");
 							System.out.println("está fría muy fría, y las ropas y");
@@ -3604,8 +3626,28 @@ public class PlaceHolder {
 		while (choice != 6) {
 			switch (choice) {
 				case 1:
+					System.out.println("La puerta más alta carece de pomo o manilla");
+					System.out.println("en su lugar un endidura con forma de sol");
+					System.out.println("igual que la que llevaba el hombre de tenso");
+					System.out.println("cabo alrededor del cuello.");
+					if (inv.contains("Medallón del sol")) {
+						System.out.println("El medallón encaja sin proble alguno y");
+						System.out.println("acto seguido gira, dandote acceso a los");
+						System.out.println("aposentos.");
+						if (Aencounter == false) {
+							aposentosE();
+						} else {
+							aposentos();
+						}
+					} else {
+						System.out.println("Careces de un medallón similar, para ti");
+						System.out.println("esta puerta está tan cerrada como cualquier");
+						System.out.println("otra y careces de forma para entrar.");
+						torreH();
+					}
 					break;
 				case 2:
+					armeria();
 					break;
 				case 3:
 					pasillosIluminados();
@@ -3627,6 +3669,286 @@ public class PlaceHolder {
 		if (choice == 6) {System.exit(0);}
 		
 		torreH();
+	}
+	
+	public static void armeria() {
+		System.out.println("La puerta más baja está vuelta, siguir bajando por las");
+		System.out.println("escaleras sería ardua tarea ya que la mayoría de los restos");
+		System.out.println("del techo se han acumulado por esta zona baja, concretamente");
+		System.out.println("te corta el  paso un par de vigas que para cruzarlas uno");
+		System.out.println("habría de colgarse sobre el vacío.");
+		System.out.println("El interior de esta sala está repleta de antiguas armas");
+		System.out.println("y armaduras, todas algo maltrechas, aunque algunas aún son");
+		System.out.println("aceptable como armadura de uso real.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Rebuscar entre las armas y armaduras");
+		System.out.println("2- Dar media vuelta");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 5) {
+			switch(choice) {
+				case 1:
+					if (armeryE == false) {
+					System.out.println("Vas tocando pomos de espadas, mangos de hachas,");
+					System.out.println("cabezas de maza y corazas de placas. Lo que es");
+					System.out.println("para tu sorpresa, es una armadura que con vida");
+					System.out.println("propia se comienza a montar en el aire como si");
+					System.out.println("alguien la vistiera verdaderamente, los guanteletes");
+					System.out.println("de dedos individuales agarran la espada que mejor");
+					System.out.println("apariencia tiene, para acto seguido lanzarse a ti.");
+					fightBeast(3);
+					armeryE = true;
+					armeria();
+					} else {
+						System.out.println("Un buen surtido de armas y armaduras se encuentra");
+						System.out.println("a tu disposición en esta sala.");
+						armasArme();
+					}
+					break;
+				case 2:
+					torreH();
+					break;
+				case 3:
+					longRest();
+					armeria();
+					break;
+				case 4:
+					inventory();
+					armeria();
+					break;
+				default:
+					System.out.println("Eso no es una opción.");
+					armeria();
+					break;
+			}
+		}//while
+		if (choice == 5) {System.exit(0);}
+		
+		armeria();
+	}
+	
+	public static void armasArme() {
+		System.out.println("Entre todas las armas abandonadas estas son las que");
+		System.out.println("se encuentran en mejor estado:");
+		System.out.println("[Cambiar un arma/armadura hará desaparecer aquella que portas]");
+		System.out.println("1- La espada que blandía la armadura viviente [1d8 cortante]");
+		System.out.println("2- Una lanza cuyo aasta no se ha podrido [1d8 perforante]");
+		System.out.println("3- Un messer cuyo mango es de hueso [1d6 cortante]");
+		System.out.println("4- Una ballesta pesada con su cranequín y munición [1d10 perforante]");
+		System.out.println("5- Un escudo heráldico [+2 AC]");
+		System.out.println("6- Pavisa Brizzina [+3 AC]");
+		System.out.println("7- Foco Arcano [+4 a los hechizos]");
+		System.out.println("8- Brigantina Brizzina con hombreras [14 AC]");
+		System.out.println("9- Peto y espaldar de placas [16 AC]");
+		System.out.println("10- dejar de mirar las armas");
+		choice = s.nextInt();
+		
+		switch (choice) {
+			case 1:
+				playerWeapon = "Espada [1d8 cortante]";
+				playerDmg = roll8();
+				typeDmg = 2;
+				break;
+			case 2:
+				playerWeapon = "Lanza [1d8 perforante]";
+				playerDmg = roll8();
+				typeDmg = 1;
+				break;
+			case 3:
+				playerWeapon = "Messer [1d6 cortante]";
+				playerDmg = roll6();
+				typeDmg = 2;
+				break;
+			case 4:
+				playerDisWeapon = "Una ballesta pesada con su cranequín y munición [1d10 perforante]";
+				playerDisDmg = roll10();
+				if (playerDisWeapon != "arquebús [2d12 perforante]") {
+					ammunition = ammunition + 20;
+				} else {
+					ammunition = 20;
+				}
+				break;
+			case 5:
+				bonusAC = 2;
+				totalAC = playerAC + bonusAC;
+				break;
+			case 6:
+				bonusAC = 3;
+				totalAC = playerAC + bonusAC;
+				break;
+			case 7:
+				playerWeapon = "Foco arcano [+4 a los hechizos]";
+				playerDmg = (int) (1);
+				SpellBonus = SpellBonus + 4;
+				typeDmg = 3;
+				break;
+			case 8:
+				playerArmor = "Brigantina Brizzina con hombreras";
+				playerAC = 14;
+				stealthDis = true;
+				totalAC = playerAC + bonusAC;
+				break;
+			case 9:
+				playerArmor = "Peto y espaldar de placas";
+				playerAC = 16;
+				stealthDis = false;
+				totalAC = playerAC + bonusAC;
+				break;
+			case 10:
+				armeria();
+				break;
+			default:
+				System.out.println("Eso no es una opción");
+				armasArme();
+				break;
+		}
+		armasArme();
+	}
+	
+	public static void aposentosE() {
+		System.out.println("La única habitación por encima de la tierra en las");
+		System.out.println("ruinas es esta, unos aposentos maravillosamente ");
+		System.out.println("decorados siempre con motivos solares y geometría");
+		System.out.println("triangular, dos armarios muestran las riquezas que");
+		System.out.println("habían poseido en otro tiempo, ahora las finas ropas");
+		System.out.println("de seda están empapadas y destrozadas. Sorprendentemente");
+		System.out.println("incluso un pozo que baja directamente a un río subterraneo");
+		System.out.println("una estancia digna del emperador Iline III. Pero no todo");
+		System.out.println("son riquezas, sobre las rasgadas sábanas lo que parecería");
+		System.out.println("una lámina de luz con forma vágamente humana. Extrañas voces");
+		System.out.println("salen de esa dirección, hablando un idioma similar al tuyo");
+		System.out.println("pero que en ningún momento terminas de enteneder. La lámina");
+		System.out.println("se acerca sin tocar el suelo, su presencia es abrasante");
+		System.out.println("y no hay forma de distinguir sus intenciones.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Atacar la extráña lámina.");
+		System.out.println("2- Intentar salir por la puerta.");
+		System.out.println("3- Lanzarse por el pozo.");
+		System.out.println("4- Quedarse estático.");
+		choice = s.nextInt();
+		
+		switch (choice) {
+			case 1:
+				fightSolarBeasts(3);
+				Aencounter = true;
+				aposentos();
+				break;
+			case 2:
+				if(inv.contains("Medallón del sol") && roll20() > 13) {
+					System.out.println("Insertas como puedes el medallón en la");
+					System.out.println("ranura, y abres la puerta de golpe sales");
+					System.out.println("a la carrera cerrando los aposentos tras");
+					System.out.println("de ti, por poco no te caes por el hueco en");
+					System.out.println("las escaleras.");
+					torreH();
+				} else {
+					System.out.println("Tes es imposible huir, la puerta no cede");
+					System.out.println("por mucho que la agites, tu única opción es combatir.");
+					fightSolarBeasts(3);
+					Aencounter = true;
+					aposentos();
+				}
+				break;
+			case 3:
+				if (roll20() == 17) {
+					System.out.println("Te lanzas por el pozo, más bien a la cuerda");
+					System.out.println("bajas con cuidado de no quemarte las manos");
+					System.out.println("hasta las gélidas aguas del río subterraneo");
+					System.out.println("y nadas hasta lo que parece un muelle bajo");
+					System.out.println("tierra.");
+					if (Ormr == true) {
+						rioCarga1();
+					} else {
+						rioCarga2();
+					}
+				} else {
+					System.out.println("Tuviste un desafortunado error de calculo");
+					System.out.println("te lanzaste de cabeza contra el pozo y tu");
+					System.out.println("cabeza golpeó el reborde de una triangular");
+					System.out.println("piedra. Tu cuerpo cayó inerte el resto de");
+					System.out.println("la caida inerte...");
+					muerte();
+				}
+				break;
+			case 4:
+				System.out.println("Aguantas tu terreno conforme avanza la viviente");
+				System.out.println("saeta de fuego, empiezas a sudar a chorros a cada");
+				System.out.println("pie que avanza en tu dirección. Se detiene frente");
+				System.out.println("a ti, esas voces que no puedes entender hablando");
+				System.out.println("sin parar a tu alrededor. La silueta de luz se acerca.");
+				if (inv.contains("Medallón del sol")) {
+					System.out.println("La silueta toca el medallón que le arrebataste al");
+					System.out.println("cadaver en la taberna tenso cabo. La mano del");
+					System.out.println("espectro se va fundiendo conforme se calienta el");
+					System.out.println("medallón, de pronto conforme más y más de la");
+					System.out.println("viviente saeta, te ves incapaz de moverte");
+					System.out.println("forzado a sentir como el medallón al blanco");
+					System.out.println("vivo marca tu piel una vez te ves capaz de");
+					System.out.println("soltarlo una vez ha desaparecido la lámina");
+					System.out.println("de luz. El medallón parece quemado pero");
+					System.out.println("conserva la forma, tu cuerpo ahora está");
+					System.out.println("marcado por el sol del medallón y ");
+					System.out.println("estás solo una vez más.");
+					marcado = true;
+					inv.remove("Medallón del sol");
+					inv.add("Medallón del sol quemado");
+					aposentos();
+				} else {
+					System.out.println("La lámina de luz se acerta y te analiza");
+					System.out.println("buscando algo en tí, pero no lo encuentra");
+					System.out.println("-¿Cual es tu devoción?");
+					System.out.println("Escuchas de una de las voces que antes no");
+					System.out.println("entendias.");
+					System.out.println("¿Que respondes?");
+					System.out.println("1- La del Sol");
+					System.out.println("2- La de otro");
+					choice = s.nextInt();
+					switch (choice) {
+						case 1:
+								if(devotado == false) {
+									System.out.println("-Pues tal es su calor");
+									System.out.println("En un instante la silueta luminosa");
+									System.out.println("ha desaparecido, pero tu notal algo distinto en la");
+									System.out.println("habitación.");
+									MaxSpellSlots = MaxSpellSlots + 3;
+									SpellSlots = MaxSpellSlots;
+									devotado = true;
+									aposentos();
+								} else {
+									System.out.println("-No me mintais, pues siento la devoción a otros en tí.");
+									System.out.println("La lámina de luz desaparece sin más dilación.");
+									aposentos();
+								}
+							break;
+						case 2:
+							System.out.println("-Una pena --Responde otra de las voces");
+							System.out.println("la lámina poco a poco se desvanece de");
+							System.out.println("tu campo de visión para no volver a ser vista.");
+							aposentos();
+							break;
+						default:
+							System.out.println("Ante tu negativa a elegir una respuesta");
+							System.out.println("no hay repuesta tampoco por parte de la");
+							System.out.println("lámina, la cual desaparece al poco.");
+							aposentos();
+							break;
+					}
+				}
+				break;
+			default:
+				System.out.println("Eso no es una opción");
+				aposentosE();
+				break;
+		}
+		
+		aposentosE();
+	} 
+	
+	public static void aposentos() {
+		System.out.println("Con los aposentos vacíos notas la brisa que corre");
 	}
 	
 	//MONTAÑAS DE LA LUZ
