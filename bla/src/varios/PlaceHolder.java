@@ -42,11 +42,14 @@ public class PlaceHolder {
 	public static String Day = "Es de noche";
 	public static int isDay = 0;
 	
-	//Situations/loots
+	///loots
 	public static int looted1 = 0; // acolito del Sol Tenso cabo
 	public static int looted2 = 0; // Victima tenso cabo
 	public static int looted2p1 = 0; // Victima tenso cabo
 	public static int looted3 = 0; // Elegido del sol carabela
+	public static boolean looted4 = false; //aposentos
+	public static boolean looted5 = false;
+	//Situations
 	public static boolean terminada = false; // la subasta
 	public static boolean Uencounter = false; // Hombre lobo Uni False = no ha sucedido
 	public static boolean soborno = false; // guardias Uni
@@ -3010,7 +3013,7 @@ public class PlaceHolder {
 		catedralME();
 	}
 
-	// EXTERIORES
+	// EXTERIORES / RUINAS DEL SOL
 	public static void camposDeTrigo() {
 		System.out.println("Al salir de la ciudad una suave brisa mece los dorados");
 		System.out.println("campos de trigo cuya altura iguala la de tus ojos con ");
@@ -3215,7 +3218,7 @@ public class PlaceHolder {
 		while (choice != 7) {
 			switch(choice) {
 			case 1:
-				if(roll20() >= 13) {
+				if(roll20() >= 13 && looted5 == true) {
 					System.out.println("Abandonadas como si tal cosa encuentras bajo un par de");
 					System.out.println("servilletas un pequeño puñado de monedas doradas, no");
 					System.out.println("están acuñadas como las de Brizzaresca, pero de todas");
@@ -3949,6 +3952,51 @@ public class PlaceHolder {
 	
 	public static void aposentos() {
 		System.out.println("Con los aposentos vacíos notas la brisa que corre");
+		System.out.println("a traves de una de las pocas ventanas sobre tierra");
+		System.out.println("hasta el pozo por donde huye el aire, la lámina de");
+		System.out.println("luz ha desaparecido y tencuentras solo en los aposentos");
+		System.out.println("poco hay que destacar, una habitación para alguien");
+		System.out.println("de alta alcurnia que se ha ido deteriorando con los años");
+		System.out.println("¿Que quieres hacer?");
+		System.out.println("1- Rebuscar por la habitación");
+		System.out.println("2- Al torreón hundido");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 5) {
+			switch (choice) {
+				case 1:
+					if (looted4 == false) {
+						System.out.println("Rebuscando entre los objetos de la sala");
+						System.out.println("encuentras monedas extrañas y antiguas");
+						System.out.println("pero aún así podrían server en el mercado.");
+						galeones = galeones + roll20() + roll6();
+						looted4 = true;
+						aposentos();
+					} else {
+						System.out.println("Todo aquello de valor que pudiera haber");
+						System.out.println("en este lugar ha sido ya saqueado, por");
+						System.out.println("tí y por aquellos antes que tú.");
+						aposentos();
+					}
+					break;
+				case 2:
+					torreH();
+					break;
+				case 3:
+					longRest();
+					aposentos();
+					break;
+				case 4:
+					inventory();
+					aposentos();
+					break;
+			}//switch
+		}//while
+		if (choice == 5) {System.exit(0);}
+		aposentos();
 	}
 	
 	//MONTAÑAS DE LA LUZ
@@ -4003,7 +4051,7 @@ public class PlaceHolder {
 							+ "																							 \r\n"
 							+ "BlaGames©																		         \r\n"
 							+ "LaMuerteDelSol®		 																     \r\n"
-							+ "V 0.7-2																                     \r\n"
+							+ "V 0.8																                     \r\n"
 							+ "");
 
 			System.out.println("1- Jugar");
