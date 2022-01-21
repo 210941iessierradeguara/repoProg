@@ -777,7 +777,7 @@ public class PlaceHolder {
 	}
 
 	public static void checkLvl() {
-		if (xp >= 300) {
+		if (xp >= 300 && level < 2) {
 			level = 2;
 			if (playerClass == "Guerrero") {
 				maxPlayerHP = maxPlayerHP + (roll10() + 3);
@@ -3276,7 +3276,7 @@ public class PlaceHolder {
 		System.out.println("1- Ir al almacén.");
 		System.out.println("2- Volver al salón central");
 		if (bloqueado == true) {
-			System.out.println("3- El camino está bloqeuado por escombros");
+			System.out.println("3- El camino está bloqueado por escombros");
 		} else {
 			System.out.println("3- Acceder a la bahía de carga subterranea");
 		}
@@ -3575,6 +3575,7 @@ public class PlaceHolder {
 					System.out.println("es de utilidad, al final te lanzas a las");
 					System.out.println("escaleras en espiral, le consigues perder");
 					System.out.println("pero sigue ahí.");
+					torreH();
 				} else {
 					fightSolarBeasts(2);
 					PasilloE = true;
@@ -4051,7 +4052,7 @@ public class PlaceHolder {
 							+ "																							 \r\n"
 							+ "BlaGames©																		         \r\n"
 							+ "LaMuerteDelSol®		 																     \r\n"
-							+ "V 0.8																                     \r\n"
+							+ "V 0.8-1																                     \r\n"
 							+ "");
 
 			System.out.println("1- Jugar");
