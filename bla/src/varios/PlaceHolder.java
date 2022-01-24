@@ -61,6 +61,7 @@ public class PlaceHolder {
 	public static boolean PasilloE = false; //Espectro pasillos False = no ha sucedido
 	public static boolean armeryE = false; //Encuentro armería False = no ha sucedido
 	public static boolean Aencounter = false; // Encuentro en los aposentos. False = no ha sucedido
+	public static boolean grupCarr = false; // acolitos en la falda de la montaña
 	//INV
 	static List<String> inv = new ArrayList<String>(); // https://stackoverflow.com/questions/22364768/inventory-system-for-a-text-based-adventure-game-in-java
 
@@ -311,7 +312,7 @@ public class PlaceHolder {
 		playerHP = roll8() + 5;
 		maxPlayerHP = playerHP;
 		playerArmor = "Brigantina";
-		atkBonus = 3;
+		atkBonus = 2;
 		playerAC = 13;
 		totalAC = playerAC + bonusAC;
 		xp = 0;
@@ -3036,9 +3037,9 @@ public class PlaceHolder {
 				int encounter = roll20();
 				if (encounter <16) {
 					System.out.println("Tu trayecto comienza, sin embargo");
-					System.out.println("desde el lateral del sendero aparece");
+					System.out.println("desde el lateral del sendero aparece como materializado del aire");
 					System.out.println("un extraño sabueso, de apariencia famélica");
-					System.out.println("con ojos que brillan con color de Oro, y cuyo");
+					System.out.println("con ojos que brillan con color del Oro, y cuyo");
 					System.out.println("esquélico cuerpo emite fuerte olor a azúfre");
 					fightSolarBeasts(1);
 					faldaMont();
@@ -4002,6 +4003,240 @@ public class PlaceHolder {
 	
 	//MONTAÑAS DE LA LUZ
 	public static void faldaMont() {
+		System.out.println("Haces tu camino hasta las faldas de la cordillera que");
+		System.out.println("suponen las montañas doradas, montañas cuyas paredes");
+		System.out.println("hechas de una rara arenisca le dan una tonalidad amarillenta");
+		System.out.println("casi dorada, nadie sabe exactamente que causa este color");
+		System.out.println("lo que se sabe es que no hay registro de otra cordillera similar.");
+		System.out.println("Conforme asciendes por uno de los caminos que cruzan");
+		System.out.println("estas montañas que carecen de árbol alguno.");
+		if (grupCarr == false) {
+			System.out.println("Algo capta tu atención, un grupo de carromatos se agrupan frente a");
+			System.out.println("la pared de la montaña, el grupo es pequeño, tres carros");
+			System.out.println("no más, pero entre ellos se mueve un grupo mayor de personas");
+			System.out.println("todos con túnicas celestes por las que se extienden tentáculos");
+			System.out.println("de oro salientes de un círculo central, todos compartiendo un");
+			System.out.println("collar sobre la túnica, un collar con iconografía del sol");
+			System.out.println("como la que vestía el hombre de la taberna.");
+			System.out.println("Al fondo uno de estos hombres en impolutas túnicas posa algo contra");
+			System.out.println("la pared de las montañas, la cual parece desaparecer como");
+			System.out.println("si nunca hubiera estado ahí antes de que se marche el hombre.");
+		} else {
+			System.out.println("La falta de pared se mantiene tras los sucedido dandote via libre");
+			System.out.println("a un interior cuyo estilo arquitectónico es único, repleto de triángulos");
+		}
+		System.out.println("¿Que haces?");
+		if(grupCarr = false) {
+		System.out.println("1- Intentas ir hacia la pared desaparecida.");
+		System.out.println("2- Atacas a los integrantes del culto al Sol");
+		System.out.println("3- Intentas robar de los carromatos");
+		System.out.println("4- Volver a los campos");
+		System.out.println("5- Inventario");
+		} else {
+			System.out.println("1- Adentrarte en la montaña");
+			System.out.println("2- Volver a los campos.");
+			System.out.println("3- Descansar");
+			System.out.println("4- inventario");
+			System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		}
+		System.out.println("");
+		choice = s.nextInt();
+		
+		switch(choice) {
+			case 1:
+				if (grupCarr = false) {
+					if (grupCarr = false) {
+						int tirada = roll20();
+						if(stealthDis = true) {
+							int tira1 = roll20();
+							if (tira1 < tirada) {tirada = tira1;}
+							} //StealthDis
+							if (tirada >= 16) {
+								System.out.println("Te acercas al carromato con todo el sigilo posible");
+								System.out.println("comienzas a rebuscar entre las pertenencias transportadas");
+								System.out.println("y encuentas:");
+								
+							} else {
+								System.out.println("Por mucho que intentas ser sigiloso no te puedes");
+								System.out.println("acercar sin antes haber sido visto por alguno de");
+								System.out.println("los presentes.");
+								System.out.println("-Ubi es? --Escuchas desde la pared de la montaña");
+								System.out.println("-Nescio. Capere fur! --Responde otra de las voces");
+								System.out.println("antes de que tengas a todos encima.");
+								fight(1);
+								System.out.println("El siguiente llega tras acabar con el primero.");
+								fight(1);
+								System.out.println("Tras el segundo aparece alguien carente de arma alguna");
+								fight(2);
+								System.out.println("Tras acabar con esos tres el ultimo que se ha quedado aparece");
+								System.out.println("rodeado una extraña aura dorada.");
+								fight(3);
+								System.out.println("Tras tener que enfrentarte a cuatro de estas personas");
+								System.out.println("en túnicas el resto huye, unas tantas al interior de la");
+								System.out.println("montaña y otras tantas por el camino no sin antes llevarse");
+								System.out.println("los carromatos sabiendo que estabas ocupado.");
+								grupCarr = true;
+								interiorMont();
+							}
+					} else {
+						interiorMont();
+					}
+				}
+				break;
+			case 2:
+				if (grupCarr = false) {
+					System.out.println("Caminas de frente al grupo de personas las cuales");
+					System.out.println("se giran en sorpresa al verte, en cuanto notan tu");
+					System.out.println("arma en mano todos cambian las expresiones de sorpresa");
+					System.out.println("por otras amenazantes, se lanzan a por tí bajo el grito");
+					System.out.println("");
+					System.out.println("-SOL MORIETUR!");
+					fight(1);
+					System.out.println("El siguiente llega tras acabar con el primero.");
+					fight(1);
+					System.out.println("Tras el segundo aparece alguien carente de arma alguna");
+					fight(2);
+					System.out.println("Tras acabar con esos tres el ultimo que se ha quedado aparece");
+					System.out.println("rodeado una extraña aura dorada.");
+					fight(3);
+					System.out.println("Tras tener que enfrentarte a cuatro de estas personas");
+					System.out.println("en túnicas el resto huye, unas tantas al interior de la");
+					System.out.println("montaña y otras tantas por el camino no sin antes llevarse");
+					System.out.println("los carromatos sabiendo que estabas ocupado.");
+					grupCarr = true;
+					faldaMont();
+				} else {
+					camposDeTrigo();
+				}
+				break;
+			case 3:
+				if (grupCarr = false) {
+					int tirada = roll20();
+					if(stealthDis = true) {
+						int tira1 = roll20();
+						if (tira1 < tirada) {tirada = tira1;}
+						} //StealthDis
+						if (tirada >= 16) {
+							System.out.println("Te acercas al carromato con todo el sigilo posible");
+							System.out.println("comienzas a rebuscar entre las pertenencias transportadas");
+							System.out.println("y encuentas:");
+							
+						} else {
+							System.out.println("Por mucho que intentas ser sigiloso no te puedes");
+							System.out.println("acercar sin antes haber sido visto por alguno de");
+							System.out.println("los presentes.");
+							System.out.println("-Ubi es? --Escuchas desde la pared de la montaña");
+							System.out.println("-Nescio. Capere fur! --Responde otra de las voces");
+							System.out.println("antes de que tengas a todos encima.");
+							fight(1);
+							System.out.println("El siguiente llega tras acabar con el primero.");
+							fight(1);
+							System.out.println("Tras el segundo aparece alguien carente de arma alguna");
+							fight(2);
+							System.out.println("Tras acabar con esos tres el ultimo que se ha quedado aparece");
+							System.out.println("rodeado una extraña aura dorada.");
+							fight(3);
+							System.out.println("Tras tener que enfrentarte a cuatro de estas personas");
+							System.out.println("en túnicas el resto huye, unas tantas al interior de la");
+							System.out.println("montaña y otras tantas por el camino no sin antes llevarse");
+							System.out.println("los carromatos sabiendo que estabas ocupado.");
+							grupCarr = true;
+							faldaMont();
+						}
+				} else {
+					longRest();
+					faldaMont();
+				}
+				break;
+			case 4:
+				if (grupCarr = false) {
+					camposDeTrigo();
+				} else {
+					inventory();
+					faldaMont();
+				}
+				break;
+			case 5:
+				if (grupCarr = false) {
+					inventory();
+					faldaMont();
+				} else {
+					System.exit(0);
+				}
+				break;
+		}
+		
+		faldaMont();
+	}
+	
+	public static void interiorMont() {
+		System.out.println("Para tu sorpresa el interior se encuentra bien iluminado");
+		System.out.println("pasillos y pasillos de piedraas triangulares que hacen de");
+		System.out.println("ladrillos se expanden por el interior de la montaña, un ");
+		System.out.println("lugar abandonado por sus antiguos dueños y ahora apropiado");
+		System.out.println("por esas personas de túnicas celestes y doradas, las cuales");
+		System.out.println("se han escabullido por estos túneles, por muchos ataques a ");
+		System.out.println("tabernas o aires sectarios terminan siendo un campesinos");
+		System.out.println("muy asustadizos.");
+		System.out.println("Avanzar acompañado del eco de tus pasos, la luz cuyo origen");
+		System.out.println("es desconocido no pierde intensidad y no titila en ningún");
+		System.out.println("momento como lo haría una vela. No tarde te encunetras en");
+		System.out.println("un cruze de pasillos, tres caminos, o cuatro si cuentas");
+		System.out.println("por el que ha venido se presentan ante ti, desconoces a");
+		System.out.println("donde puede llevar cada uno.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Ir al pasillo frente a tí");
+		System.out.println("2- Ir al pasillo a siniestra");
+		System.out.println("3- Ir al pasillo a diestra");
+		System.out.println("4- Dar media vulta");
+		System.out.println("5- Descansar");
+		System.out.println("6- Inventario");
+		System.out.println("7- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while(choice != 7) {
+			switch(choice) {
+				case 1:
+					salonBastSol();
+					break;
+				case 2:
+					forjaOrm();
+					break;
+				case 3:
+					altarSol();
+					break;
+				case 4:
+					faldaMont();
+					break;
+				case 5:
+					longRest();
+					interiorMont();
+					break;
+				case 6:
+					inventory();
+					interiorMont();
+					break;
+			}//switch
+		} //while
+		if (choice == 7) {
+			System.exit(0);
+		}
+		interiorMont();
+	}
+	
+	public static void altarSol() {
+		System.out.println("");
+	}
+	
+	public static void forjaOrm() {
+		
+	}
+	
+	public static void salonBastSol() {
+		
+	}
+	
+	public static void balcon() {
 		
 	}
 	

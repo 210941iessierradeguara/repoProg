@@ -1,5 +1,7 @@
 package ejercicio07;
 
+import java.util.Objects;
+
 public class Multimedia {
 	private String titulo;
 	private String autor;
@@ -43,6 +45,12 @@ public class Multimedia {
 
 	public void setDuracion(double duracion) {
 		this.duracion = duracion;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Multimedia other = (Multimedia) obj;
+		return (this.titulo.equalsIgnoreCase(other.getTitulo()) && this.autor.equalsIgnoreCase(other.getAutor()));
 	}
 
 	@Override
