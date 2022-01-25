@@ -61,7 +61,9 @@ public class PlaceHolder {
 	public static boolean PasilloE = false; //Espectro pasillos False = no ha sucedido
 	public static boolean armeryE = false; //Encuentro armería False = no ha sucedido
 	public static boolean Aencounter = false; // Encuentro en los aposentos. False = no ha sucedido
-	public static boolean grupCarr = false; // acolitos en la falda de la montaña
+	public static boolean grupCarr = false; // acolitos en la falda de la montaña = no sucedido
+	public static boolean forj = false; //forja Orm, false = no derrotado
+	public static int finalshot = roll20();
 	//INV
 	static List<String> inv = new ArrayList<String>(); // https://stackoverflow.com/questions/22364768/inventory-system-for-a-text-based-adventure-game-in-java
 
@@ -376,12 +378,17 @@ public class PlaceHolder {
 		case 3: // Elegido del Sol
 			EnemyHP = roll20() + 10;
 			EnemyAC = 15;
-			EnemyDmg = (roll12() + roll6());
+			EnemyDmg = (roll12() + roll6() + 3);
 			break;
-		case 4: // Guarda Uni
-			EnemyHP = roll6() + 10;
-			EnemyAC = 14;
-			EnemyDmg = (roll6() + roll6());
+		case 4: //Herrero del sol
+			EnemyHP = roll12() + roll10() + 15;
+			EnemyAC = 13;
+			EnemyDmg = (roll8() + roll4() + 4);
+			break;
+		case 5: //último bendito
+			EnemyHP = 20 + roll20() + roll20() + roll12();
+			EnemyAC = 16;
+			EnemyDmg = roll8() + roll6() + 6;
 			break;
 		} // End switch e.
 
@@ -393,6 +400,11 @@ public class PlaceHolder {
 			EnemyHP = roll8() + 5;
 			EnemyAC = 12;
 			EnemyDmg = roll6();
+			break;
+		case 2: // Guarda Uni
+			EnemyHP = roll6() + 10;
+			EnemyAC = 14;
+			EnemyDmg = (roll6() + roll6());
 			break;
 		}
 	}
@@ -1295,7 +1307,7 @@ public class PlaceHolder {
 
 				break;
 			case 3:
-				fight(4);
+				fight2(2);
 				enganyados = true;
 				entradaUniversidad2();
 				break;
@@ -1737,7 +1749,7 @@ public class PlaceHolder {
 				System.out.println("restos arqueologicos que encajan con la descripción de estas gentes, es imposible que una flecha");
 				System.out.println("cruce el oceano. Incluso la existencia de Iline III se pone en duda, pues toda fuente del imperio");
 				System.out.println("en la que se nombran emperadores es incompleta empezando por el décimo emperador cinco décadas");
-				System.out.println("despues del aproximado reinado de Iline III.");
+				System.out.println("después del aproximado reinado de Iline III.");
 				System.out.println(
 						"**********************************************************************************************");
 				biblioteca();
@@ -4200,7 +4212,11 @@ public class PlaceHolder {
 					salonBastSol();
 					break;
 				case 2:
-					forjaOrm();
+					if(forj == false) {
+						forjaOrm1();
+					} else {
+						forjaOrm2();
+					}
 					break;
 				case 3:
 					altarSol();
@@ -4225,18 +4241,254 @@ public class PlaceHolder {
 	}
 	
 	public static void altarSol() {
-		System.out.println("");
+		System.out.println("Tras seguir por los pasillos determinas que la luz");
+		System.out.println("proviene de los huecos entre los ladrillos triangulares");
+		System.out.println("una luz fría y azulada, distinta a la de una vela o ");
+		System.out.println("cualquier hechizo de fuego, más similar a un rayo que");
+		System.out.println("al propio Sol.");
+		System.out.println("Al final del camino una sala esférica con una platarforma");
+		System.out.println("se encuentra sin uso, la plataforma circular acoge un cilindro");
+		System.out.println("el cual atraviesa la plataforma hasta ambos extremos de la sala");
+		System.out.println("rodeando este cilindro velas en lo que parece un altar");
+		System.out.println("en el cual ofrendas con iconografía del Sol se amontonan");
+		System.out.println("el cilindro central rodeado por extrañas y coloridas");
+		System.out.println("cuerdas lo rodea una extraña sensación de divinidad");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Acercarte al altar");
+		System.out.println("2- Dar media vuelta");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while(choice != 5) {
+			switch(choice) {
+				case 1:
+						if(devotado == true) {
+							System.out.println("Acercandode al pilar poco cambia");
+							System.out.println("las cuerdas de colores siguen iguales");
+							System.out.println("pero la sensación de divinidad que emite");
+							System.out.println("no desaparece aunque no llegues a poder");
+							System.out.println("acercarte a la misma.");
+							altarSol();
+						} else {
+							System.out.println("Conforme te acercas al altar la extraña");
+							System.out.println("sensación se apodera de ti. un sensación");
+							System.out.println("electrizante corre bajo tu piel. Cuando ");
+							System.out.println("termina, te sientes renovado, casi alguien nuevo.");
+							devotado = true;
+							atkBonus = atkBonus + 3;
+							altarSol();
+						}
+					break;
+				case 2:
+					interiorMont();
+					break;
+				case 3:
+					longRest();
+					altarSol();
+					break;
+				case 4:
+					inventory();
+					altarSol();
+					break;
+			}
+		}
+		if(choice == 5) {
+			System.exit(0);
+		}
+		altarSol();
 	}
 	
-	public static void forjaOrm() {
+	public static void forjaOrm1() {
+		System.out.println("Esta estancia sorprendentemente bien ventilada para");
+		System.out.println("no ver aperturas a primera vista, la habitación está");
+		System.out.println("ocupada por montones de materiales metalúrgicos y similares");
+		System.out.println("dedicados a la forja, los instrumentos que reposan sobre");
+		System.out.println("calmadas brasas se ven tanteados, por los gordos dedos");
+		System.out.println("de un corpulento hombre, ataviado con un delantal de cuero");
+		System.out.println("y una máscara de oro que oculta su rostro, en las manos");
+		System.out.println("un hierro candente en cuyo final la efigie del sol arde");
+		System.out.println("con roja ira. El hombre no parece contento de ver tu falta");
+		System.out.println("de ropajes dorados y celestes, y sin mediar palabra alguna");
+		System.out.println("se abalanza sobre ti.");
+		System.out.println("¿Que haces?");
+		System.out.println("1- Atacar de cara");
+		System.out.println("2- Intentar esquivar");
+		choice = s.nextInt();
 		
+		switch(choice) {
+			case 1:
+				System.out.println("Al atacar de cara te expones a un golpe leve");
+				playerHP = playerHP - roll4();
+				fight(4);
+				forj = true;
+				forjaOrm2();
+				break;
+			case 2:
+				if(roll20() >= 13) {
+					System.out.println("Consigues esquivar el primer golpe");
+					fight(4);
+					forj = true;
+					forjaOrm2();
+				} else {
+					System.out.println("Intentas esquivar pero recibes un golpe leve");
+					playerHP = playerHP - roll4();
+					fight(4);
+					forj = true;
+					forjaOrm2();
+				}
+				break;
+		}
+		
+		forjaOrm1();
+	}
+	
+	public static void forjaOrm2() {
+		System.out.println("Una vez la forja está libre y el herrero yace en el");
+		System.out.println("suelo con su hierro candente perdiendo intesidad en");
+		System.out.println("el color, tienes completa libertad de usarla como te");
+		System.out.println("plazca. El calor te hace sudar y llega a ser molesto");
+		System.out.println("al punto de darte mareos.");
+		System.out.println("¿Que quieres hacer?");
+		System.out.println("1- Forjar algo");
+		System.out.println("2- Marcharte");
+		System.out.println("3- Descansar");
+		System.out.println("4- Inventario");
+		System.out.println("5- Salir de la sesión [NO SE GUARDA]");
+		choice = s.nextInt();
+		
+		while (choice != 5) {
+			switch(choice) {
+				case 1:
+					if (inv.contains("Escama Ormrinn")) {
+						int rand = roll4();
+						inv.remove("Escama Ormrinn");
+							switch(rand) {
+								case 1:
+									System.out.println("A tu mente imagenes de armaduras vienen");
+									System.out.println("Tu armadura ha cambiado a: ");
+									System.out.println("Armadura de escamas Ormrinn [18]");
+									playerArmor = "Cota de placas";
+									stealthDis = true;
+									playerAC = 14;
+									totalAC = playerAC + bonusAC;
+									forjaOrm2();
+									break;
+								case 2:
+									System.out.println("A tu mente imagenes de una lanza llegan");
+									System.out.println("Tu arma ha cambiado a: ");
+									System.out.println("Lanza de Ormirinn [1d12 + 1d6]");
+									playerWeapon = "Lanza de Ormirinn [1d12 + 1d6]";
+									playerDmg = roll12() + roll6();
+									typeDmg = 2;
+									forjaOrm2();
+									break;
+								case 3:
+									System.out.println("A tu mente llegan imagenes de munición a distancia");
+									System.out.println("Tu arma a distancia ahora hace 6 más de daño");
+									playerDisDmg = playerDisDmg + 6;
+									forjaOrm2();
+									break;
+								case 4:
+									System.out.println("A tu mente llegan imagenes de antiguas runas");
+									System.out.println("con las escamas creas un collar que mejora tu");
+									System.out.println("magia.");
+									SpellBonus = 6;
+									forjaOrm2();
+									break;
+							}
+					} else {
+						System.out.println("No tienes nada que fojar");
+						forjaOrm2();
+					}
+					break;
+				case 2:
+					interiorMont();
+					break;
+				case 3:
+					longRest();
+					forjaOrm2();
+					break;
+				case 4:
+					inventory();
+					forjaOrm2();
+					break;
+			}
+		}
+		if (choice == 5) {
+			System.exit(0);
+		}
+		
+		forjaOrm2();
 	}
 	
 	public static void salonBastSol() {
-		
+		System.out.println("Amplio salón con ventanas extrañamente colocadas");
+		System.out.println("sorprendentemente las ventanas que vistas a la pura");
+		System.out.println("roca no ceden ante el peso de la montaña, en el metálico");
+		System.out.println("interior de esta extraña estancia, una alargada mesa");
+		System.out.println("bien cuidada y rodeada de sillas curules que nada");
+		System.out.println("casan con los alrededores centra la estancia en ");
+		System.out.println("una de estas sillas, un hombre que emite una extraña");
+		System.out.println("aura dorada y que espera con una alabarda entre las manos");
+		System.out.println("y una hermosa armadura de placas con remates dorados.");
+		System.out.println("al verte se levanta con cansancio y agarra con decisión");
+		System.out.println("su arma antes de ponerse frente a tí, listo para un");
+		System.out.println("duelo uno a uno.");
+		fight(5);
+		balcon();
 	}
 	
 	public static void balcon() {
+		
+		System.out.println("Cuando el último bendico cae al suelo te encuentras");
+		System.out.println("a escasos pasos de una pequeñas escalinata que termina");
+		System.out.println("en un balcón con vistas al océano nuboso.");
+		System.out.println("Apoyado en la barandilla de metal un hombre cuya piel");
+		System.out.println("está arrugada y entre las dobleces asoman decoraciones");
+		System.out.println("metálicas estrañas a la vista, el anciano es el único");
+		System.out.println("que no viste de celeste y dorado, en su lugar una túnica");
+		System.out.println("negra con soles azules casi blanco a modo de decoración");
+		System.out.println("-Qui es? --Te pregunta con extraña curiosidad en los ojos");
+		System.out.println("Parece analizarte con calma absoluta, sus manos cruzadas");
+		System.out.println("a la espalda.");
+		if (finalshot > playerAC) {
+			System.out.println("Una de sus mános se mueve de forma extrañamente rauda");
+			System.out.println("para un hombre de su edad, contra tu pecho aprieta");
+			System.out.println("una extraña herramienta de la cual un rayo de luz sale");
+			System.out.println("y perfora tu pecho al igual que tu armadura sin problema alguno.");
+			muerte();
+		} else {
+			System.out.println("El hombre intenta sacar algo de un bolsillo oculto en su");
+			System.out.println("túnica, pero por suerte u eres más rápido y agarras la decépita");
+			System.out.println("mano que sujeta una extraña herrmienta metálica que parece");
+			System.out.println("un par de tubos en forma de 'L'");
+			System.out.println("-Nos postulo is. --Te dice con ojos de cordero degollado");
+			System.out.println("¿Que haces?");
+			System.out.println("1- Acabar con el anciano.");
+			System.out.println("2- Desarmar y perdonar el anciano.");
+			choice = s.nextInt();
+			switch (choice) {
+				case 1:
+					System.out.println("Con un simple empujón el anciano cae al");
+					System.out.println("océano nuboso en un sorprendente silencio.");
+					System.out.println("***EL SOL HA SOBREVIVIDO***");
+					System.out.println("*********POR AHORA*********");
+					break;
+				case 2:
+					System.out.println("Arrebatas el extraño objeto de las manos");
+					System.out.println("del anciano, parece patidifuso de no haber");
+					System.out.println("podido haber hecho algo con él.");
+					System.out.println("***EL SOL HA SOBREVIVIDO***");
+					System.out.println("*********POR AHORA*********");
+					break;
+				default:
+					System.out.println("Eso no es una opción");
+					balcon();
+					break;
+			}
+		}
 		
 	}
 	
@@ -4287,7 +4539,7 @@ public class PlaceHolder {
 							+ "																							 \r\n"
 							+ "BlaGames©																		         \r\n"
 							+ "LaMuerteDelSol®		 																     \r\n"
-							+ "V 0.8-1																                     \r\n"
+							+ "V 0.9																                     \r\n"
 							+ "");
 
 			System.out.println("1- Jugar");
@@ -4369,3 +4621,6 @@ public class PlaceHolder {
 		return n;
 	}
 } // end of class
+
+//anotations
+// https://codereview.stackexchange.com/questions/171431/text-based-rpg-dungeon-game-in-java
