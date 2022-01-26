@@ -846,6 +846,9 @@ public class PlaceHolder {
 		if (level >= 2) {
 			System.out.println("4- Músculos decayentes");
 			System.out.println("5- Catapulta");
+		} else if (level >= 3) {
+			System.out.println("6- Dedos de medusa");
+			System.out.println("7- Fuego compacto");
 		}
 		int h = s.nextInt();
 
@@ -917,7 +920,34 @@ public class PlaceHolder {
 					System.out.println("Eso no es una opción");
 				}
 				break; // End catapulta.
-
+			case 6:
+				if(level >= 3) {
+					if (roll20() + SpellBonus < EnemyAC) {
+						System.out.println("Tu hechizo ha fallado");
+						SpellSlots--;
+					} else {
+						EnemyHP = EnemyHP - (roll12() + roll6() + SpellBonus);
+						SpellSlots--;
+						System.out.println("Tus dedos mutan y se vuelven mil y un venenosos tentáculos de medusa que azotan a tu enemigo.");
+					}
+				} else {
+					System.out.println("Eso no es una opción");
+				}
+				break;
+			case 7:
+				if(level >= 3) {
+					if(roll20() + SpellBonus < EnemyAC) {
+						System.out.println("Tu hechizo ha fallado");
+						SpellSlots--;
+					} else {
+						EnemyHP = EnemyHP - (roll20() + SpellBonus);
+						SpellSlots--;
+						System.out.println("De tu dedo una recta vara de ardiente naranja sale despedida atraesando tu rival como si aire fuera.");
+					}
+				} else {
+					System.out.println("Eso no es una opción");
+				}
+				break;
 			default:
 				System.out.println("Eso no es una opción");
 				break;
@@ -4539,7 +4569,7 @@ public class PlaceHolder {
 							+ "																							 \r\n"
 							+ "BlaGames©																		         \r\n"
 							+ "LaMuerteDelSol®		 																     \r\n"
-							+ "V 0.9																                     \r\n"
+							+ "V 0.9-1																                     \r\n"
 							+ "");
 
 			System.out.println("1- Jugar");
