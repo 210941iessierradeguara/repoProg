@@ -4077,7 +4077,7 @@ public class PlaceHolder {
 			System.out.println("a un interior cuyo estilo arquitectónico es único, repleto de triángulos");
 		}
 		System.out.println("¿Que haces?");
-		if(grupCarr = false) {
+		if(grupCarr == false) {
 		System.out.println("1- Intentas ir hacia la pared desaparecida.");
 		System.out.println("2- Atacas a los integrantes del culto al Sol");
 		System.out.println("3- Intentas robar de los carromatos");
