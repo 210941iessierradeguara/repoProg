@@ -13,6 +13,14 @@ public class Dices {
 		return n;
 	}
 	
+	public static int Thirty() {
+		int n = dice.nextInt(31);
+		while (n == 0) {
+			n = dice.nextInt(31);
+		} // 1-100
+		return n;
+	}
+	
 	public static int Twenty() {
 		int n = dice.nextInt(21);
 		while (n == 0) {

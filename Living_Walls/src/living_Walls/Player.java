@@ -8,14 +8,15 @@ public class Player extends Stats{
 	private String Pclass;
 	private int currX;
 	private int currY;
+	private Room currCoor;
 	private int PutridPoints;
-	private int MaxPutrid;
+	private int MaxPutrid; // a cada sala aumenta en 1 el nivel de pudredumbre, la podredumbre permite usar hechizos pero llegar al máximo de esta te mata y te vuelve una fragmento pútrido
 	private String Wep;
 	private int level;
 	private int xp;
 	private boolean Aberration;
 	private int bastPla;
-	private ArrayList<Item> inv; // = new ArrayList<String>(); 
+	private static ArrayList<Item> inv; // = new ArrayList<String>(); 
 	
 	//https://codereview.stackexchange.com/questions/171431/text-based-rpg-dungeon-game-in-java
 	
@@ -24,27 +25,29 @@ public class Player extends Stats{
 	// no auto-gen
 	
 	public int Dmg() {
-		return ins.nextInt(this.getMaxDmg() - this.getMinDmg() + 1);
+		return Main_Walls.Dice.nextInt(this.getMaxDmg() - this.getMinDmg() + 1);
 	}
 
 	public Player(String name, int hp, int maxHp, String armor, int def, int maxDmg, int minDmg, int critPer,
-			String pclass, int putridPoints, int maxPutrid, String wep, int level, int xp,
-			boolean aberration, int bastPla, ArrayList<Item> inv) {
+			String pclass, int putridPoints, int maxPutrid, String wep, int level,
+			int xp, boolean aberration, int bastPla, ArrayList<Item> inv) {
 		super(name, hp, maxHp, armor, def, maxDmg, minDmg, critPer);
-		Pclass = pclass;
-		PutridPoints = putridPoints;
-		MaxPutrid = maxPutrid;
-		Wep = wep;
+		this.Pclass = pclass;
+		this.PutridPoints = putridPoints;
+		this.MaxPutrid = maxPutrid;
+		this.Wep = wep;
 		this.level = level;
 		this.xp = xp;
-		Aberration = aberration;
+		this.Aberration = aberration;
 		this.bastPla = bastPla;
 		this.inv = inv;
+		this.currX = 14;
+		this.currY = 14;
 	}
 
 	public void Rest() {
+		this.setPutridPoints((int) (this.getPutridPoints()/2));
 		this.setHp(this.getMaxHp());
-		this.setPutridPoints(this.MaxPutrid);
 	}
 	
 	public void Stats() {
@@ -78,9 +81,13 @@ public class Player extends Stats{
 		System.out.println("********************************************************************************");
 	}
 	
-	public Player newExiliated() {
+	public static Player newExiliated() {
 		return new Player("PlaceHolder", 10, 10, "Jubón Raido", 10, 8, 1, 2, 
-				"Exiliado", 4, 4, "Cayado", 1, 0, true, 0, inv);
+				"Exiliado", 3, 30, "Cayado", 1, 0, true, 0, inv);
+	}
+	
+	public boolean isAlive() {
+		return this.getHp() > 0;
 	}
 	
 	//auto gen
@@ -108,7 +115,6 @@ public class Player extends Stats{
 	public ArrayList<Item> getInv() {
 		return inv;
 	}
-
 
 	public void setInv(ArrayList<Item> inv) {
 		this.inv = inv;
@@ -179,5 +185,15 @@ public class Player extends Stats{
 	public void setPclass(String pclass) {
 		Pclass = pclass;
 	}
+
 	
+	public Room getCurrCoor() {
+		return currCoor;
+	}
+
+	public void setCurrCoor(Room currCoor) {
+		this.currCoor = currCoor;
+	}
+	
+
 }

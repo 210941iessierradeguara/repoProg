@@ -386,7 +386,16 @@ public class PlaceHolder {
 			EnemyDmg = (roll8() + roll4() + 4);
 			break;
 		case 5: //último bendito
-			EnemyHP = 20 + roll20() + roll20() + roll12();
+			EnemyHP = 50 + roll20() + roll20() + roll20();
+			if(inv.contains("Medallón del sol quemado")) {
+				EnemyHP = EnemyHP - 15;	
+			}
+			if(inv.contains("Frasco Estrellado")) {
+				EnemyHP = EnemyHP - 15;
+			}
+			if (inv.contains("Sol de bronce")) {
+				EnemyHP = EnemyHP - 10;
+			}
 			EnemyAC = 16;
 			EnemyDmg = roll8() + roll6() + 6;
 			break;
@@ -4123,6 +4132,8 @@ public class PlaceHolder {
 					} else {
 						interiorMont();
 					}
+				} else {
+					interiorMont();
 				}
 				break;
 			case 2:
@@ -4569,7 +4580,7 @@ public class PlaceHolder {
 							+ "																							 \r\n"
 							+ "BlaGames©																		         \r\n"
 							+ "LaMuerteDelSol®		 																     \r\n"
-							+ "V 0.9-1																                     \r\n"
+							+ "V 0.9-2																                     \r\n"
 							+ "");
 
 			System.out.println("1- Jugar");

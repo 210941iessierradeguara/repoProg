@@ -13,6 +13,7 @@
 			<item value=""/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="C:\Users\DAM1Alu14\Downloads\LivingWallsDia2022-01-26v2.zip"/>
 			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia23-01-22.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\TODODia18-01-22.zip"/>
 			<item value="C:\Users\DAM1Alu14\Downloads\Ud4_5_6.zip"/>
@@ -32,7 +33,6 @@
 			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia18-10v2.zip"/>
 			<item value="C:\Users\DAM1Alu14\Downloads\Todo15-10.zip"/>
 			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia17-10.zip"/>
-			<item value="C:\Users\DAM1Alu14\Downloads\BlaDia14-10v2.zip"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
