@@ -1,9 +1,9 @@
 public class HolaMundo {
 	static String mensaje = "Hola mundo";
 	public static void main(String[] args) {
-		Mensaje m = new Mensaje();
+		Mensajes m = new Mensajes();
 		m.setEmisor("Pepito");
-		m.setTexto("PAYACHO");
+		m.setCuerpo("PAYACHO");
 		System.out.println(m);
 	}
 }

@@ -1,35 +1,37 @@
 import java.util.Date;
 
-public class Mensaje {
+public class Mensajes {
+	// F2 Codium = Shift+ALT+r eclipse
 	private String emisor;
-	private String texto;
+	private String cuerpo;
 	private Date fechaHoraCreacion;
 	private Date fechaHoraMod;
-	
+	private String destinatario;
+
 	private void actualizarFechaHoraMod() {
 		this.fechaHoraMod = new Date();
 	}
 	
 	// Auto-Gen
 	
-	public Mensaje() {
+	public Mensajes() {
 		this.emisor = "emisor desconocido";
-		this.texto = "Texto desconocido";
+		this.cuerpo = "Texto desconocido";
 		this.fechaHoraCreacion = new Date();
 		this.fechaHoraMod = new Date();
 	}
 
-	public Mensaje(String emisor, String texto) {
+	public Mensajes(String emisor, String texto) {
 		super();
 		this.emisor = emisor;
-		this.texto = texto;
+		this.cuerpo = texto;
 		this.fechaHoraCreacion = new Date();
 		this.fechaHoraMod = new Date();
 	}
 
 	@Override
 	public String toString() {
-		return "Mensaje \n\t emisor= " + emisor + "\n\t texto= " + texto + "\n\t fecha= " + fechaHoraCreacion + "\n\t fecha modificación= " 
+		return "Mensaje \n\t emisor= " + emisor + "\n\t texto= " + cuerpo + "\n\t fecha= " + fechaHoraCreacion + "\n\t fecha modificación= " 
 				+ fechaHoraMod;
 	}
 
@@ -42,12 +44,20 @@ public class Mensaje {
 		actualizarFechaHoraMod();
 	}
 
-	public String getTexto() {
-		return texto;
+	public String getDestinatario() {
+		return destinatario;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
+	}
+
+	public String getCuerpo() {
+		return cuerpo;
+	}
+
+	public void setCuerpo(String texto) {
+		this.cuerpo = texto;
 		actualizarFechaHoraMod();
 	}
 
@@ -58,5 +68,6 @@ public class Mensaje {
 	public void setFechaHora(Date fechaHora) {
 		this.fechaHoraCreacion = fechaHora;
 	}
+	
 	
 }
