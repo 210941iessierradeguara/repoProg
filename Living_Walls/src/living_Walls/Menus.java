@@ -9,7 +9,7 @@ public class Menus {
 	public static int MenuPrinc() {
 		do {
 			System.out.println("\n");
-	        System.out.println("");
+	        System.out.println("BlaGames©");
 	        System.out.println("");
 	        System.out.println("-----------------------");
 	        System.out.println("     Menu Principal      ");
@@ -162,7 +162,7 @@ public class Menus {
 		}
 		s.next();
 		
-		} while (choices != 1 || choices != 2 || choices != 3 || choices != 4);
+		} while (choices < 1 || choices > 4);
 	}
 	
 	public static void menuMuert() {

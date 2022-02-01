@@ -11,7 +11,6 @@ public class Main_Walls {
 	public static int choice;
 	
 	
-	
 	public static void main(String[] args) {
 		Sector sector2 = new Sector();
 		switch(Menus.MenuPrinc()) {
