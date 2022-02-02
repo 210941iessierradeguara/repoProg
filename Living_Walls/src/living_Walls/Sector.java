@@ -37,18 +37,39 @@ public class Sector {
 		Menus.menuMov(player);
 	}
 	
+	public void movPlayerFuent(Player player) {
+		nD = existeSala(player.getCurrX(), player.getCurrY() + 1);
+		sD = existeSala(player.getCurrX(), player.getCurrY() - 1);
+		eD = existeSala(player.getCurrX() + 1, player.getCurrY());
+		wD = existeSala(player.getCurrX() - 1, player.getCurrY());
+		Menus.menuFuent(player);
+	}
+	
 	public void cityLogic (Player p, Room [][] d) {
 		do {
+			p.setCurrCoor(d[p.getCurrX()][p.getCurrY()]);
 			if (p.isAlive() && (d[p.getCurrX()][p.getCurrY()].getEne().getHp() > 0 && d[p.getCurrX()][p.getCurrY()].getNumEne() > 0)) { //Si esta vivo o el enemigo de la sala tiene más de 0 de vida
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
 				Pelea.enfrentamiento(p, d[p.getCurrX()][p.getCurrY()].getEne());
 				if (p.getHp() <= 0) {
 					Menus.menuMuert();
 				}
+			if ((d[p.getCurrX()][p.getCurrY()].isDescan() && d[p.getCurrX()][p.getCurrY()].getNumEne() <= 0)) {
+					// Si carece de enemigos y la sala tiene fuente se activa este
+					System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
+					if(d[p.getCurrX()][p.getCurrY()].getNumCur() > 0) {
+						//si a la fuente le quedan curas envialo al menú de fuentes.
+						p.setPutridPoints(p.getPutridPoints() + 1);
+						movPlayerFuent(p);
+					} else {
+						p.setPutridPoints(p.getPutridPoints()+1);
+						movPlayer(p);
+					}
+			}
 			} else if (p.isAlive()) {
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
-				movPlayer(p);
 				p.setPutridPoints(p.getPutridPoints()+1);
+				movPlayer(p);
 			}
 		} while (p.isAlive());
 	}

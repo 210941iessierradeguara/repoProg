@@ -5,6 +5,9 @@ public class Pelea {
 	public static void enfrentamiento(Player p, Enemy e) {
 		System.out.println("Ante ti se presenta un/a " + e.getName() + e.getDesc());
 		while (e.getHp() > 0) {
+			if (p.getHp() <= 0) {
+				Menus.menuMuert();
+			}
 			int choice = Menus.menuPelea(p);
 			switch (choice) {
 				case 1:

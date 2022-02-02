@@ -159,10 +159,65 @@ public class Menus {
 			}
 		} catch (java.util.InputMismatchException ime) {
 			System.out.println("Opción no valida");
+			s.next(); //evita bucles
 		}
-		s.next();
+		
 		
 		} while (choices < 1 || choices > 4);
+	}
+	
+	public static void menuFuent(Player p) {
+		do {
+			if (Sector.esNort() == true) {
+				System.out.println("1- Norte");
+			}
+			if (Sector.esSur() == true) {
+				System.out.println("2- Sur");
+			}
+			if (Sector.esEst() == true) {
+				System.out.println("3- Este");
+			}
+			if (Sector.esOes() == true) {
+				System.out.println("4- Oeste");
+			}
+			try {
+				System.out.println("5- Beber de la fuente");
+				System.out.println("6- Descansar");
+				System.out.println("¿Que hacer?");
+				choices = s.nextInt();
+
+				switch (choices) {
+					case 1:
+						if(choices == 1 && Sector.esNort()) {
+							p.setCurrY(p.getCurrY() + 1);
+						}
+						break;
+					case 2:
+						if(choices == 2 && Sector.esSur()) {
+							p.setCurrY(p.getCurrY()-1);
+						}
+						break;
+					case 3:
+						if(choices == 3 && Sector.esEst()) {
+							p.setCurrY(p.getCurrX()+1);
+						}
+						break;
+					case 4:
+						if(choices == 4 && Sector.esOes()) {
+							p.setCurrY(p.getCurrX()-1);
+						}
+						break;
+					case 5:
+						break;
+					case 6:
+						p.Rest();
+						break;
+				}
+			} catch (java.util.InputMismatchException ime) {
+				System.out.println("Opción no valida");
+				s.next();
+			}
+		}while(choices < 1 || choices > 6);
 	}
 	
 	public static void menuMuert() {
