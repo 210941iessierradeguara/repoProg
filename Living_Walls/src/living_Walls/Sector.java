@@ -37,12 +37,12 @@ public class Sector {
 		Menus.menuMov(player);
 	}
 	
-	public void movPlayerFuent(Player player) {
+	public void movPlayerFuent(Player player,Room [][] d) {
 		nD = existeSala(player.getCurrX(), player.getCurrY() + 1);
 		sD = existeSala(player.getCurrX(), player.getCurrY() - 1);
 		eD = existeSala(player.getCurrX() + 1, player.getCurrY());
 		wD = existeSala(player.getCurrX() - 1, player.getCurrY());
-		Menus.menuFuent(player);
+		Menus.menuFuent(player, d);
 	}
 	
 	public void cityLogic (Player p, Room [][] d) {
@@ -50,22 +50,24 @@ public class Sector {
 			p.setCurrCoor(d[p.getCurrX()][p.getCurrY()]);
 			if (p.isAlive() && (d[p.getCurrX()][p.getCurrY()].getEne().getHp() > 0 && d[p.getCurrX()][p.getCurrY()].getNumEne() > 0)) { //Si esta vivo o el enemigo de la sala tiene más de 0 de vida
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
+				System.out.println("Hay un total de " + d[p.getCurrX()][p.getCurrY()].getNumEne() + " Enemigo/s");
 				Pelea.enfrentamiento(p, d[p.getCurrX()][p.getCurrY()].getEne());
-				if (p.getHp() <= 0) {
-					Menus.menuMuert();
+				if (d[p.getCurrX()][p.getCurrY()].getEne().getHp() <= 0) {
+					d[p.getCurrX()][p.getCurrY()].setNumEne(d[p.getCurrX()][p.getCurrY()].getNumEne() - 1);
 				}
-			if ((d[p.getCurrX()][p.getCurrY()].isDescan() && d[p.getCurrX()][p.getCurrY()].getNumEne() <= 0)) {
-					// Si carece de enemigos y la sala tiene fuente se activa este
-					System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
-					if(d[p.getCurrX()][p.getCurrY()].getNumCur() > 0) {
-						//si a la fuente le quedan curas envialo al menú de fuentes.
-						p.setPutridPoints(p.getPutridPoints() + 1);
-						movPlayerFuent(p);
-					} else {
-						p.setPutridPoints(p.getPutridPoints()+1);
-						movPlayer(p);
-					}
-			}
+			} else if ((d[p.getCurrX()][p.getCurrY()].isDescan() == true && d[p.getCurrX()][p.getCurrY()].getNumEne() <= 0)) {
+				// Si carece de enemigos y la sala tiene fuente se activa este
+				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
+				if(d[p.getCurrX()][p.getCurrY()].getNumCur() > 0) {
+					//si a la fuente le quedan curas envialo al menú de fuentes.
+					p.setPutridPoints(p.getPutridPoints() + 1);
+					movPlayerFuent(p, d);
+				} else {
+					p.setPutridPoints(p.getPutridPoints() + 1);
+					movPlayerFuent(p, d);
+					// Si cambio esta parte la detección de curaciones peta, do not quitar
+				}
+				
 			} else if (p.isAlive()) {
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
 				p.setPutridPoints(p.getPutridPoints()+1);

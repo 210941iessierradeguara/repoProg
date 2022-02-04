@@ -166,8 +166,9 @@ public class Menus {
 		} while (choices < 1 || choices > 4);
 	}
 	
-	public static void menuFuent(Player p) {
+	public static void menuFuent(Player p, Room [][] d) {
 		do {
+			System.out.println("En la fuente quedan " + d[p.getCurrX()][p.getCurrY()].getNumCur() + " curaciones.");
 			if (Sector.esNort() == true) {
 				System.out.println("1- Norte");
 			}
@@ -183,6 +184,8 @@ public class Menus {
 			try {
 				System.out.println("5- Beber de la fuente");
 				System.out.println("6- Descansar");
+				System.out.println("7- Inventario");
+				System.out.println("8- Salir de la sesión");
 				System.out.println("¿Que hacer?");
 				choices = s.nextInt();
 
@@ -208,9 +211,20 @@ public class Menus {
 						}
 						break;
 					case 5:
+						if (d[p.getCurrX()][p.getCurrY()].getNumCur() <= 0) {
+							System.out.println("Lamentablemente no queda uso alguno en esta fuente");
+						}else {
+						d[p.getCurrX()][p.getCurrY()].setNumCur(d[p.getCurrX()][p.getCurrY()].getNumCur() - 1);
+						}
 						break;
 					case 6:
 						p.Rest();
+						break;
+					case 7:
+						p.Stats();
+						break;
+					case 8:
+						System.exit(0);
 						break;
 				}
 			} catch (java.util.InputMismatchException ime) {

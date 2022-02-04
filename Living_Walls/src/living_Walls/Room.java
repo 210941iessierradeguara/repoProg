@@ -5,7 +5,7 @@ import java.util.Random;
 public class Room {
 	private final String desc;
 	private final Enemy ene;
-	private final int numEne;
+	private int numEne;
 	private final boolean boss;
 	private final boolean descan;
 	private static int numCur;
@@ -68,6 +68,10 @@ public class Room {
 		return numEne;
 	}
 
+	public void setNumEne(int numEne) {
+		this.numEne = numEne;
+	}
+
 	public boolean isBoss() {
 		return boss;
 	}
@@ -79,7 +83,7 @@ public class Room {
 	public int getNumCur() {
 		return numCur;
 	}
-
+	
 	public void setNumCur(int numCur) {
 		Room.numCur = numCur;
 	}
