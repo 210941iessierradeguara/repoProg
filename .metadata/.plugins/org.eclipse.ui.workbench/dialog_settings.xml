@@ -15,6 +15,9 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\LivingWallsDia2022-02-04.zip"/>
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\LivingWallsDia2022-02-02.zip"/>
+			<item value="C:\Users\DAM1Alu14\Documents\Prog\Ud7Dia2022-02-02.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\Ud7Dia2022-02-01.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\LivingWallsDia2022-02-01.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia2022-01-28v2.zip"/>
@@ -32,9 +35,6 @@
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\BlaDia21-01-22.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\TODODia19-01-22.zip"/>
 			<item value="C:\Users\DAM1Alu14\Documents\Prog\TODODia18-01-22.zip"/>
-			<item value="C:\Users\DAM1Alu14\Documents\Prog\blaDia17-01-22.zip"/>
-			<item value="C:\Users\DAM1Alu14\Documents\Prog\blaDia14-01-22.zip"/>
-			<item value="C:\Users\DAM1Alu14\Documents\Prog\blaDia11-01-22.zip"/>
 		</list>
 	</section>
 	<section name="EditorSelectionDialog">
