@@ -20,19 +20,19 @@ System.out.println("Introduce el año(yyyy): ");
 int a=s.nextInt();
 
 GregorianCalendar Fecha =new GregorianCalendar();
+//Fecha.getTime();
 Fecha.set(Calendar.YEAR, a);
 Fecha.set(Calendar.MONTH, m-1);
 Fecha.set(Calendar.DAY_OF_MONTH, d);
-
 System.out.println("Dia de la semana: " + (Fecha.get(Calendar.DAY_OF_WEEK)-1));
 //-----------------------------------------------------------------------------
 
-StringTokenizer nombre = new StringTokenizer("Christian Ortiz Benahmed");
+StringTokenizer nombre = new StringTokenizer("Daniel Martinez Eito");
 while (nombre.hasMoreTokens()) {
 System.out.println(nombre.nextToken());
 }
 
-String nombre2= "Christian Ortiz Benahmed";
+String nombre2= "Daniel Martinez Eito";
 String [] x= nombre2.split(" ");
 
 System.out.println();
@@ -42,9 +42,9 @@ System.out.println(trozo);
 }
 //-----------------------------------------------------------------------------
 
-String texto = "Hola buenas tardes, esto es Rock FM.";
-String buscar = "Rock";
-String reemplazar ="Europa";
+String texto = "Hola buenas tardes, esto es boulder FM.";
+String buscar = "boulder";
+String reemplazar ="piedra";
 
 System.out.println("Texto sin reemplazar: "+ texto);
 
