@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="bla/src"/>
+	<classpathentry kind="src" path="Cards_of_Barovia/src"/>
+	<classpathentry kind="src" path="Ejercicio3_4_ColeccionesI/src"/>
+	<classpathentry kind="src" path="examen/src"/>
+	<classpathentry kind="src" path="Examen2Eva1_Martinez_Eito_Daniel/src"/>
+	<classpathentry kind="src" path="ExamEva2-1/src"/>
+	<classpathentry kind="src" path="HasetPersonas/src"/>
+	<classpathentry kind="src" path="HeyMundo/src"/>
+	<classpathentry kind="src" path="Living_Walls/src"/>
+	<classpathentry kind="src" path="OrdenacionyBusqueda/src"/>
+	<classpathentry kind="src" path="ProyectoArraysList1/src"/>
+	<classpathentry kind="src" path="TresetPersonas/src"/>
+	<classpathentry kind="src" path="Ud1/src"/>
+	<classpathentry kind="src" path="Ud2/src"/>
+	<classpathentry kind="src" path="Ud3-2/src"/>
+	<classpathentry kind="src" path="Ud3/src"/>
+	<classpathentry kind="src" path="Ud3Parte2/src"/>
+	<classpathentry kind="src" path="Ud4_5_6/cadenas_envoltorios"/>
+	<classpathentry kind="src" path="Ud4_5_6/fechas"/>
+	<classpathentry kind="src" path="Ud4_5_6/herencias_interfaces_polimorfismo"/>
+	<classpathentry kind="src" path="Ud4/src"/>
+	<classpathentry kind="src" path="Ud5-6/src"/>
+	<classpathentry kind="src" path="Ud7/07_MANEJO_DE_FICHEROS_EJEMPLOS"/>
+	<classpathentry kind="src" path="Ud7/src"/>
+	<classpathentry kind="output" path="Cards_of_Barovia/bin"/>
+</classpath>
