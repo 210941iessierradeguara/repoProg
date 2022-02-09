@@ -183,7 +183,7 @@ public class Menus {
 			}
 			try {
 				System.out.println("5- Beber de la fuente");
-				System.out.println("6- Descansar");
+				System.out.println("6- Descansar [+4 puntos de podredumbre]");
 				System.out.println("7- Inventario");
 				System.out.println("8- Salir de la sesión");
 				System.out.println("¿Que hacer?");
@@ -215,6 +215,7 @@ public class Menus {
 							System.out.println("Lamentablemente no queda uso alguno en esta fuente");
 						}else {
 						d[p.getCurrX()][p.getCurrY()].setNumCur(d[p.getCurrX()][p.getCurrY()].getNumCur() - 1);
+						p.setHp(p.getHp() + Dices.Ten());
 						}
 						break;
 					case 6:

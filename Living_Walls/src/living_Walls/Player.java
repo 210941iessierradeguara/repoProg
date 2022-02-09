@@ -46,7 +46,7 @@ public class Player extends Stats{
 	}
 
 	public void Rest() {
-		this.setPutridPoints((int) (this.getPutridPoints()/2));
+		this.setPutridPoints((int) (this.getPutridPoints() + 4));
 		this.setHp(this.getMaxHp());
 	}
 	
