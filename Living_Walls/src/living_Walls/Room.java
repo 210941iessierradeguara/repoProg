@@ -8,7 +8,7 @@ public class Room {
 	private int numEne;
 	private final boolean boss;
 	private final boolean descan;
-	private static int numCur;
+	private int numCur;
 	
 	public Room(String desc, Enemy ene, int numEne, boolean boss, boolean descan, int numCur) {
 		super();
@@ -25,6 +25,7 @@ public class Room {
 		int numEne = 0;
 		boolean boss = false;
 		boolean descan = false;
+		int numCur = 0;
 		
 		// int sala = Dices.Thirty();
 		int sala = Dices.Four();
@@ -39,21 +40,23 @@ public class Room {
 						+ " no parece hacer nada al tocarla pero la sensación de "
 						+ "angustia al pensar en ello te abruma.";
 				numEne = 0;
-				return new Room(desc, Enemy.newNo(), numEne, false, false, 0);
+				return new Room(desc, Enemy.newNo(), numEne, boss, descan, numCur);
 			case 2:
 				desc = "Una abandonada taberna con un fragmento";
 				numEne = 1;
-				return new Room(desc, Enemy.newFragmento() ,numEne, false, false, 0);
+				return new Room(desc, Enemy.newFragmento() ,numEne, boss, descan, numCur);
 			case 3:
 				desc = "Dos abandonada taberna con un fragmento";
 				numEne = 1;
-				return new Room(desc, Enemy.newFragmento() ,numEne, false, false, 0);
+				return new Room(desc, Enemy.newFragmento() ,numEne, boss, descan, numCur);
 			case 4:
 				desc = "Fuent_Defalt";
 				numEne = 0;
-				return new Room(desc, Enemy.newNo() ,numEne, false, true, 10);
+				descan = true;
+				numCur = 10;
+				return new Room(desc, Enemy.newNo() ,numEne, boss, descan, numCur);
 		}
-		 return new Room(desc, Enemy.newFragmento() ,numEne, false, false, 0);
+		 return new Room(desc, Enemy.newFragmento() ,numEne, boss, descan, numCur);
 	}
 
 	public String getDesc() {
@@ -85,7 +88,7 @@ public class Room {
 	}
 	
 	public void setNumCur(int numCur) {
-		Room.numCur = numCur;
+		this.numCur = numCur;
 	}
 	
 	

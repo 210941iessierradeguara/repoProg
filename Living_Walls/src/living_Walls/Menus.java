@@ -9,7 +9,7 @@ public class Menus {
 	public static int MenuPrinc() {
 		do {
 			System.out.println("\n");
-	        System.out.println("BlaGames©");
+//	        System.out.println("BlaGames©");
 	        System.out.println("");
 	        System.out.println("-----------------------");
 	        System.out.println("     Menu Principal      ");

@@ -48,6 +48,7 @@ public class Sector {
 	public void cityLogic (Player p, Room [][] d) {
 		do {
 			p.setCurrCoor(d[p.getCurrX()][p.getCurrY()]);
+			System.out.println("**************************************************************************************************");
 			if (p.isAlive() && (d[p.getCurrX()][p.getCurrY()].getEne().getHp() > 0 && d[p.getCurrX()][p.getCurrY()].getNumEne() > 0)) { //Si esta vivo o el enemigo de la sala tiene más de 0 de vida
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
 				System.out.println("Hay un total de " + d[p.getCurrX()][p.getCurrY()].getNumEne() + " Enemigo/s");
@@ -55,6 +56,7 @@ public class Sector {
 				if (d[p.getCurrX()][p.getCurrY()].getEne().getHp() <= 0) {
 					d[p.getCurrX()][p.getCurrY()].setNumEne(d[p.getCurrX()][p.getCurrY()].getNumEne() - 1);
 				}
+				// fin comprobación enemigos
 			} else if ((d[p.getCurrX()][p.getCurrY()].isDescan() == true && d[p.getCurrX()][p.getCurrY()].getNumEne() <= 0)) {
 				// Si carece de enemigos y la sala tiene fuente se activa este
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
@@ -67,12 +69,13 @@ public class Sector {
 					movPlayerFuent(p, d);
 					// Si cambio esta parte la detección de curaciones peta, do not quitar
 				}
-				
+				// fin comprobación fuente
 			} else if (p.isAlive()) {
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
 				p.setPutridPoints(p.getPutridPoints()+1);
 				movPlayer(p);
 			}
+			// fin comprobación area vacía
 		} while (p.isAlive());
 	}
 	
