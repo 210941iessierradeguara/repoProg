@@ -12,7 +12,7 @@ public class Menus {
 //	        System.out.println("BlaGames©");
 	        System.out.println("");
 	        System.out.println("-----------------------");
-	        System.out.println("     Menu Principal      ");
+	        System.out.println("     Menú Principal      ");
 	        System.out.println("_______________________");
 	        System.out.println();
 	        System.out.println(" 1.      Iniciar        ");
@@ -81,6 +81,7 @@ public class Menus {
 				case 1:
 					return 1;
 				case 2:
+					Main_Walls.main(null);
 					break;
 				default:
 					System.out.println("Opción no valida");
@@ -150,12 +151,16 @@ public class Menus {
 		
 			if(choices == 1 && Sector.esNort()) {
 				p.setCurrY(p.getCurrY() + 1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			} else if(choices == 2 && Sector.esSur()) {
 				p.setCurrY(p.getCurrY()-1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			} else if(choices == 3 && Sector.esEst()) {
 				p.setCurrY(p.getCurrX()+1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			} else if(choices == 4 && Sector.esOes()) {
 				p.setCurrY(p.getCurrX()-1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			}
 		} catch (java.util.InputMismatchException ime) {
 			System.out.println("Opción no valida");
@@ -193,21 +198,25 @@ public class Menus {
 					case 1:
 						if(choices == 1 && Sector.esNort()) {
 							p.setCurrY(p.getCurrY() + 1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
 						}
 						break;
 					case 2:
 						if(choices == 2 && Sector.esSur()) {
 							p.setCurrY(p.getCurrY()-1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
 						}
 						break;
 					case 3:
 						if(choices == 3 && Sector.esEst()) {
 							p.setCurrY(p.getCurrX()+1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
 						}
 						break;
 					case 4:
 						if(choices == 4 && Sector.esOes()) {
 							p.setCurrY(p.getCurrX()-1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
 						}
 						break;
 					case 5:

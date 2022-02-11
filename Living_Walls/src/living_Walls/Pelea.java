@@ -23,6 +23,7 @@ public class Pelea {
 					p.Stats();
 					break;
 				case 5:
+					podredumbre(p, e);
 					break;
 				default:
 					System.out.println("Eso no es una opción");

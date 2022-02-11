@@ -62,7 +62,6 @@ public class Sector {
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
 				if(d[p.getCurrX()][p.getCurrY()].getNumCur() > 0) {
 					//si a la fuente le quedan curas envialo al menú de fuentes.
-					p.setPutridPoints(p.getPutridPoints() + 1);
 					movPlayerFuent(p, d);
 				} else {
 					p.setPutridPoints(p.getPutridPoints() + 1);
@@ -72,7 +71,6 @@ public class Sector {
 				// fin comprobación fuente
 			} else if (p.isAlive()) {
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
-				p.setPutridPoints(p.getPutridPoints()+1);
 				movPlayer(p);
 			}
 			// fin comprobación area vacía
