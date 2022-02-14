@@ -37,20 +37,45 @@ public class Sector {
 		Menus.menuMov(player);
 	}
 	
+	public void movPlayerFuent(Player player,Room [][] d) {
+		nD = existeSala(player.getCurrX(), player.getCurrY() + 1);
+		sD = existeSala(player.getCurrX(), player.getCurrY() - 1);
+		eD = existeSala(player.getCurrX() + 1, player.getCurrY());
+		wD = existeSala(player.getCurrX() - 1, player.getCurrY());
+		Menus.menuFuent(player, d);
+	}
+	
 	public void cityLogic (Player p, Room [][] d) {
 		do {
+			p.setCurrCoor(d[p.getCurrX()][p.getCurrY()]);
+			System.out.println("********************************************************************************");
 			if (p.isAlive() && (d[p.getCurrX()][p.getCurrY()].getEne().getHp() > 0 && d[p.getCurrX()][p.getCurrY()].getNumEne() > 0)) { //Si esta vivo o el enemigo de la sala tiene más de 0 de vida
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
+				System.out.println("Hay un total de " + d[p.getCurrX()][p.getCurrY()].getNumEne() + " Enemigo/s");
 				Pelea.enfrentamiento(p, d[p.getCurrX()][p.getCurrY()].getEne());
-				if (p.getHp() <= 0) {
-					Menus.menuMuert();
+				if (d[p.getCurrX()][p.getCurrY()].getEne().getHp() <= 0) {
+					d[p.getCurrX()][p.getCurrY()].setNumEne(d[p.getCurrX()][p.getCurrY()].getNumEne() - 1);
 				}
+				// fin comprobación enemigos
+			} else if ((d[p.getCurrX()][p.getCurrY()].isDescan() == true && d[p.getCurrX()][p.getCurrY()].getNumEne() <= 0)) {
+				// Si carece de enemigos y la sala tiene fuente se activa este
+				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
+				if(d[p.getCurrX()][p.getCurrY()].getNumCur() > 0) {
+					//si a la fuente le quedan curas envialo al menú de fuentes.
+					movPlayerFuent(p, d);
+				} else {
+					p.setPutridPoints(p.getPutridPoints() + 1);
+					movPlayerFuent(p, d);
+					// Si cambio esta parte la detección de curaciones peta, do not quitar
+				}
+				// fin comprobación fuente
 			} else if (p.isAlive()) {
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
 				movPlayer(p);
-				p.setPutridPoints(p.getPutridPoints()+1);
 			}
-		} while (p.isAlive());
+			// fin comprobación area vacía
+		} while (p.isAlive() && p.getPutridPoints() != p.getMaxPutrid());
+		Menus.menuMuert();
 	}
 	
 	public static boolean esNort() {

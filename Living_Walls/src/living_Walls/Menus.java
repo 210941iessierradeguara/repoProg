@@ -9,10 +9,10 @@ public class Menus {
 	public static int MenuPrinc() {
 		do {
 			System.out.println("\n");
-	        System.out.println("");
+//	        System.out.println("BlaGames©");
 	        System.out.println("");
 	        System.out.println("-----------------------");
-	        System.out.println("     Menu Principal      ");
+	        System.out.println("     Menú Principal      ");
 	        System.out.println("_______________________");
 	        System.out.println();
 	        System.out.println(" 1.      Iniciar        ");
@@ -81,6 +81,7 @@ public class Menus {
 				case 1:
 					return 1;
 				case 2:
+					Main_Walls.main(null);
 					break;
 				default:
 					System.out.println("Opción no valida");
@@ -150,19 +151,97 @@ public class Menus {
 		
 			if(choices == 1 && Sector.esNort()) {
 				p.setCurrY(p.getCurrY() + 1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			} else if(choices == 2 && Sector.esSur()) {
 				p.setCurrY(p.getCurrY()-1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			} else if(choices == 3 && Sector.esEst()) {
 				p.setCurrY(p.getCurrX()+1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			} else if(choices == 4 && Sector.esOes()) {
 				p.setCurrY(p.getCurrX()-1);
+				p.setPutridPoints(p.getPutridPoints() + 1);
 			}
 		} catch (java.util.InputMismatchException ime) {
 			System.out.println("Opción no valida");
+			s.next(); //evita bucles
 		}
-		s.next();
 		
-		} while (choices != 1 || choices != 2 || choices != 3 || choices != 4);
+		
+		} while (choices < 1 || choices > 4);
+	}
+	
+	public static void menuFuent(Player p, Room [][] d) {
+		do {
+			System.out.println("En la fuente quedan " + d[p.getCurrX()][p.getCurrY()].getNumCur() + " curaciones.");
+			if (Sector.esNort() == true) {
+				System.out.println("1- Norte");
+			}
+			if (Sector.esSur() == true) {
+				System.out.println("2- Sur");
+			}
+			if (Sector.esEst() == true) {
+				System.out.println("3- Este");
+			}
+			if (Sector.esOes() == true) {
+				System.out.println("4- Oeste");
+			}
+			try {
+				System.out.println("5- Beber de la fuente");
+				System.out.println("6- Descansar [+4 puntos de podredumbre]");
+				System.out.println("7- Inventario");
+				System.out.println("8- Salir de la sesión");
+				System.out.println("¿Que hacer?");
+				choices = s.nextInt();
+
+				switch (choices) {
+					case 1:
+						if(choices == 1 && Sector.esNort()) {
+							p.setCurrY(p.getCurrY() + 1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
+						}
+						break;
+					case 2:
+						if(choices == 2 && Sector.esSur()) {
+							p.setCurrY(p.getCurrY()-1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
+						}
+						break;
+					case 3:
+						if(choices == 3 && Sector.esEst()) {
+							p.setCurrY(p.getCurrX()+1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
+						}
+						break;
+					case 4:
+						if(choices == 4 && Sector.esOes()) {
+							p.setCurrY(p.getCurrX()-1);
+							p.setPutridPoints(p.getPutridPoints() + 1);
+						}
+						break;
+					case 5:
+						if (d[p.getCurrX()][p.getCurrY()].getNumCur() <= 0) {
+							System.out.println("Lamentablemente no queda uso alguno en esta fuente");
+						}else {
+						d[p.getCurrX()][p.getCurrY()].setNumCur(d[p.getCurrX()][p.getCurrY()].getNumCur() - 1);
+						p.setHp(p.getHp() + Dices.Ten());
+						}
+						break;
+					case 6:
+						p.Rest();
+						break;
+					case 7:
+						p.Stats();
+						break;
+					case 8:
+						System.exit(0);
+						break;
+				}
+			} catch (java.util.InputMismatchException ime) {
+				System.out.println("Opción no valida");
+				s.next();
+			}
+		}while(choices < 1 || choices > 6);
 	}
 	
 	public static void menuMuert() {

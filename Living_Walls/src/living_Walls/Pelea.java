@@ -5,6 +5,9 @@ public class Pelea {
 	public static void enfrentamiento(Player p, Enemy e) {
 		System.out.println("Ante ti se presenta un/a " + e.getName() + e.getDesc());
 		while (e.getHp() > 0) {
+			if (p.getHp() <= 0) {
+				Menus.menuMuert();
+			}
 			int choice = Menus.menuPelea(p);
 			switch (choice) {
 				case 1:
@@ -20,6 +23,7 @@ public class Pelea {
 					p.Stats();
 					break;
 				case 5:
+					podredumbre(p, e);
 					break;
 				default:
 					System.out.println("Eso no es una opción");
@@ -36,7 +40,7 @@ public class Pelea {
 			e.setHp(e.getHp() - p.Dmg());
 			if (Dices.Twenty() > p.getDef()) { //1d20 puro que ha de superar Def jugador para dañar
 				p.setHp(p.getHp() - e.dmg());
-				System.out.println("El enemig te ataca.");
+				System.out.println("El enemigo te ataca.");
 				System.out.println("HP actual: " + p.getHp());
 					if(p.getHp() < 0) {
 						Menus.menuMuert();
@@ -48,7 +52,7 @@ public class Pelea {
 			System.out.println("Tu ataque ha fallado");
 				if (Dices.Twenty() > p.getDef()) {
 					p.setHp(p.getHp() - e.dmg());
-					System.out.println("El enemig te ataca.");
+					System.out.println("El enemigo te ataca.");
 					System.out.println("HP actual: " + p.getHp());
 					if(p.getHp() < 0) {
 						Menus.menuMuert();
@@ -62,7 +66,7 @@ public class Pelea {
 	public static void defensa(Player p, Enemy e) {
 		if (Dices.Twenty() > p.getDef() + 3) {
 			p.setHp(p.getHp() - e.dmg());
-			System.out.println("El enemig sortea tus defensas.");
+			System.out.println("El enemigo sortea tus defensas.");
 			System.out.println("HP actual: " + p.getHp());
 			if(p.getHp() < 0) {
 				Menus.menuMuert();

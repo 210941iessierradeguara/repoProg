@@ -14,8 +14,8 @@ public class Enemy extends Stats{
 	}
 	
 	public static Enemy newFragmento() {
-		return new Enemy("Fragmento Pútrido", 10, 10, "Carece de armadura", 13, 4, 1, 2 ,"Un forma humanoide, cubierta en una especie de brea que refleja el sol con intesidad"
-				+ "camina sin rumbo alguno y parece tan perdido como tú, fuera como fuere, un elemento altamente violento de la antigua"
+		return new Enemy("Fragmento Pútrido", 10, 10, "Carece de armadura", 13, 4, 1, 2 ," Una forma humanoide, cubierta en una especie de brea que refleja el sol con intesidad"
+				+ " camina sin rumbo alguno y parece tan perdido como tú, fuera como fuere, un elemento altamente violento de la antigua"
 				+ " capital imperial", 1);
 	}
 	public static Enemy newNo() {

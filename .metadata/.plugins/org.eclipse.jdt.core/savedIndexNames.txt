@@ -5,7 +5,6 @@ INDEX VERSION 1.131+/home/alumno/git/repoProg/.metadata/.plugins/org.eclipse.jdt
 2844502984.index
 3468680866.index
 3445581321.index
-3603777497.index
 1639647839.index
 61170457.index
 2953500164.index
@@ -17,7 +16,6 @@ INDEX VERSION 1.131+/home/alumno/git/repoProg/.metadata/.plugins/org.eclipse.jdt
 3811386038.index
 1123540196.index
 3868398587.index
-2962589626.index
 225095289.index
 1202560809.index
 1142405188.index
