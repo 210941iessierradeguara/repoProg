@@ -1,2 +1,2 @@
 # repoProg
-Repositorio dedicado al modulo de programación
+Repositorio dedicado al módulo de programación
