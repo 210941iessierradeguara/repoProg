@@ -74,7 +74,7 @@ public class Sector {
 				movPlayer(p);
 			}
 			// fin comprobación area vacía
-		} while (p.isAlive() && p.getPutridPoints() != p.getMaxPutrid());
+		} while (p.isAlive() && p.getPutridPoints() <= p.getMaxPutrid());
 		Menus.menuMuert();
 	}
 	

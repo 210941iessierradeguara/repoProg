@@ -126,7 +126,7 @@ public class Menus {
 		}
 		s.next();
 		
-		} while ((choices != 1 || choices != 2 || choices != 3 || choices != 4 || choices != 5));
+		} while ((choices <= 1 || choices >= 5));
 		return choices;
 	}
 	
@@ -245,7 +245,7 @@ public class Menus {
 	}
 	
 	public static void menuMuert() {
-		System.out.println("En tu enfrentamiento pereces, un golpe de suerte por parte de la podredumbre.");
+		System.out.println("Al final pereces, un golpe de suerte por parte de la podredumbre.");
 		System.out.println("Tu inerte cuerpo poco a poco es consumido por la podredumbre, no muchos días despues, un exiliado acaba contigo");
 		System.out.println("****La ciudad avanza****");
 		System.out.println("***Las murallas viven***");
