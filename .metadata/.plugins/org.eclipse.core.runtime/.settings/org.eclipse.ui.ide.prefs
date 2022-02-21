@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 IMPORT_FILES_AND_FOLDERS_RELATIVE=true
 IMPORT_FILES_AND_FOLDERS_TYPE=23,1
 eclipse.preferences.version=1
-platformState=1636369660842
+platformState=1636369660861
 quickStart=false
-tipsAndTricks=true
-=======
-IMPORT_FILES_AND_FOLDERS_RELATIVE=true
-IMPORT_FILES_AND_FOLDERS_TYPE=23,1\:7,1
-eclipse.preferences.version=1
-platformState=1632214842096
-quickStart=false
-tipsAndTricks=true
->>>>>>> branch 'main' of git@github.com:210941iessierradeguara/repoProg.git
+tipsAndTricks=false
