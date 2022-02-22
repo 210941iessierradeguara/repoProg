@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-GitRepositoriesView.GitDirectories=/home/alumno/git/repoProg/.git\:
-GitRepositoriesView.GitDirectories.relative=.git\:
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'main' of git@github.com\:210941iessierradeguara/repoProg.git
+GitRepositoriesView.GitDirectories=
+GitRepositoriesView.GitDirectories.relative=
 RepositoryGroups.uuids=
 RepositorySearchDialogSearchPath=/home/alumno/git
 eclipse.preferences.version=1
-=======
-GitRepositoriesView.GitDirectories=C\:\\Users\\DAM1Alu14\\git\\Entornos02\\.git;C\:\\Users\\DAM1Alu14\\git\\repoProg\\.git;
-GitRepositoriesView.GitDirectories.relative=C\:\\Users\\DAM1Alu14\\git\\Entornos02\\.git;.git;
-RepositoryGroups.uuids=
-eclipse.preferences.version=1
->>>>>>> branch 'main' of git@github.com:210941iessierradeguara/repoProg.git

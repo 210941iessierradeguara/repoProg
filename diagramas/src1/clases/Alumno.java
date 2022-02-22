@@ -2,6 +2,19 @@ package clases;
 
 public class Alumno extends Persona{
 	String expediente;
+	private String atribPrivado;
+	public String atriPublic;
+	protected String atriProtected;
+	
+	protected void metodoProtected() {}
+	
+	public String getAtribPrivado() {
+		return atribPrivado;
+	}
+
+	public void setAtribPrivado(String atribPrivado) {
+		this.atribPrivado = atribPrivado;
+	}
 
 	public Alumno(String nombre, String expediente) {
 		super(nombre);
