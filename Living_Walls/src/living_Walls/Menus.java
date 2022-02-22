@@ -17,13 +17,13 @@ public class Menus {
 	        System.out.println();
 	        System.out.println(" 1.      Iniciar        ");
 	        System.out.println();
-//	        System.out.println(" 2.     Load Game        ");
-//	        System.out.println();
+	        System.out.println(" 2.   Cargar partida     ");
+	        System.out.println();
 //	        System.out.println(" 3.      Settings        ");
 //	        System.out.println();
 //	        System.out.println(" 4.       Credits        ");
 //	        System.out.println();
-	        System.out.println(" 2.     Exit Game        ");
+	        System.out.println(" 3.        Salir         ");
 	        System.out.println();
 	        System.out.print(" Make a Selection: ");
 	        System.out.println();
@@ -39,6 +39,8 @@ public class Menus {
 	        		}
 	        		break;
 	        	case 2:
+	    			return 2;
+	        	case 3:
 	        		System.exit(0);
 	        		break;
 	        	default:

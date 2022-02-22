@@ -1,9 +1,14 @@
 package living_Walls;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Player extends Stats{
+public class Player extends Stats implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final Random ins = new Random();
 	private String Pclass;
 	private int currX;
@@ -44,10 +49,13 @@ public class Player extends Stats{
 		this.currX = 14;
 		this.currY = 14;
 	}
+	
+	public Player() {
+	}
 
 	public void Rest() {
-		this.setPutridPoints((int) (this.getPutridPoints() + 4));
 		this.setHp(this.getMaxHp());
+		this.setPutridPoints((int) (this.getPutridPoints() + 4));
 	}
 	
 	public void Stats() {

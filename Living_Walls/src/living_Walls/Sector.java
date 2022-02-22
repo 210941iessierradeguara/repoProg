@@ -1,5 +1,11 @@
 package living_Walls;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class Sector {
 	private static boolean nD = true;
 	private static boolean sD = true;
@@ -48,6 +54,7 @@ public class Sector {
 	public void cityLogic (Player p, Room [][] d) {
 		do {
 			p.setCurrCoor(d[p.getCurrX()][p.getCurrY()]);
+			g(p,d);
 			System.out.println("********************************************************************************");
 			if (p.isAlive() && (d[p.getCurrX()][p.getCurrY()].getEne().getHp() > 0 && d[p.getCurrX()][p.getCurrY()].getNumEne() > 0)) { //Si esta vivo o el enemigo de la sala tiene más de 0 de vida
 				System.out.println(d[p.getCurrX()][p.getCurrY()].getDesc());
@@ -76,6 +83,29 @@ public class Sector {
 			// fin comprobación area vacía
 		} while (p.isAlive() && p.getPutridPoints() <= p.getMaxPutrid());
 		Menus.menuMuert();
+	}
+	
+	public static void g(Player p, Room [][] d) {
+		try {
+			@SuppressWarnings("unused")
+			File file = new File("g/s1.dat");
+			@SuppressWarnings("unused")
+			File file2 = new File("g/sd1.dat");
+			ObjectOutputStream gu = new ObjectOutputStream(new FileOutputStream("g/s1.dat"));
+			ObjectOutputStream gd = new ObjectOutputStream(new FileOutputStream("g/sd1.dat"));
+			try {
+				gu.writeObject(p);
+				gd.writeObject(d);
+			} catch (IOException IOEE) {
+				IOEE.printStackTrace();
+			}
+			gu.close();
+			gd.close();
+		} catch (FileNotFoundException FNFE) {
+			FNFE.printStackTrace();
+		} catch (IOException IOEE) {
+			IOEE.printStackTrace();
+		}
 	}
 	
 	public static boolean esNort() {

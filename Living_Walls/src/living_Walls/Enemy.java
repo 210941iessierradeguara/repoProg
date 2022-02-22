@@ -1,8 +1,9 @@
 package living_Walls;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Enemy extends Stats{
+public class Enemy extends Stats implements Serializable{
 	private static final Random ins = new Random();
 	private String desc;
 	private int PutridCle;

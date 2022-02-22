@@ -22,7 +22,10 @@ public class Stats {
 		this.minDmg = minDmg;
 		this.critPer = critPer;
 	}
-	
+	public Stats() {
+		
+	}
+
 	public String getName() {
 		return name;
 	}

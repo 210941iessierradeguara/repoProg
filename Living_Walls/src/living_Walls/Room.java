@@ -1,8 +1,12 @@
 package living_Walls;
 
-import java.util.Random;
+import java.io.Serializable;
 
-public class Room {
+public class Room implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final String desc;
 	private final Enemy ene;
 	private int numEne;
@@ -42,11 +46,11 @@ public class Room {
 				numEne = 0;
 				return new Room(desc, Enemy.newNo(), numEne, boss, descan, numCur);
 			case 2:
-				desc = "Una abandonada taberna con un fragmento";
+				desc = "testComb_01";
 				numEne = 1;
 				return new Room(desc, Enemy.newFragmento() ,numEne, boss, descan, numCur);
 			case 3:
-				desc = "Dos abandonada taberna con un fragmento";
+				desc = "testComb_02";
 				numEne = 1;
 				return new Room(desc, Enemy.newFragmento() ,numEne, boss, descan, numCur);
 			case 4:
