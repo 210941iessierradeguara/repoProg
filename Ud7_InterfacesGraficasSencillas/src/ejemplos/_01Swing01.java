@@ -15,7 +15,7 @@ public class _01Swing01 extends JFrame {
     panel.add(miboton);
     setSize(200,100);
     setVisible(true);
-  //  setDefaultCloseOperation(EXIT_ON_CLOSE);
+    // setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
 
   public static void main(String args[]) {

@@ -13,8 +13,7 @@ public class Main_Walls {
 	public static Player player;
 	public static Room[][] sector;
 	public static int choice;
-	
-	
+
 	public static void main(String[] args) {
 		Sector sector2 = new Sector();
 		switch(Menus.MenuPrinc()) {
@@ -23,30 +22,36 @@ public class Main_Walls {
 				System.out.println("¿Cual es el nombre de este: " + player.getPclass() + "?");
 				String nombre = s.next();
 				player.setName(nombre);
+				// el ciclo de jogo
 				sector = Sector.newRandSec(player);
 				sector2.cityLogic(player, sector);
 				break;
 			case 2:
+				ObjectInputStream LP = null;
+				ObjectInputStream LD = null;
 				try {
-    				ObjectInputStream LP = new ObjectInputStream(new FileInputStream("g/s1.dat"));
-					ObjectInputStream LD = new ObjectInputStream(new FileInputStream("g/sd1.dat"));
+    				LP = new ObjectInputStream(new FileInputStream("g/s1.dat"));
+					LD = new ObjectInputStream(new FileInputStream("g/sd1.dat"));
+					player = (Player) LP.readObject();
+					sector = (Room[][]) LD.readObject();
+				}
+				catch (ClassNotFoundException CNFE) {
+					CNFE.printStackTrace();
+				} catch (FileNotFoundException FNFE) {
+					FNFE.printStackTrace();
+				} catch (IOException IOEE) {
+					IOEE.printStackTrace();
+				} finally {
 					try {
-						player = (Player) LP.readObject();
-						sector = (Room[][]) LD.readObject();
-					} catch (ClassNotFoundException e) {
+						LP.close();
+						LD.close();
+					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					LP.close();
-					LD.close();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
 				}
+				// el ciclo de jogo
 				sector2.cityLogic(player, sector);
 				break;
 		}
-		
 	}
-
 }

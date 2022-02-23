@@ -50,8 +50,6 @@ public class Player extends Stats implements Serializable{
 		this.currY = 14;
 	}
 	
-	public Player() {
-	}
 
 	public void Rest() {
 		this.setHp(this.getMaxHp());

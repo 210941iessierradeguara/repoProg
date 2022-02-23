@@ -16,8 +16,8 @@ public class _00JoptionPane0 {
 		//
 		//String numeroString= JOptionPane.showInputDialog("Introduzca una cantidad entera");
 		//int numero = Integer.parseInt(numeroString); // o directamente
-		//int numero=Integer.parseInt(JOptionPane.showInputDialog("Introduzca una cantidad entera"));
-		//JOptionPane.showMessageDialog(null,"La raíz cuadrada de " + numero + " vale " + Math.sqrt(numero));
+//		int numero=Integer.parseInt(JOptionPane.showInputDialog("Introduzca una cantidad entera"));
+//		JOptionPane.showMessageDialog(null,"La raíz cuadrada de " + numero + " vale " + Math.sqrt(numero));
 		Object equipo = JOptionPane.showInputDialog(null,"Elige ganador",
 				   "Semifinales copa rey 2019", JOptionPane.QUESTION_MESSAGE, null,
 				  new String[] { "Real Madrid", "Barcelona"}, null);
