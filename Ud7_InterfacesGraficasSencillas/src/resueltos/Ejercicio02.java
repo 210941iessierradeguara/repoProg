@@ -54,6 +54,3 @@ public class Ejercicio02 extends JFrame {
     }
   }
 }
-
-
-
