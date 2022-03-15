@@ -32,6 +32,7 @@ public class Main_Walls {
 				try {
     				LP = new ObjectInputStream(new FileInputStream("g/s1.dat"));
 					LD = new ObjectInputStream(new FileInputStream("g/sd1.dat"));
+					
 					player = (Player) LP.readObject();
 					sector = (Room[][]) LD.readObject();
 				}
