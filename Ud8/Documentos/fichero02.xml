@@ -1,0 +1,22 @@
+<ListaDepartamento>
+  <DatosDepartamento>
+    <numdepartamento>1</numdepartamento>
+    <nombre>A</nombre>
+    <localidad>A01</localidad>
+  </DatosDepartamento>
+  <DatosDepartamento>
+    <numdepartamento>2</numdepartamento>
+    <nombre>B</nombre>
+    <localidad>B01</localidad>
+  </DatosDepartamento>
+  <DatosDepartamento>
+    <numdepartamento>3</numdepartamento>
+    <nombre>C</nombre>
+    <localidad>C01</localidad>
+  </DatosDepartamento>
+  <DatosDepartamento>
+    <numdepartamento>4</numdepartamento>
+    <nombre>D</nombre>
+    <localidad>D01</localidad>
+  </DatosDepartamento>
+</ListaDepartamento>
