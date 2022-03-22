@@ -68,7 +68,7 @@ public Connection conecta;
 		return null;
 		}
 		} //de consultarId
-	
+			
 	//
 	
 	public ArrayList <Libro> consultarPorTitulo(String titulo){
