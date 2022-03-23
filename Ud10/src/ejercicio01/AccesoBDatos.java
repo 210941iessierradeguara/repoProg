@@ -119,23 +119,19 @@ public class AccesoBDatos {
 	        //
 			//
 		
-		public ResultSet consultarTodosResultSet() throws SQLException{
+		public void consultarLocalidadResultSet(String lugar) throws SQLException{
 			Statement consulta = conecta.createStatement();
-			return consulta.executeQuery ("SELECT * FROM socio");
+			imprimirDatos(consulta.executeQuery ("SELECT * FROM socio WHERE localidad LIKE '%" + lugar + "%'"));
 		}
 		
-		public void imprimirDatos(ResultSet r) {
-			int cont = 0;
-			try {
-				while(r.next()) {
-					System.out.println(r.getInt (1) + r.getString (2) + r.getInt (3) + r.getInt(4) + r.getString(5));
-					cont++;
-					System.out.println(cont);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		public void consultarTodosResultSet() throws SQLException{
+			Statement consulta = conecta.createStatement();
+			imprimirDatos(consulta.executeQuery ("SELECT * FROM socio"));
+		}
+		
+		public void imprimirDatos(ResultSet reg) throws SQLException {
+			while(reg.next())
+				System.out.println(reg.getInt (1) + " - " + reg.getString (2) + " - " + reg.getInt (3) + " - " + reg.getInt(4) + " - " + reg.getString(5));
 		}
 		
 		//
