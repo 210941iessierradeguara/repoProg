@@ -27,26 +27,20 @@ public class AccesoBaDatos {
 		
 		//
 		
-		public boolean consultarLogin(String username, String pass){
+		public String consultarLogin(String username, String pass){
 			ArrayList <Usuario>lista = new ArrayList<Usuario> ();
 			try {
 				Statement consulta = conecta.createStatement();
-				ResultSet reg = consulta.executeQuery ("SELECT username, password FROM usuario WHERE nombre LIKE '" + username + "'");
+				ResultSet reg = consulta.executeQuery ("SELECT * FROM usuario WHERE username LIKE '" + username + "' and password LIKE '" + pass + "'");
 				
-				while (reg.next ()) {
-					if(username.equals(reg.getString(1)) && pass.equals(reg.getString(2))) {
-						consulta.close();
-						return true;
-					} else {
-						consulta.close();
-						return false;
-					}
-			}
-			consulta.close();
-				return false;
+				if (reg.next()) {
+					return reg.getString(3);
+				} else {
+					return "";
+				}
 			}
 			catch (SQLException e) {
-				return false;
+				return "";
 			}
 			} //de consultarLogin
 		
