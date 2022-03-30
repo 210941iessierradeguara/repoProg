@@ -107,6 +107,7 @@ public class AccesoBDatos2 {
 					lista.add(libro);
 			}
 			consulta.close ();
+			// 
 			return lista;
 			}
 			catch (SQLException e) {

@@ -2,6 +2,7 @@ package ejercicio03;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConsultaSocio extends JFrame {
 
@@ -19,17 +22,27 @@ public class ConsultaSocio extends JFrame {
 	private JTextField SedadField;
 	private JTextField SlocalidadField;
 	private JTextField BuscarField;
+	static AccesoBDatos2 abd = new AccesoBDatos2();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					ConsultaSocio frame = new ConsultaSocio();
 					frame.setVisible(true);
 				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					abd.conectar();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -107,6 +120,12 @@ public class ConsultaSocio extends JFrame {
 		SlocalidadField.setColumns(10);
 		
 		JButton Buscarbtn = new JButton("Buscar");
+		Buscarbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
 		Buscarbtn.setBounds(335, 65, 89, 23);
 		contentPane.add(Buscarbtn);
 		
@@ -131,5 +150,16 @@ public class ConsultaSocio extends JFrame {
 		cantidadLabel.setVisible(false);
 		
 		
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        try {
+					abd.desconectar();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		    }
+		});
 	}
 }
