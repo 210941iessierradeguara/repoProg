@@ -118,14 +118,18 @@ public class AccesoBDatos2 {
 	        //
 			//
 		
-		public void consultarLocalidadResultSet(String lugar) throws SQLException{
+		public ResultSet consultarLocalidadResultSet(String lugar) throws SQLException{
 			Statement consulta = conecta.createStatement();
-			imprimirDatos(consulta.executeQuery ("SELECT * FROM socio WHERE localidad LIKE '%" + lugar + "%'"));
+			ResultSet reg = (consulta.executeQuery ("SELECT * FROM socio WHERE localidad LIKE '%" + lugar + "%'"));
+			
+			return reg;
 		}
 		
-		public void consultarTodosResultSet() throws SQLException{
+		public ResultSet consultarTodosResultSet() throws SQLException{
 			Statement consulta = conecta.createStatement();
-			imprimirDatos(consulta.executeQuery ("SELECT * FROM socio"));
+			ResultSet reg = (consulta.executeQuery ("SELECT * FROM socio"));
+			
+			return reg;
 		}
 		
 		public void imprimirDatos(ResultSet reg) throws SQLException {

@@ -1,17 +1,17 @@
 package ejercicio03;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class ConsultaSocio extends JFrame {
 
@@ -22,7 +22,10 @@ public class ConsultaSocio extends JFrame {
 	private JTextField SedadField;
 	private JTextField SlocalidadField;
 	private JTextField BuscarField;
+	
 	static AccesoBDatos2 abd = new AccesoBDatos2();
+	private int filas=0, posicion=0;
+	private ResultSet listado;
 
 	/**
 	 * Launch the application.
@@ -135,17 +138,27 @@ public class ConsultaSocio extends JFrame {
 		BuscarField.setColumns(10);
 		
 		JButton Siguientebtn = new JButton("Siguiente");
+		Siguientebtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		Siguientebtn.setEnabled(false);
 		Siguientebtn.setBounds(239, 227, 89, 23);
 		contentPane.add(Siguientebtn);
 		
 		JButton Anteriorbtn = new JButton("Anterior");
+		Anteriorbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		Anteriorbtn.setEnabled(false);
 		Anteriorbtn.setBounds(131, 227, 89, 23);
 		contentPane.add(Anteriorbtn);
 		
 		JLabel cantidadLabel = new JLabel("Oculto");
-		cantidadLabel.setBounds(191, 179, 46, 14);
+		cantidadLabel.setBounds(207, 180, 46, 14);
 		contentPane.add(cantidadLabel);
 		cantidadLabel.setVisible(false);
 		
