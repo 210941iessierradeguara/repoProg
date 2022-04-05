@@ -9,11 +9,11 @@ public class MainCorrecto {
 	private static String driver = "com.mysql.cj.jdbc.Driver";
     private static String database = "sample";
     private static String hostname = "localhost";
-    private static String port = "3306";
+    private static String port = "3309";
 	private static String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database +
 									"?serverTimezone=Europe/Madrid";
     private static String username = "root";
-    private static String password = "rootroot";
+    private static String password = "root";
 	public static Usuario Login(String uname, String pass) throws SQLException, ClassNotFoundException {
 		Class.forName(driver);
 		Connection conn = DriverManager.getConnection(url, username, password);
