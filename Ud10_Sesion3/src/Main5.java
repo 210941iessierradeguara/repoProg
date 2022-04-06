@@ -5,14 +5,14 @@ public class Main5 {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		int filas;
-		Depto dep;
+		Empleado dep;
 		//
 		AccesoBdatos abd=new AccesoBdatos();
 		//
 		abd.conectar();
 		//
 		// El departamento 10 pasará a cambiar de nombre y localidad
-		dep = new Depto(10, "DAM1", "Sabiñánigo");
+		dep = new Empleado(10, "DAM1", "Sabiñánigo");
 		filas = abd.actualizar(dep);
 		if (filas==1)
 			System.out.println ("Datos del departamento " + dep.getDeptno() + " modificados");
@@ -21,7 +21,7 @@ public class Main5 {
 		//
 		//
 		// El departamento 85 no existe y por tanto no se actualizarán sus datos
-		dep = new Depto(85, "DAM2", "Sabiñánigo");
+		dep = new Empleado(85, "DAM2", "Sabiñánigo");
 		filas = abd.actualizar(dep);
 		if (filas==1)
 			System.out.println ("Datos del departamento " + dep.getDeptno() + " modificados");

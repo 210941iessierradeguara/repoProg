@@ -1,7 +1,7 @@
 
 
-public class Depto { 
-	public Depto(Integer deptno, String dname, String loc) {
+public class Empleado { 
+	public Empleado(Integer deptno, String dname, String loc) {
 		super();
 		this.deptno = deptno;
 		this.dname = dname;
@@ -10,7 +10,7 @@ public class Depto {
 	Integer deptno; String dname;
 	String loc;
 
-public  Depto() {
+public  Empleado() {
 }
 
 public Integer getDeptno() {

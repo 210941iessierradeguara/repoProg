@@ -63,7 +63,7 @@ public class AccesoBdatos {
 	// Recordad que tengo una clase Depto.java "similar" a la tabla dept con la que estamos trabajando
 	// Procedimiento Muy similar al anterior, con una modificación para que en caso que la inserción sea correcta devuelva un 1 y
 	// si no es correcta devuelva el número de error MySQL
-	public int insertarConBean(Depto registro){
+	public int insertarConBean(Empleado registro){
 		try {
 			String sql="insert into dept values (?,?,?)";
 			PreparedStatement inserta =conecta.prepareStatement(sql);
@@ -80,9 +80,9 @@ public class AccesoBdatos {
 	// Método consultarTodos. ¡NO DEVUELVE UN RESULTSET O CONJUNTO DE FILAS DE UNA TABLA QUE TANTO NOS GUSTA! SINO
 	// QUE ESE RESULTSET OBTENIDO, LO PASA A UN ARRAYLIST DE DEPARTAMENTOS  Y DEVUELVE DICHO ARRAYLIST
 	//
-	public ArrayList<Depto> consultarTodos(){
+	public ArrayList<Empleado> consultarTodos(){
 		// Creamos una lista donde ir añadiendo cada departamento que vamos recuperando del ResultSet
-		ArrayList<Depto> deptos = new ArrayList<Depto> ();
+		ArrayList<Empleado> deptos = new ArrayList<Empleado> ();
 		try {
 			// Preparo la sentencia. Observad que no lleva "?" o datos que tenga que pasarle antes de ejecutarla.
 			PreparedStatement consulta = conecta.prepareStatement("SELECT * FROM dept");
@@ -92,7 +92,7 @@ public class AccesoBdatos {
 			while (reg.next ()) {
 				// Creo un departamento y a la vez le paso al constructor los datos con los que inicializo dicho departamento
 				// Esos 3 datos con los que construyo el departamento son los datos que extraigo de la fila del ResultSet
-				Depto departamento = new Depto(reg.getInt (1), reg.getString (2), reg.getString (3));
+				Empleado departamento = new Empleado(reg.getInt (1), reg.getString (2), reg.getString (3));
 				// una vez creado el departamento con los datos extraídos de la fila, lo añado a la lista
 				deptos.add(departamento);
 			}
@@ -105,7 +105,7 @@ public class AccesoBdatos {
 	//
 	// método consultarUno. Le paso como argumento  el número de departamento y me devuelve un objeto departamento 
 	// que se corresponde con dicho número. Si no lo encuentra o se produce error, devuelve nulo
-	public Depto consultarUno(int numero){
+	public Empleado consultarUno(int numero){
 		try {
 			PreparedStatement consulta = conecta.prepareStatement("SELECT * FROM dept WHERE deptno=?");
 			// El dato que me falta para lanzar la sentencia anterior, el ?,
@@ -115,7 +115,7 @@ public class AccesoBdatos {
 			ResultSet reg = consulta.executeQuery ();
 			// Creo un departamento donde dejar el resultado obtenido. El ResultSet reg solo puede tener una fila o ninguna, 
 			// pues realizo una búsqueda por clave primaria Select... WHERE deptno=....
-			Depto departamento = new Depto();
+			Empleado departamento = new Empleado();
 			// Si he recuperado una fila, monto el departamento con los datos de las columnas de dicha fila
 			if (reg.next ()) {
 				departamento.setDeptno(reg.getInt (1));
@@ -137,7 +137,7 @@ public class AccesoBdatos {
 	// método actualizar. Le pasamos un objeto departamento y actualiza en la tabla dept,
 	// el nombre y la localidad de la fila cuyo número de departamento coincide con el del departamento que le paso
 	// Devuelve el número de filas actualizadas, que en este caso será 0 ó 1
-	public int actualizar(Depto registro){
+	public int actualizar(Empleado registro){
 		try {
 			String sql="update dept set dname=?, loc=? where deptno=?";
 			// Preparo la sentencia

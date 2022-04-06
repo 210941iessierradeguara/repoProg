@@ -9,7 +9,7 @@ public class Main2 {
 		//
 		abd.conectar();
 		//
-		Depto dep = new Depto(60, "DAM2", "Huesca");
+		Empleado dep = new Empleado(60, "DAM2", "Huesca");
 		resultado = abd.insertarConBean(dep);
 		if (resultado ==1)
 			System.out.println ("Se ha podido insertar el departamento: " + dep);
@@ -17,7 +17,7 @@ public class Main2 {
 			System.out.println ("Error nº " + resultado + " al insertar el departamento: " + dep);
 		
 		//
-		dep = new Depto(10, "ASIR2", "Huesca");
+		dep = new Empleado(10, "ASIR2", "Huesca");
 		resultado = abd.insertarConBean(dep);
 		if (resultado ==1)
 			System.out.println ("Se ha podido insertar el departamento: " + dep);
