@@ -131,7 +131,50 @@ public class AccesoBdatos {
 		        for (Object[] r4 : l4) {
 		            System.out.println(
 		            "Nombre :  " + r4[0] + ", Localidad: " + r4[1]);
-		    }     
+		    }
+
+				   System.out.println("\n 1. \n");
+			       
+		   
+	         TypedQuery<Object[]> query =
+	        		 em.createQuery("SELECT e.nombre, e.alta " + " FROM EmpleadoEntity e", Object[].class);
+	         	List<Object[]> l5 = query.getResultList();
+	         	for (Object[] l5b : l5) {
+	 			   System.out.println(
+	 					   l5b[0] + " - " + l5b[1]);
+	 		   }
+	         	
+			   System.out.println("\n 2. \n");
+		       
+		   TypedQuery<Object[]> query2 = 
+				   em.createQuery("SELECT e.nombre, e.alta " + " FROM EmpleadoEntity e " + " WHERE UPPER(e.nombre) LIKE '%CARRERA%'", Object[].class);
+		   List<Object[]> l6b = query2.getResultList();
+		   for (Object[] l6 : l6b) {
+			   System.out.println(
+					   l6[0] + " - " + l6[1]);
+		   }
+
+		   System.out.println("\n 3. \n");
+	       
+		   
+		   TypedQuery<Object[]> query3 = 
+				   em.createQuery("SELECT e.nombre, e.oficio, e.departamento.nombre " + " FROM EmpleadoEntity e " + " WHERE e.oficio = 'Empleado' AND e.departamento.nombre = 'I+D'", Object[].class);
+		   List<Object[]> l7 = query3.getResultList();
+		   for (Object[] l7b : l7) {
+			   System.out.println(
+					   l7b[0] + " - " + l7b[1] + " - " + l7b[2]);
+		   }
+		   
+		   System.out.println("\n 4. \n");
+		   
+		   TypedQuery<Object[]> query4 = 
+				   em.createQuery("SELECT e.nombre, e.alta " + " FROM EmpleadoEntity e " + " WHERE YEAR(e.alta) >= 2003", Object[].class);
+		   List<Object[]> l8 = query4.getResultList();
+		   for (Object[] l8b : l8) {
+			   System.out.println(
+					   l8b[0] + " - " + l8b[1]);
+		   }
+		   
 	     
 	}// de demoJPQL
 //--------------------------------------------------------------------------------------------------------------
