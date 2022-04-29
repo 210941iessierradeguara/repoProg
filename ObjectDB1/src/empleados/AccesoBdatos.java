@@ -175,7 +175,96 @@ public class AccesoBdatos {
 					   l8b[0] + " - " + l8b[1]);
 		   }
 		   
-	     
+		   System.out.println("\n 5. \n");
+		   
+		   TypedQuery<Object[]> query5 = 
+				   em.createQuery("SELECT e.nombre, e.oficio " + " FROM EmpleadoEntity e " + " ORDER BY e.oficio ASC", Object[].class);
+		   List<Object[]> l9 = query5.getResultList();
+		   for (Object[] l9b : l9) {
+			   System.out.println(
+					   l9b[1] + " - " + l9b[0]);
+		   }
+		   
+		   System.out.println("\n 6. \n");
+		   
+		   TypedQuery<Object[]> query6 = 
+				   em.createQuery("SELECT e.departamento.nombre, count(e), SUM(e.salario), MAX(e.salario) " + " FROM EmpleadoEntity e " + " GROUP BY e.departamento.nombre", Object[].class);
+		   List<Object[]> l10 = query6.getResultList();
+		   for (Object[] l10b : l10) {
+			   System.out.println(
+					   l10b[0] + " - " + l10b[1] + " - " + l10b[2] + " - " + l10b[3]);
+		   }
+		   
+		   System.out.println("\n 7. \n");
+		   
+		   TypedQuery<Object[]> query7 = 
+				   em.createQuery("SELECT e.departamento.nombre, count(e), SUM(e.salario), MAX(e.salario) " + " FROM EmpleadoEntity e " + " GROUP BY e.departamento.nombre HAVING COUNT(e)>=5", Object[].class);
+		   List<Object[]> l11 = query7.getResultList();
+		   for (Object[] l11b : l11) {
+			   System.out.println(
+					   l11b[0] + " - " + l11b[1] + " - " + l11b[2] + " - " + l11b[3]);
+		   }
+		   
+		   System.out.println("\n 8. \n");
+		   
+		   TypedQuery<Object[]> query8 = 
+				   em.createQuery("SELECT e.nombre, e.dirId.nombre, e.departamento.dptoId " + " FROM EmpleadoEntity e " + " ORDER BY e.nombre ASC", Object[].class);
+		   List<Object[]> l12 = query8.getResultList();
+		   for (Object[] l12b : l12) {
+			   System.out.println(
+					   l12b[0] + " - " + " Su jefe es: " + " - " + l12b[1] + " - " + "Departamento" + " - " + l12b[2]);
+		   }
+		   
+		   System.out.println("\n 9. \n");
+		   
+		   TypedQuery<Object[]> query9 = 
+				   em.createQuery("SELECT e.departamento.nombre, count(e) " + " FROM EmpleadoEntity e " + " GROUP BY e.departamento.nombre", Object[].class);
+		   List<Object[]> l13 = query9.getResultList();
+		   for (Object[] l13b : l13) {
+			   System.out.println(
+					   l13b[0] + " - " + l13b[1]);
+		   }
+		   
+		   System.out.println("\n 10. \n");
+		   
+		   TypedQuery<Object[]> query10 = 
+				   em.createQuery("SELECT e.nombre, count(e2) " + " FROM DepartamentoEntity e LEFT JOIN e.empleados e2 " + " GROUP BY e.nombre", Object[].class);
+		   List<Object[]> l14 = query10.getResultList();
+		   for (Object[] l14b : l14) {
+			   System.out.println(
+					   l14b[0] + " - " + l14b[1]);
+		   }
+		   
+		   System.out.println("\n 11. \n");
+		   
+		   TypedQuery<Object[]> query11 = 
+				   em.createQuery("SELECT e.departamento.dptoId, e.nombre, e.salario " + " FROM EmpleadoEntity e " + " ORDER BY e.departamento.dptoId DESC, e.salario ASC", Object[].class);
+		   List<Object[]> l15 = query11.getResultList();
+		   for (Object[] l15b : l15) {
+			   System.out.println(
+					   l15b[0] + " - " + l15b[1] + " - " + l15b[2]);
+		   }
+		   
+		   System.out.println("\n 12. \n");
+		   
+		   TypedQuery<Object[]> query12 = 
+				   em.createQuery("SELECT e.empnoId, e.nombre " + " FROM EmpleadoEntity e " + " WHERE e.dirId IS NULL", Object[].class);
+		   List<Object[]> l16 = query12.getResultList();
+		   for (Object[] l16b : l16) {
+			   System.out.println(
+					   l16b[0] + " - " + l16b[1]);
+		   }
+		   
+		   System.out.println("\n 13. \n");
+		   
+		   TypedQuery<Object[]> query13 = 
+				   em.createQuery("SELECT e.dptoId, e.nombre " + " FROM DepartamentoEntity e LEFT JOIN e.empleados e2" + " WHERE 1039 MEMBER OF e2.empnoId", Object[].class);
+		   List<Object[]> l17 = query13.getResultList();
+		   for (Object[] l17b : l17) {
+			   System.out.println(
+					   l17b[0] + " - " + l17b[1]);
+		   }
+		   
 	}// de demoJPQL
 //--------------------------------------------------------------------------------------------------------------
 	
