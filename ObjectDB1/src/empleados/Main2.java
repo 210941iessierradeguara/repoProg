@@ -11,7 +11,7 @@ public class Main2 {
 
 	public static void main(String[] args) throws ParseException {
         
-		AccesoBdatos abd = new AccesoBdatos();
+		AccesoBdatosAlumnos abd = new AccesoBdatosAlumnos();
 		abd.conectar();
 	//	abd.imprimirDepartamento(90);
 	//	abd.imprimirDepartamento(40);

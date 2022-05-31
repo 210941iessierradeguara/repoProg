@@ -6,10 +6,11 @@ public class Main {
 		AccesoBOODatos abd = new AccesoBOODatos();
 		
 		abd.conectar();
-	//	abd.datosIniciales();	
+		//abd.datosIniciales();	
 		
 		System.out.println(abd.insertarPais(new Pais(2, "Suiza"))); // false
 		System.out.println(abd.insertarPais(new Pais(5, "Aragón"))); // true
+		//System.out.println(abd.borrarPais(5)); // true
 		
 	//	abd.imprimirJugadoresPais(6);
 		abd.desconectar();

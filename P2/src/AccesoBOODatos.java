@@ -64,5 +64,17 @@ public class AccesoBOODatos {
 		}
 	}
 	
+	public boolean borrarPais(int id) {
+		Pais p = em.find(Pais.class, id);
+		if (p == null) {
+			return false;
+		} else {
+			em.getTransaction().begin();
+			em.remove(p);
+			em.getTransaction().commit();
+			return true;
+		}
+	}
+	
 
 } // de la clase AccesoBdatos 
