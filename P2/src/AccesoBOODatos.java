@@ -66,7 +66,7 @@ public class AccesoBOODatos {
 	
 	public boolean borrarPais(int id) {
 		Pais p = em.find(Pais.class, id);
-		if (p == null) {
+		if (p == null || !p.getJugadores().isEmpty()) {
 			return false;
 		} else {
 			em.getTransaction().begin();
