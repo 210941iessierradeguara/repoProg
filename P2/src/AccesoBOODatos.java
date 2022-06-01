@@ -53,6 +53,10 @@ public class AccesoBOODatos {
 	//
 	//
 	// COMPLETAR
+	public Pais buscarPais(int id) {
+		return em.find(Pais.class, id);
+	}
+	
 	public boolean insertarPais(Pais p) {
 		if(em.find(Pais.class, p.getId())==null) {
 			em.getTransaction().begin();

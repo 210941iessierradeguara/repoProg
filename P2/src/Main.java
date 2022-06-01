@@ -10,6 +10,7 @@ public class Main {
 		
 		System.out.println(abd.insertarPais(new Pais(2, "Suiza"))); // false
 		System.out.println(abd.insertarPais(new Pais(5, "Aragón"))); // true
+		//System.out.println(abd.buscarPais(5));
 		//System.out.println(abd.borrarPais(5)); // true
 		
 	//	abd.imprimirJugadoresPais(6);
