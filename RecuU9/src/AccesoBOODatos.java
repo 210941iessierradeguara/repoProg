@@ -1,11 +1,6 @@
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Set;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 
 
@@ -53,24 +48,9 @@ public class AccesoBOODatos {
 	//
 	//
 	// COMPLETAR
-	public Pais buscarPais(int id) {
-		return em.find(Pais.class, id);
-	}
-	
-	public boolean insertarPais(Pais p) {
-		if(em.find(Pais.class, p.getId())==null) {
-			em.getTransaction().begin();
-			em.persist(p);
-			em.getTransaction().commit();
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean borrarPais(int id) {
-		Pais p = em.find(Pais.class, id);
-		if (p == null || !p.getJugadores().isEmpty()) {
+	public boolean borrarPais(int codigoPais) {
+		Pais p = em.find(Pais.class, codigoPais);
+		if (p == null) {
 			return false;
 		} else {
 			em.getTransaction().begin();
@@ -79,6 +59,4 @@ public class AccesoBOODatos {
 			return true;
 		}
 	}
-	
-
 } // de la clase AccesoBdatos 
